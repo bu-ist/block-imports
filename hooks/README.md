@@ -2,6 +2,8 @@
 
 These should be camelCase.
 
+They are React hooks https://react.dev/reference/react/hooks, not WP hooks or WP hooks or WP hooks
+
 ...Except block hooks come in WP 6.4 and are php based, so is this confusing?
 https://developer.wordpress.org/news/2024/03/exploring-the-block-hooks-api-in-wordpress-6-5/#how-to-create-block-hooks
 
