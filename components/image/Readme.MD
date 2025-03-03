@@ -1,3 +1,5 @@
+https://github.com/bu-ist/bu-block-components/tree/develop/components/image
+
 # BU Image
 ## Status: BETA
 

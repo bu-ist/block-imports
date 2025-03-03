@@ -1,0 +1,23 @@
+.is-style-caption {
+	font-size: 0.8em;
+	padding: 1em 0;
+	color: $color-grayscale-4;
+	em {
+		color: $color-grayscale-a;
+	}
+}
+
+.wp-prepress-component-caption {
+	font-style: italic;
+	font-size: 0.75em;
+	line-height: 2em;
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
+	position: relative;
+	text-align: left;
+
+	i,
+	em {
+		font-style: normal;
+	}
+}

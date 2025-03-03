@@ -2,13 +2,54 @@
 	"name": "@bostonuniversity/block-components",
 	"version": "0.1.1",
 	"description": "Reusable Block Components for BU Plugins and Themes",
+	"author": {
+		"name": "Boston University",
+		"url": "https://www.bu.edu/marcom/"
+	},
+	"contributors": [
+		"Sean Tierney <tierneys@bu.edu>",
+		"Dakota Chichester <acketon@bu.edu>",
+		"Tim King <timking@bu.edu>"
+	],
+	"license": "GPL-3.0-or-later",
+	"keywords": [],
+	"homepage": "https://github.com/bu-ist/bu-block-components",
+	"repository": "https://github.com/bu-ist/bu-block-components",
+	"bugs": {
+		"url": "https://github.com/bu-ist/bu-block-components/issues"
+	},
 	"main": "index.js",
+	"dependencies": {
+		"@wordpress/api-fetch": "^6.0.0",
+		"@wordpress/date": "^5.1.0",
+		"classnames": "^2.5.1"
+	},
+	"devDependencies": {
+		"@linthtml/linthtml": "^0.9.5",
+		"@wordpress/env": "^10.18.0",
+		"@wordpress/icons": "^10.1.0",
+		"@wordpress/scripts": "^27.1.0",
+		"npm-run-all": "^4.1.5",
+		"npm-watch": "^0.13.0",
+		"yalc": "^1.0.0-pre.53"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
-		"postinstall": "composer install",
 		"yalc": "yalc publish",
 		"yalc:push": "yalc publish --push",
 		"yalc:changed": "yalc push --changed",
-		"watch": "npm-watch"
+		"watch": "npm-watch",
+		"__CLEANUP__": "=======================================================================",
+		"format": "wp-scripts format",
+		"lint": "npm-run-all lint:css lint:html lint:js lint:md lint:pkg",
+		"lint:css": "wp-scripts lint-style",
+		"lint:html": "linthtml '**!(node_modules|build|vendor)/*.php'",
+		"lint:js": "wp-scripts lint-js",
+		"lint:js:fix": "wp-scripts lint-js --fix",
+		"lint:md": "wp-scripts lint-md-docs",
+		"lint:pkg": "wp-scripts lint-pkg-json"
 	},
 	"watch": {
 		"yalc:changed": {
@@ -20,24 +61,5 @@
 			"extensions": "js,scss,php,json",
 			"quiet": false
 		}
-	},
-	"contributors": [
-		"Sean Tierney <tierneys@bu.edu>",
-		"Dakota Chichester <acketon@bu.edu>",
-		"Tim King <timking@bu.edu>"
-	],
-	"dependencies": {
-		"@wordpress/api-fetch": "^6.0.0",
-		"@wordpress/date": "^5.1.0",
-		"classnames": "^2.5.1"
-	},
-	"devDependencies": {
-		"@wordpress/env": "^10.18.0",
-		"@wordpress/icons": "^10.1.0",
-		"npm-watch": "^0.13.0",
-		"yalc": "^1.0.0-pre.53"
-	},
-	"publishConfig": {
-		"access": "public"
 	}
 }
