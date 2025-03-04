@@ -1,7 +1,7 @@
 {
-	"name": "@bostonuniversity/block-components",
-	"version": "0.1.1",
-	"description": "Reusable Block Components for BU Plugins and Themes",
+	"name": "@bostonuniversity/block-imports",
+	"version": "0.2.0",
+	"description": "Block Imports for BU Plugins and Themes",
 	"author": {
 		"name": "Boston University",
 		"url": "https://www.bu.edu/marcom/"
@@ -11,12 +11,12 @@
 		"Dakota Chichester <acketon@bu.edu>",
 		"Tim King <timking@bu.edu>"
 	],
-	"license": "GPL-3.0-or-later",
+	"license": "GPL-2.0-or-later",
 	"keywords": [],
-	"homepage": "https://github.com/bu-ist/bu-block-components",
-	"repository": "https://github.com/bu-ist/bu-block-components",
+	"homepage": "https://github.com/bu-ist/block-imports",
+	"repository": "https://github.com/bu-ist/block-imports",
 	"bugs": {
-		"url": "https://github.com/bu-ist/bu-block-components/issues"
+		"url": "https://github.com/bu-ist/block-imports/issues"
 	},
 	"main": "index.js",
 	"dependencies": {

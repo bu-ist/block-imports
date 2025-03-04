@@ -1,16 +1,55 @@
 # BU Block Components
 
-Standardized set of components that can be used within WordPress blocks.
+Standardized set of components, hooks, and utilities that can be used within WordPress blocks.
 
 ## Installation
 
-Install the package
+1. Run `npm i @bostonuniversity/block-imports -D` within your WordPress theme or plugin.
+2. Within your block editor code, import the relevant component(s) e.g. `import { ContentPicker } from '@10up/block-components';`
 
-```
-npm i @bostonuniversity/block-components
-```
+## Components
 
-## Use
+- AllowedBlocks
+- Background
+- BlockIcons
+- ColorSettings
+- ContentPicker
+- CustomBlockAppender
+- FetchAllTermSelectControl
+- HelpWrapper
+- IconPicker
+- Image
+- LinkToolbar
+- LoadingSpinner
+- MediaCredit
+- optional
+- ParagraphCaptionStyle
+- ParagraphEndOfArticleStyle
+- PlainTextWithLimit
+- PostChooser
+- PostPicker
+- Repeater
+- RichTextWithLimit
+- ShareTool
+
+## Hooks
+
+These are React Hooks, not WordPress Hooks.
+
+- useAllTerms
+- useMedia
+- useRenderAppenderWithBlockLimit
+- useRequestData
+
+### Utils
+
+Not a hook, but something more...
+
+- umlautEverything
+
+## Support Level
+
+__In Development:__ This is just starting (March 2025) and it should be assumed that nothing actually works yet. Bug reports, feature requests, questions, and pull requests are welcome.
 
 ## Publishing & Release Process
 
