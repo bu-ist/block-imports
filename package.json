@@ -1,65 +1,65 @@
 {
-	"name": "@bostonuniversity/block-imports",
-	"version": "0.2.0",
-	"description": "Block Imports for BU Plugins and Themes",
-	"author": {
-		"name": "Boston University",
-		"url": "https://www.bu.edu/marcom/"
-	},
-	"contributors": [
-		"Sean Tierney <tierneys@bu.edu>",
-		"Dakota Chichester <acketon@bu.edu>",
-		"Tim King <timking@bu.edu>"
-	],
-	"license": "GPL-2.0-or-later",
-	"keywords": [],
-	"homepage": "https://github.com/bu-ist/block-imports",
-	"repository": "https://github.com/bu-ist/block-imports",
-	"bugs": {
-		"url": "https://github.com/bu-ist/block-imports/issues"
-	},
-	"main": "index.js",
-	"dependencies": {
-		"@wordpress/api-fetch": "^6.0.0",
-		"@wordpress/date": "^5.1.0",
-		"classnames": "^2.5.1"
-	},
-	"devDependencies": {
-		"@linthtml/linthtml": "^0.9.5",
-		"@wordpress/env": "^10.18.0",
-		"@wordpress/icons": "^10.1.0",
-		"@wordpress/scripts": "^27.1.0",
-		"npm-run-all": "^4.1.5",
-		"npm-watch": "^0.13.0",
-		"yalc": "^1.0.0-pre.53"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"scripts": {
-		"yalc": "yalc publish",
-		"yalc:push": "yalc publish --push",
-		"yalc:changed": "yalc push --changed",
-		"watch": "npm-watch",
-		"__CLEANUP__": "=======================================================================",
-		"format": "wp-scripts format",
-		"lint": "npm-run-all lint:css lint:html lint:js lint:md lint:pkg",
-		"lint:css": "wp-scripts lint-style",
-		"lint:html": "linthtml '**!(node_modules|build|vendor)/*.php'",
-		"lint:js": "wp-scripts lint-js",
-		"lint:js:fix": "wp-scripts lint-js --fix",
-		"lint:md": "wp-scripts lint-md-docs",
-		"lint:pkg": "wp-scripts lint-pkg-json"
-	},
-	"watch": {
-		"yalc:changed": {
-			"patterns": [
-				"components",
-				"index.js",
-				"package.json"
-			],
-			"extensions": "js,scss,php,json",
-			"quiet": false
-		}
-	}
+  "name": "@bostonuniversity/block-imports",
+  "version": "0.2.0",
+  "description": "Block Imports for BU Plugins and Themes",
+  "author": "Boston University (https://www.bu.edu/marcom/)",
+  "contributors": [
+    "Sean Tierney <tierneys@bu.edu>",
+    "Dakota Chichester <acketon@bu.edu>",
+    "Tim King <timking@bu.edu>"
+  ],
+  "license": "GPL-2.0-or-later",
+  "keywords": [],
+  "homepage": "https://github.com/bu-ist/block-imports",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bu-ist/block-imports.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bu-ist/block-imports/issues"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.0.0",
+    "@wordpress/date": "^5.1.0",
+    "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@linthtml/linthtml": "^0.9.5",
+    "@wordpress/env": "^10.18.0",
+    "@wordpress/icons": "^10.1.0",
+    "@wordpress/scripts": "^27.1.0",
+    "npm-run-all": "^4.1.5",
+    "npm-watch": "^0.13.0",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "yalc": "yalc publish",
+    "yalc:push": "yalc publish --push",
+    "yalc:changed": "yalc push --changed",
+    "watch": "npm-watch",
+    "__CLEANUP__": "=======================================================================",
+    "format": "wp-scripts format",
+    "lint": "npm-run-all lint:css lint:html lint:js lint:md lint:pkg",
+    "lint:css": "wp-scripts lint-style",
+    "lint:html": "linthtml '**!(node_modules|build|vendor)/*.php'",
+    "lint:js": "wp-scripts lint-js",
+    "lint:js:fix": "wp-scripts lint-js --fix",
+    "lint:md": "wp-scripts lint-md-docs",
+    "lint:pkg": "wp-scripts lint-pkg-json"
+  },
+  "watch": {
+    "yalc:changed": {
+      "patterns": [
+        "components",
+        "index.js",
+        "package.json"
+      ],
+      "extensions": "js,scss,php,json",
+      "quiet": false
+    }
+  }
 }
