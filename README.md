@@ -5,47 +5,47 @@ Standardized set of components, hooks, and utilities that can be used within Wor
 ## Installation
 
 1. Run `npm i @bostonuniversity/block-imports -D` within your WordPress theme or plugin.
-2. Within your block editor code, import the relevant component(s) e.g. `import { ContentPicker } from '@10up/block-components';`
+2. Within your block editor code, import the relevant component(s) e.g. `import { ContentPicker } from '@bostonuniversity/block-imports';`
 
 ## Components
 
-- AllowedBlocks
-- Background
-- BlockIcons
-- ColorSettings
-- ContentPicker
-- CustomBlockAppender
-- FetchAllTermSelectControl
-- HelpWrapper
-- IconPicker
-- Image
-- LinkToolbar
-- LoadingSpinner
-- MediaCredit
-- optional
-- ParagraphCaptionStyle
-- ParagraphEndOfArticleStyle
-- PlainTextWithLimit
-- PostChooser
-- PostPicker
-- Repeater
-- RichTextWithLimit
-- ShareTool
+- [AllowedBlocks](components/AllowedBlocks)
+- [Background](components/Background)
+- [BlockIcons](components/BlockIcons)
+- [ColorSettings](components/ColorSettings)
+- [ContentPicker](components/ContentPicker)
+- [CustomBlockAppender](components/CustomBlockAppender)
+- [FetchAllTermSelectControl](components/FetchAllTermSelectControl)
+- [HelpWrapper](components/HelpWrapper)
+- [IconPicker](components/IconPicker)
+- [Image](components/Image)
+- [LinkToolbar](components/LinkToolbar)
+- [LoadingSpinner](components/LoadingSpinner)
+- [MediaCredit](components/MediaCredit)
+- [Optional](components/Optional)
+- [ParagraphCaptionStyle](components/ParagraphCaptionStyle)
+- [ParagraphEndOfArticleStyle](components/ParagraphEndOfArticleStyle)
+- [PlainTextWithLimit](components/PlainTextWithLimit)
+- [PostChooser](components/PostChooser)
+- [PostPicker](components/PostPicker)
+- [Repeater](components/Repeater)
+- [RichTextWithLimit](components/RichTextWithLimit)
+- [ShareTool](components/ShareTool)
 
 ## Hooks
 
 These are React Hooks, not WordPress Hooks.
 
-- useAllTerms
-- useMedia
-- useRenderAppenderWithBlockLimit
-- useRequestData
+- [useAllTerms](hooks/useAllTerms)
+- [useMedia](hooks/useMedia)
+- [useRenderAppenderWithBlockLimit](hooks/useRenderAppenderWithBlockLimit)
+- [useRequestData](hooks/useRequestData)
 
 ## Utils
 
 Not a hook, but something more...
 
-- umlautEverything
+- [umlautEverything](utils/umlautEverything)
 
 ## Support Level
 
