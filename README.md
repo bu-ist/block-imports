@@ -51,6 +51,10 @@ Not a hook, but something more...
 
 __In Development:__ This is just starting (March 2025) and it should be assumed that nothing actually works yet. Bug reports, feature requests, questions, and pull requests are welcome.
 
+### Debugging
+
+There is no build for this package. You can debug it though by running `npx wp-scripts build debug.js` and ensure all paths can be resolved.
+
 ## Publishing & Release Process
 
 This package is managed through NPM.  It can be found here: <https://www.npmjs.com/package/@bostonuniversity/block-components>
