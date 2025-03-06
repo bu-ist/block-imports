@@ -1,0 +1,297 @@
+// =================================================================
+// Button Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should only be using properties that are
+// in the global array ($blocks-defaults) so they can be overwritten by
+// the child theme
+// Examples: color, border-color, font-family
+//
+// Variant styles, such as "open", or an alternate layout should be declared here
+// as shown below IF that variant needs to modify one of the properties that
+// can be overwritten via the array. This lets the child theme overwrite that
+// as well.
+//
+// If you aren't using styles from the global array ($blocks-defaults) by
+// using blocks-get() it doesn't belong in this file as it will be printed
+// in the stylesheet multiple times (for each publication)
+//
+
+$blocks-block-button-config: ();
+
+// use the above array if you need to override the global $blocks-defaults array
+// of styles ONLY for this block IN the plugin.
+// You can then override THIS array by using $blocks-block-button-theme in the child theme to
+// override this array
+//
+// Remember, with great power comes great responsibility. This should not be used unless
+// you really need it. Think carefully about why you aren't modifying the global config by adding
+// a different variable.
+//
+// $blocks-block-button-config: (
+// 		primary-color:red,
+// 		secondary-color: rebeccapurple,
+// );
+
+
+// Use the default Blocks configuration. You can override this globally
+// in a theme.
+
+$blocks-block-button-config: map-merge( $blocks-block-button-config, $blocks-config );
+
+// This allows themes to optionally set theme options for this
+// block only. You can set all or a few options - only the options
+// you set in $block-block-button-theme will override the defaults.
+
+@if variable-exists( blocks-block-button-theme ) {
+	$blocks-block-button-config: map_merge( $blocks-block-button-config, $blocks-block-button-theme );
+}
+
+// A global helper variable for the block-get mixin.
+
+$current-map: $blocks-block-button-config;
+
+
+$scope: blocks-get( 'scope' );
+
+
+.#{$scope}-block-button {
+	.wp-prepress-layout-article-content p & {
+		color: inherit;
+	}
+
+	&.wp-block-button {
+		border-radius: blocks-get( 'border-radius' );
+		font-family: blocks-get( 'font-family-tertiary' );
+
+		&[class*="icon-"]::before {
+			color: blocks-get( 'font-color-base' );
+		}
+	}
+
+	&.wp-block-button.is-style-default {
+		&.has-dark-theme {
+			background: blocks-get( 'background-color-dark' );
+		}
+
+		&.has-light-theme {
+			background: blocks-get( 'background-color-light' );
+		}
+	}
+
+	&.wp-block-button.is-style-outline {
+		border-color: blocks-get( 'color-secondary' );
+
+		&:hover {
+			border-color: blocks-get( 'color-secondary-darkest' );
+		}
+
+		&.has-dark-theme {
+			border-color: blocks-get( 'background-color-dark' );
+		}
+
+		&.has-light-theme {
+			border-color: blocks-get( 'background-color-light' );
+		}
+	}
+
+	&.wp-block-button.has-primary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-primary' );
+
+			&:hover {
+				background: blocks-get( 'color-primary-darker' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-primary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-primary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-primary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-primary-darker' );
+			}
+		}
+	}
+
+	&.wp-block-button.has-secondary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-secondary' );
+
+			&:hover {
+				background: blocks-get( 'color-secondary-darker' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-secondary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-secondary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-secondary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-secondary-darker' );
+			}
+		}
+	}
+
+	&.wp-block-button.has-tertiary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-tertiary' );
+
+			&:hover {
+				background: blocks-get( 'color-tertiary-darker' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-tertiary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-tertiary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-tertiary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-tertiary-darker' );
+			}
+		}
+	}
+
+	&.wp-block-button.has-quaternary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-quaternary' );
+
+			&:hover {
+				background: blocks-get( 'color-quaternary-darker' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-quaternary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-quaternary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-quaternary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quaternary-darker' );
+			}
+		}
+	}
+
+	&.wp-block-button.has-quinary-theme {
+		&.is-style-default {
+			background: blocks-get( 'color-quinary' );
+
+			&:hover {
+				background: blocks-get( 'color-quinary-darker' );
+			}
+		}
+
+		&.is-style-outline {
+			border-color: blocks-get( 'color-quinary' );
+
+			&:hover {
+				border-color: blocks-get( 'color-quinary-darkest' );
+			}
+		}
+
+		&.is-style-accent {
+			border-color: blocks-get( 'color-quinary-darker' );
+
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quinary-darker' );
+			}
+		}
+	}
+
+	&.is-style-outline,
+	&.is-style-text {
+
+			&[class*="icon-"] {
+				&::before {
+					color: blocks-get( 'font-color-base' );
+				}
+			}
+
+	}
+
+	&.has-primary-theme {
+
+			&.is-style-outline,
+			&.is-style-text {
+				&[class*="icon-"] {
+					&::before {
+						color: blocks-get( 'color-primary' );
+					}
+				}
+			}
+
+	}
+
+	&.has-secondary-theme {
+
+			&.is-style-outline,
+			&.is-style-text {
+				&[class*="icon-"] {
+					&::before {
+						color: blocks-get( 'color-secondary' );
+					}
+				}
+			}
+
+	}
+
+	&.has-tertiary-theme {
+
+			&.is-style-outline,
+			&.is-style-text {
+				&[class*="icon-"] {
+					&::before {
+						color: blocks-get( 'color-tertiary' );
+					}
+				}
+			}
+
+	}
+
+	&.has-quaternary-theme {
+
+			&.is-style-outline,
+			&.is-style-text {
+				&[class*="icon-"] {
+					&::before {
+						color: blocks-get( 'color-quaternary' );
+					}
+				}
+			}
+
+	}
+}
+

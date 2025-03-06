@@ -1,0 +1,62 @@
+// =================================================================
+// Photo Essay Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should only be using properties that are
+// in the global array ($blocks-defaults) so they can be overwritten by
+// the child theme
+// Examples: color, border-color, font-family
+//
+// Variant styles, such as "open", or an alternate layout should be declared here
+// as shown below IF that variant needs to modify one of the properties that
+// can be overwritten via the array. This lets the child theme overwrite that
+// as well.
+//
+// If you aren't using styles from the global array ($blocks-defaults) by
+// using blocks-get() it doesn't belong in this file as it will be printed
+// in the stylesheet multiple times (for each publication)
+//
+
+$blocks-block-photoessay-config: ();
+
+// use the above array if you need to override the global $blocks-defaults array
+// of styles ONLY for this block IN the plugin.
+// You can then override THIS array by using $blocks-block-photoessay-theme in the child theme to
+// override this array
+//
+// Remember, with great power comes great responsibility. This should not be used unless
+// you really need it. Think carefully about why you aren't modifying the global config by adding
+// a different variable.
+//
+// $blocks-block-photoessay-config: (
+// 		primary-color:red,
+// 		secondary-color: rebeccapurple,
+// );
+
+
+// Use the default Blocks configuration. You can override this globally
+// in a theme.
+
+$blocks-block-photoessay-config: map-merge( $blocks-block-photoessay-config, $blocks-config );
+
+// This allows themes to optionally set theme options for this
+// block only. You can set all or a few options - only the options
+// you set in $block-block-photoessay-theme will override the defaults.
+
+@if variable-exists( blocks-block-photoessay-theme ) {
+	$blocks-block-photoessay-config: map_merge( $blocks-block-photoessay-config, $blocks-block-photoessay-theme );
+}
+
+// A global helper variable for the block-get mixin.
+
+$current-map: $blocks-block-photoessay-config;
+
+
+$scope: blocks-get( 'scope' );
+
+.#{$scope}-block-editorial-photoessay {
+	// .wp-block-photoessay-media {
+	// 	background-color: blocks-get( 'background-color-dark');
+	// }
+}

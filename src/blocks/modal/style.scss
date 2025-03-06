@@ -1,0 +1,32 @@
+// =================================================================
+// Modal Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/modal/bu-blocks-block-modal-base';
+@import 'src/blocks/modal/bu-blocks-block-modal-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Modal Block
+//
+// A block that allows for the creation of an overlay with content in it. Should support laying out the content in the overlay and some way to trigger opening it. The opening trigger may need to be a separate block, and should support multiple on a page so each will need a unique ID for the JS to target automagically. Overlay block should be able to contain child blocks, for instance, slideshow, gallery, video, text, etc.
+//
+// Status: Ready
+//
+// Markup: bu-blocks-block-modal.hbs
+//
+// .has-media - Default theme with background media
+// .has-light-theme - Light theme
+// .has-light-theme.has-media - Light theme with background media
+// .has-dark-theme - Dark theme
+// .has-dark-theme.has-media - Dark theme with background media
+//
+// Styleguide Blocks.Editorial.Modal
+
+

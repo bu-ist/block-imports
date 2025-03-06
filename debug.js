@@ -13,16 +13,19 @@ import { IconPicker } from './components/IconPicker';
 import { Image } from './components/Image';
 import { LinkToolbar } from './components/LinkToolbar';
 import { LoadingSpinner } from './components/LoadingSpinner';
-import { MediaCredit } from './components/MediaCredit';
+// @todo make index
+// import { MediaCredit } from './components/MediaCredit/media-credit.js';
 import { Optional } from './components/Optional';
-import { ParagraphCaptionStyle } from './components/ParagraphCaptionStyle';
-import { ParagraphEndOfArticleStyle } from './components/ParagraphEndOfArticleStyle';
+// @todo make index
+// import { ParagraphCaptionStyle } from './components/ParagraphCaptionStyle/paragraph-caption-style.js';
+// @todo make index
+// import { ParagraphEndOfArticleStyle } from './components/ParagraphEndOfArticleStyle/paragraph-end-of-article-style.js';
 import { PlainTextWithLimit } from './components/PlainTextWithLimit';
 import { PostChooser } from './components/PostChooser';
 import { PostPicker } from './components/PostPicker';
 import { Repeater } from './components/Repeater';
 import { RichTextWithLimit } from './components/RichTextWithLimit';
-import { ShareTool } from './components/ShareTool';
+import { ShareTools } from './components/ShareTools';
 
 // Hooks
 import { useAllTerms } from './hooks/useAllTerms';

@@ -1,0 +1,93 @@
+// =================================================================
+// Click to Tweet Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-bu-clicktotweet {
+	&:hover {
+		cursor: pointer;
+	}
+
+	&.has-format-highlight {
+		&:hover {
+			cursor: initial;
+		}
+	}
+
+	.no-js &:hover {
+		background: transparent;
+	}
+}
+
+.wp-block-bu-clicktotweet-content {
+	display: block;
+
+	.wp-block-bu-clicktotweet.has-format-highlight:hover & {
+		background-color: transparent;
+		box-shadow: none;
+	}
+
+	.wp-block-bu-clicktotweet:not( .has-format-highlight ) & {
+		margin-bottom: 0;
+	}
+}
+
+.wp-block-bu-clicktotweet-highlight {
+	.has-format-highlight & {
+		@include icon( 'twitter', 'after' );
+		padding: 0 ( $padding-small / 2 );
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.no-js & {
+		padding: 0;
+		background: transparent;
+
+		&::after {
+			display: none;
+		}
+	}
+}
+
+.wp-block-bu-clicktotweet-action {
+	@include icon( 'twitter', 'after' );
+	display: flex;
+	font-size: 14px;
+	font-weight: 700;
+	margin-left: auto;
+	margin-right: -10px;
+	margin-top: 10px;
+	padding: ( $padding-small / 2 ) $padding-small;
+	text-align: right;
+	text-transform: lowercase;
+	position: relative;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 10px 10px 0;
+		position: absolute;
+		left: -10px;
+		top: 0;
+	}
+
+	.has-format-highlight &,
+	.wp-block-bu-clicktotweet-highlight & {
+		display: none;
+	}
+
+	.no-js & {
+		display: none;
+	}
+}

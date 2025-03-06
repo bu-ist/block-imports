@@ -1,0 +1,32 @@
+// =================================================================
+// Aside Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/aside/bu-blocks-block-aside-base';
+@import 'src/blocks/aside/bu-blocks-block-aside-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Aside Block
+//
+// A block for Aside tag type content, like a short bio on a Professor in the story, or a small explainer about subatomic particles in a longer story about physics.
+// This is a parent block that allows specific child blocks, like image block, headline block, paragraph block, button block, etc. which can be added or removed as necessary.
+//
+// Status: Ready
+//
+// Markup: bu-blocks-block-aside.hbs
+//
+// .alignleft - Example of a left-aligned layout
+// .alignright - Example of a right-aligned layout
+// .has-light-background - Example of a light background
+// .has-dark-background - Example of a dark background
+//
+// Styleguide Blocks.Editorial.Aside
+
+

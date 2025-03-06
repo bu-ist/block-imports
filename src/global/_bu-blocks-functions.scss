@@ -1,0 +1,18 @@
+// An internal helper function to get Blocks settings
+// from Blocks maps. Defaults to a local map to the file
+// for easier use - otherwise, works just like map-get.
+//
+// Required: `$key` A valid key for Blocks maps.
+// Optional: `$map` A valid map. Usually a Blocks map.
+// Defaults to the map the file is using
+//
+// Example: blocks-get( 'primary-color' );
+// @return Unspecified - whatever is in the map.
+
+@function blocks-get( $key, $map: $current-map ) {
+	@if type-of( $map ) != 'map' {
+		@error '`#{$map}` is not a map. Please make sure you are passing a Blocks map, or leave the second argument blank to use the default for this file.';
+	}
+
+	@return map-get( $map, $key );
+}

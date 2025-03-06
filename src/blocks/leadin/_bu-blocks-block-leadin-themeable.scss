@@ -1,0 +1,781 @@
+// =================================================================
+// Lead-In Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should only be using properties that are
+// in the global array ($blocks-defaults) so they can be overwritten by
+// the child theme
+// Examples: color, border-color, font-family
+//
+// Variant styles, such as "open", or an alternate layout should be declared here
+// as shown below IF that variant needs to modify one of the properties that
+// can be overwritten via the array. This lets the child theme overwrite that
+// as well.
+//
+// If you aren't using styles from the global array ($blocks-defaults) by
+// using blocks-get() it doesn't belong in this file as it will be printed
+// in the stylesheet multiple times (for each publication)
+//
+
+$blocks-block-leadin-config: ();
+
+// use the above array if you need to override the global $blocks-defaults array
+// of styles ONLY for this block IN the plugin.
+// You can then override THIS array by using $blocks-block-leadin-theme in the child theme to
+// override this array
+//
+// Remember, with great power comes great responsibility. This should not be used unless
+// you really need it. Think carefully about why you aren't modifying the global config by adding
+// a different variable.
+//
+// $blocks-block-leadin-config: (
+// 		primary-color:red,
+// 		secondary-color: rebeccapurple,
+// );
+
+
+// Use the default Blocks configuration. You can override this globally
+// in a theme.
+
+$blocks-block-leadin-config: map-merge( $blocks-block-leadin-config, $blocks-config );
+
+// This allows themes to optionally set theme options for this
+// block only. You can set all or a few options - only the options
+// you set in $block-block-leadin-theme will override the defaults.
+
+@if variable-exists( blocks-block-leadin-theme ) {
+	$blocks-block-leadin-config: map_merge( $blocks-block-leadin-config, $blocks-block-leadin-theme );
+}
+
+// A global helper variable for the block-get mixin.
+
+$current-map: $blocks-block-leadin-config;
+
+
+$scope: blocks-get( 'scope' );
+
+.#{$scope}-block-editorial-leadin {
+	h1,
+	h2 {
+		color: blocks-get( 'font-color-heading');
+	}
+
+	h3,
+	h4 {
+		color: blocks-get( 'color-primary-text');
+	}
+
+	.container-words-inner {
+		z-index: 1;
+
+		&:before {
+			content: '';
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: -1;
+		}
+
+		&.has-opacity-10:before {
+			opacity: .1;
+		}
+
+		&.has-opacity-20:before {
+			opacity: .2;
+		}
+
+		&.has-opacity-30:before {
+			opacity: .3;
+		}
+
+		&.has-opacity-40:before {
+			opacity: .4;
+		}
+
+		&.has-opacity-50:before {
+			opacity: .5;
+		}
+
+		&.has-opacity-60:before {
+			opacity: .6;
+		}
+
+		&.has-opacity-70:before {
+			opacity: .7;
+		}
+
+		&.has-opacity-80:before {
+			opacity: .8;
+		}
+
+		&.has-opacity-90:before {
+			opacity: .9;
+		}
+	}
+
+	.wp-block-editorial-leadin-caption {
+		color: blocks-get( 'font-color-aside');
+	}
+
+	&.is-style-emphasis-on-text {
+		.container-words-inner {
+			background-color: blocks-get( 'color-page');
+		}
+
+		.wp-block-editorial-leadin-caption {
+			@include breakpoint( $xs ) {
+				color: blocks-get( 'font-color-theme-dark');
+			}
+		}
+	}
+
+	&.is-style-text-over-image {
+		&:not(.has-text-normal) {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+	}
+
+	&.is-style-emphasis-on-text.has-box,
+	&.is-style-text-over-image.has-box {
+		@include breakpoint( $xs ) {
+			.container-words-inner {
+				background-color: blocks-get( 'background-color-dark');
+
+				&.has-opacity-00 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.0 );
+				}
+
+				&.has-opacity-10 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.1 );
+				}
+
+				&.has-opacity-20 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.2 );
+				}
+
+				&.has-opacity-30 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.3 );
+				}
+
+				&.has-opacity-40 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.4 );
+				}
+
+				&.has-opacity-50 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.5 );
+				}
+
+				&.has-opacity-60 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.6 );
+				}
+
+				&.has-opacity-70 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.7 );
+				}
+
+				&.has-opacity-80 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.8 );
+				}
+
+				&.has-opacity-90 {
+					background-color: rgba( blocks-get( 'background-color-dark' ), 0.9 );
+				}
+			}
+
+			&:not(.has-text-normal) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+	}
+
+	&.is-style-side-by-side {
+		&.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-outer {
+					background-color: blocks-get( 'background-color-dark');
+				}
+
+				&:not(.has-text-normal) {
+					h1,
+					h2,
+					h3,
+					h4 {
+						color: blocks-get( 'color-page');
+					}
+				}
+			}
+		}
+	}
+	.wp-block-leadin-media {
+		background-color: blocks-get( 'background-color-dark');
+	}
+
+// THEME COLORS /////////////////////////////////////////////////
+
+// LIGHT /////////////////
+	&.has-light-theme {
+		&.is-style-text-over-image {
+			@include breakpoint( $xs ) {
+				h1,
+				h2 {
+					color: blocks-get( 'font-color-heading');
+				}
+
+				h3,
+				h4 {
+					color: blocks-get( 'color-primary-text');
+				}
+			}
+		}
+
+		&.is-style-emphasis-on-text.has-box,
+		&.is-style-text-over-image.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					background-color: blocks-get( 'background-color-light');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'background-color-light' ), 0.9 );
+					}
+				}
+
+				h1,
+				h2 {
+					color: blocks-get( 'font-color-heading');
+				}
+
+				h3,
+				h4 {
+					color: blocks-get( 'color-primary-text');
+				}
+			}
+		}
+		&.is-style-side-by-side {
+			&.has-box {
+				@include breakpoint( $xs ) {
+					.container-words-outer {
+						background-color: blocks-get( 'background-color-light');
+					}
+
+					h1,
+					h2 {
+						color: blocks-get( 'font-color-heading');
+					}
+
+					h3,
+					h4 {
+						color: blocks-get( 'color-primary-text');
+					}
+				}
+			}
+		}
+		.wp-block-leadin-media {
+			background-color: blocks-get( 'background-color-light');
+		}
+	}
+// DARK /////////////////
+	&.has-dark-theme {
+		&.is-style-text-over-image {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+		&.is-style-emphasis-on-text.has-box,
+		&.is-style-text-over-image.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					background-color: blocks-get( 'background-color-dark');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'background-color-dark' ), 0.9 );
+					}
+				}
+
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-side-by-side {
+			&.has-box {
+				@include breakpoint( $xs ) {
+					.container-words-outer {
+						background-color: blocks-get( 'background-color-dark');
+					}
+
+					h1,
+					h2,
+					h3,
+					h4 {
+						color: blocks-get( 'color-page');
+					}
+				}
+			}
+		}
+
+		.wp-block-leadin-media {
+			background-color: blocks-get( 'background-color-dark');
+		}
+	}
+// Primary /////////////////
+	&.has-primary-theme {
+		&.is-style-text-over-image {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-emphasis-on-text.has-box,
+		&.is-style-text-over-image.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					background-color: blocks-get( 'color-primary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-primary' ), 0.9 );
+					}
+				}
+
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-side-by-side {
+			&.has-box {
+				@include breakpoint( $xs ) {
+					.container-words-outer {
+						background-color: blocks-get( 'color-primary');
+					}
+
+					h1,
+					h2,
+					h3,
+					h4 {
+						color: blocks-get( 'color-page');
+					}
+				}
+			}
+		}
+
+		.wp-block-leadin-media {
+			background-color: blocks-get( 'color-primary');
+		}
+	}
+// Secondary /////////////////
+	&.has-secondary-theme {
+		&.is-style-text-over-image {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-emphasis-on-text.has-box,
+		&.is-style-text-over-image.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					background-color: blocks-get( 'color-secondary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-secondary' ), 0.9 );
+					}
+				}
+
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-side-by-side {
+			&.has-box {
+				@include breakpoint( $xs ) {
+					.container-words-outer {
+						background-color: blocks-get( 'color-secondary');
+					}
+
+					h1,
+					h2,
+					h3,
+					h4 {
+						color: blocks-get( 'color-page');
+					}
+				}
+			}
+		}
+
+		.wp-block-leadin-media {
+			background-color: blocks-get( 'color-secondary');
+		}
+	}
+// Tertiary /////////////////
+	&.has-tertiary-theme {
+		&.is-style-text-over-image {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-emphasis-on-text.has-box,
+		&.is-style-text-over-image.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					background-color: blocks-get( 'color-tertiary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-tertiary' ), 0.9 );
+					}
+				}
+
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-side-by-side {
+			&.has-box {
+				@include breakpoint( $xs ) {
+					.container-words-outer {
+						background-color: blocks-get( 'color-tertiary');
+					}
+
+					h1,
+					h2,
+					h3,
+					h4 {
+						color: blocks-get( 'color-page');
+					}
+				}
+			}
+		}
+
+		.wp-block-leadin-media {
+			background-color: blocks-get( 'color-tertiary');
+		}
+	}
+// Quaternary /////////////////
+	&.has-quaternary-theme {
+		&.is-style-text-over-image {
+			@include breakpoint( $xs ) {
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-emphasis-on-text.has-box,
+		&.is-style-text-over-image.has-box {
+			@include breakpoint( $xs ) {
+				.container-words-inner {
+					background-color: blocks-get( 'color-quaternary');
+
+					&.has-opacity-00 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.0 );
+					}
+
+					&.has-opacity-10 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.1 );
+					}
+
+					&.has-opacity-20 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.2 );
+					}
+
+					&.has-opacity-30 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.3 );
+					}
+
+					&.has-opacity-40 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.4 );
+					}
+
+					&.has-opacity-50 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.5 );
+					}
+
+					&.has-opacity-60 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.6 );
+					}
+
+					&.has-opacity-70 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.7 );
+					}
+
+					&.has-opacity-80 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.8 );
+					}
+
+					&.has-opacity-90 {
+						background-color: rgba( blocks-get( 'color-quaternary' ), 0.9 );
+					}
+				}
+
+				h1,
+				h2,
+				h3,
+				h4 {
+					color: blocks-get( 'color-page');
+				}
+			}
+		}
+
+		&.is-style-side-by-side {
+			&.has-box {
+				@include breakpoint( $xs ) {
+					.container-words-outer {
+						background-color: blocks-get( 'color-quaternary');
+					}
+
+					h1,
+					h2,
+					h3,
+					h4 {
+						color: blocks-get( 'color-page');
+					}
+				}
+			}
+		}
+
+		.wp-block-leadin-media {
+			background-color: blocks-get( 'color-quaternary');
+		}
+	}
+////////////////////////////////////////////////////////////////////
+
+	.wp-block-editorial-leadin-caption {
+		font-family: blocks-get( 'font-family-primary');
+	}
+}

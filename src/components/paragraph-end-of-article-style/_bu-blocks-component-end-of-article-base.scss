@@ -1,0 +1,9 @@
+.is-style-end-of-article {
+	@include icon( 'stop', 'after' );
+	span {
+		display: inline;
+	}
+	&::after {
+		font-size: 0.6em;
+	}
+}

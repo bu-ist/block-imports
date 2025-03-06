@@ -1,0 +1,149 @@
+// =================================================================
+// Intro Paragraph Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+$dropcap-size:		5em;
+
+.wp-block-editorial-introparagraph {
+
+	.wp-block-editorial-introparagraph-content {
+		@extend %clearfix;
+	}
+
+	p {
+		background-size: 0%;
+	}
+	svg {
+		display: none;
+	}
+
+	&.is-style-large {
+		.wp-block-editorial-introparagraph-content .editor-rich-text,
+		.wp-block-editorial-introparagraph-content .rich-text,
+		p:first-of-type {
+			font-size: 1.25em;
+		}
+	}
+	&.is-style-split {
+		.wp-block-editorial-introparagraph-content {
+			column-count: 2;
+			column-gap: 2em;
+		}
+	}
+	&.has-dropcap {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+		p:first-of-type:first-letter,
+		svg text {
+			font-weight: 700;
+			display: inline-block;
+			float: left;
+			font-size: $dropcap-size;
+			line-height: 1em;
+			margin: 0 0.25em .125em 0;
+			margin-bottom: -0.25em;
+		}
+	}
+
+	@-moz-document url-prefix() {
+		&.has-dropcap {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+			.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+			p:first-of-type:first-letter,
+			svg text {
+				margin: 0 0.25em 0 0;
+				padding: 8px 0;
+			}
+		}
+	}
+
+
+	&.has-dropcap {
+		svg text {
+			transform: translateY(-5px);
+		}
+	}
+
+	&.is-style-dropcap-boxed {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+		p:first-of-type:first-letter {
+			color: white;
+			background: black;
+			font-size: 4.25em;
+			padding: 0.125em 0.25em;
+			margin-top: 0.1em;
+			margin-bottom: 0;
+		}
+	}
+	&.is-style-dropcap-outlined {
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+		p:first-of-type:first-letter {
+			border-width: 2px;
+			border-style: solid;
+			padding: 0.125em 0.25em;
+			margin-top: 0.1em;
+			margin-bottom: 0;
+			font-size: 4.25em;
+		}
+	}
+
+
+	@-moz-document url-prefix() {
+		&.is-style-dropcap-boxed,
+		&.is-style-dropcap-outlined {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+			.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+			p:first-of-type:first-letter {
+				padding: 20px;
+			}
+		}
+	}
+
+
+
+	&.is-style-dropcap-image {
+		.wp-block-editorial-introparagraph-content {
+			position: relative;
+		}
+		svg  {
+			position: absolute;
+			display: block;
+		}
+		svg,
+		text {
+			height: $dropcap-size;
+			width: $dropcap-size;
+		}
+		.dropcap-filltext {
+			fill: url(#dropcap-texture);
+		}
+		.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+		.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+		p:first-of-type:first-letter {
+			color: transparent;
+		}
+		.has-dropcap-color-primary,
+		.has-dropcap-color-secondary {
+			.wp-block-editorial-introparagraph-content .editor-rich-text:not(:focus):first-letter,
+			.wp-block-editorial-introparagraph-content .rich-text:not(:focus):first-letter,
+			p:first-of-type:first-letter {
+				color: transparent;
+			}
+		}
+	}
+}
+
+.wp-block-editorial-introparagraph-toc {
+	li {
+		font-style:italic;
+		font-size:0.9em;
+	}
+}

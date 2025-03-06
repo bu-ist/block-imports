@@ -1,0 +1,246 @@
+// =================================================================
+// Slideshow Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.bu-blocks-editorial-slideshow  {
+	@extend %clearfix;
+	margin-bottom: 1em;
+}
+
+.bu-blocks-slideshow-media-container {
+	overflow-x: hidden;
+	position: relative;
+	.back,
+	.forward {
+		display: block;
+		position: absolute;
+		top: 0;
+		width: 50px;
+		height: 100%;
+		z-index: 1;
+	}
+	.back {
+		left: 0;
+	}
+	.forward {
+		right: 0;
+	}
+}
+.bu-blocks-slideshow-media-track {
+	position: relative;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 1em;
+	@extend %clearfix;
+	display: flex;
+	transition-property: transform, left;
+	transition-duration: 750ms;
+	transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */;
+}
+.bu-blocks-slideshow-media-container {
+	&:hover {
+		.bu-blocks-slideshow-media-track {
+			transform: translateX(-50px);
+		}
+	}
+	.back:hover ~ .bu-blocks-slideshow-media-track {
+		transform: translateX(50px);
+	}
+	.forward:hover ~ .bu-blocks-slideshow-media-track {
+		transform: translateX(-50px);
+	}
+	&:active {
+		.bu-blocks-slideshow-media-track {
+			transform: translateX(0px);
+		}
+	}
+	.back:active ~ .bu-blocks-slideshow-media-track {
+		transform: translateX(0px);
+	}
+	.forward:active ~ .bu-blocks-slideshow-media-track {
+		transform: translateX(0px);
+	}
+}
+.bu-blocks-slideshow-media {
+	display: flex;
+	position: relative;
+	text-align: center;
+	overflow: hidden;
+	float: left;
+	margin: 0 1px;
+	&:before {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0%;
+		left: 0%;
+		background: #000;
+	}
+	&:after {
+		content: '';
+		display: block;
+		padding-top: 9 / 16 * 100%;
+	}
+}
+.bu-blocks-slideshow-media-backfill {
+	content: '';
+	display: block;
+	position: absolute;
+	height: 100%;
+	top: 0%;
+	left: 1px;
+	right: 1px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	opacity: 0.75;
+	filter: blur(10px);
+	transform: scale(1.25);
+}
+.bu-blocks-slideshow-media-actual {
+	@include object-fit( contain );
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.has-shownextup {
+	.bu-blocks-slideshow-media-track {
+		transform: translateX(-50px);
+	}
+	.bu-blocks-slideshow-media-container {
+		&:hover {
+			.bu-blocks-slideshow-media-track {
+				transform: translateX(0px);
+			}
+		}
+		.back:hover ~ .bu-blocks-slideshow-media-track {
+			transform: translateX(50px);
+		}
+		.forward:hover ~ .bu-blocks-slideshow-media-track {
+			transform: translateX(-50px);
+		}
+		&:active {
+			.bu-blocks-slideshow-media-track {
+				transform: translateX(-50px);
+			}
+		}
+		.back:active ~ .bu-blocks-slideshow-media-track {
+			transform: translateX(-50px);
+		}
+		.forward:active ~ .bu-blocks-slideshow-media-track {
+			transform: translateX(0px);
+		}
+	}
+}
+
+.bu-blocks-slideshow-caption-track {
+	overflow: hidden;
+	margin: 0;
+	margin-bottom: 1em;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	align-items: start;
+	position: relative;
+	transition-property: max-height;
+	transition-duration: 250ms;
+	transition-timing-function: ease-in-out;
+	p {
+		margin: 0;
+	}
+}
+.bu-blocks-slideshow-caption-container {
+	float: right;
+	width: calc(85% - #{$padding} / 2);
+	overflow-x: hidden;
+	margin-left: $padding / 2;
+	@include breakpoint( $xs ) {
+		width: calc(90% - #{$padding} / 2);
+	}
+}
+.bu-blocks-slideshow-controls {
+	float: left;
+	width: 15%;
+	@include breakpoint( $xs ) {
+		width: 10%;
+	}
+}
+.bu-blocks-slideshow-controls-previous,
+.bu-blocks-slideshow-controls-next {
+	display: block;
+	width: 50%;
+	float: left;
+	text-align: center;
+	padding: .25em 0;
+	> span {
+		&:before {
+			margin: 0;
+		}
+	}
+}
+.bu-blocks-slideshow-caption-container-collapsed {
+	.bu-blocks-slideshow-caption-track {
+		max-height: 1.6em;
+
+		background: linear-gradient(to bottom, #444 0%, transparent 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
+.bu-blocks-slideshow-caption-expander {
+	display: inline-block;
+	font-size: 0.75em;
+}
+
+
+.has-crop {
+	.bu-blocks-slideshow-media-actual {
+		object-fit: cover;
+	}
+}
+
+// .has-aspectratio-16by9 {
+// 	.bu-blocks-slideshow-media {
+// 		&:after {
+// 			padding-top: 9 / 16 * 100%;
+// 		}
+// 	}
+// }
+.has-aspectratio-4by3 {
+	.bu-blocks-slideshow-media {
+		&:after {
+			padding-top: 3 / 4 * 100%;
+		}
+	}
+}
+.has-aspectratio-1by1 {
+	.bu-blocks-slideshow-media {
+		&:after {
+			padding-top: 100%;
+		}
+	}
+}
+.has-aspectratio-3by4 {
+	.bu-blocks-slideshow-media {
+		&:after {
+			padding-top: 4 / 3 * 100%;
+		}
+	}
+}
+.has-aspectratio-9by16 {
+	.bu-blocks-slideshow-media {
+		&:after {
+			padding-top: 16 / 9 * 100%;
+		}
+	}
+}

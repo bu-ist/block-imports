@@ -1,0 +1,119 @@
+// =================================================================
+// Button Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+a:active,
+a:visited { // TO DO: move to global location
+	color: inherit;
+}
+
+.wp-block-button {
+	@include transition( all 0.2s ease-in-out 0s);
+	display: inline-block;
+	background: transparent;
+	border-radius: 6px;
+	text-decoration: none;
+	color: inherit;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0.5em 0;
+
+	&[class*="icon-"] {
+		&::before {
+			@include transition( all 0.2s ease-in-out 0s);
+			font-size: 0.7em;
+			color: $color-grayscale-a;
+		}
+	}
+
+	&.is-style-default,
+	&.is-style-outline,
+	&.is-style-squared,
+	&.is-style-text {
+		padding: 0.5em 1em;
+
+		&.align-icon-right {
+			&::before {
+				float: right;
+				display: block;
+				padding-top: 7px;
+				margin-left: 0.5em;
+				margin-right: 0;
+			}
+		}
+
+		&.align-icon-left {
+			&::before {
+				padding-top: -2px;
+			}
+		}
+	}
+
+	&.is-style-default {
+		background: $color-grayscale-d;
+
+		&:hover {
+			background: $color-grayscale-c;
+		}
+
+		&.has-dark-theme {
+			background: $color-grayscale-3;
+			color: $color-grayscale-f !important;
+
+			&:hover {
+				background: $color-grayscale-2;
+			}
+		}
+
+		&.has-light-theme {
+			background: $color-grayscale-e;
+
+			&:hover {
+				background: $color-grayscale-d;
+			}
+		}
+	}
+
+	&.is-style-outline {
+		border: 2px solid $color-grayscale-d;
+
+		&:hover {
+			border-color: $color-grayscale-c;
+		}
+
+		&.has-dark-theme {
+			border-color: $color-grayscale-4;
+
+			&:hover {
+				border-color: $color-grayscale-0;
+			}
+		}
+
+		&.has-light-theme {
+			border-color: $color-grayscale-e;
+
+			&:hover {
+				border-color: $color-grayscale-d;
+			}
+		}
+	}
+
+	&.is-style-squared {
+		border-radius: 0;
+	}
+
+	&.is-style-text {
+		text-decoration: underline;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+

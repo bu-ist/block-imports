@@ -1,5 +1,5 @@
 /**
- * Component: allowedBlocks
+ * Component: AllowedBlocks
  *
  * Returns a filterable list of blocks to allow within BU layout-type blocks.
  *
@@ -14,7 +14,7 @@ const {
 	applyFilters,
 } = wp.hooks;
 
-// Blocks to exclude from allowedBlocks array for layout-type blocks.
+// Blocks to exclude from AllowedBlocks array for layout-type blocks.
 let excludeBlocks = [
 	'bu/leadin',
 	'core/more',
@@ -28,7 +28,7 @@ let excludeBlocks = [
 ];
 
 // Returns a list of all block namess except those in the excludeBlocks array.
-const allowedBlocks = () => {
+const AllowedBlocks = () => {
 	excludeBlocks = applyFilters( 'buBlocks.layoutBlockTypes.excludeBlocks', excludeBlocks );
 
 	const allowed = getBlockTypes().map( ( { name } ) => {
@@ -40,5 +40,5 @@ const allowedBlocks = () => {
 	return allowed;
 }
 
-// Export the allowedBlocks function.
-export default allowedBlocks;
+// Export the AllowedBlocks function.
+export default AllowedBlocks;

@@ -1,0 +1,44 @@
+// =================================================================
+// Drawer Block Base Styles
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/drawer/bu-blocks-block-drawer-base';
+@import 'src/blocks/drawer/bu-blocks-block-drawer-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Drawer Block
+//
+// A block that works a bit like BU Collapsible to open and close a drawer of content. When the closed state (or aside) is clicked, drawer opens in place.
+// The drawer block can contain nested blocks within it. In the first example below, it contains a video and text block.
+//
+// Drawer Teaser supports image block, heading block, text block
+//
+// Drawer supports columns, image block, video block, heading block, text block
+//
+// Different options include hide teaser, style round (applies to any photos), the default align options, plus narrow, small, medium and wide sizes as well as a light or dark background
+//
+// Status: Ready
+//
+// Markup: bu-blocks-block-drawer.hbs
+//
+// .has-hide-teaser - Hide teaser checkbox option enabled
+// .is-style-round - Example of drawer with rounded image
+// .alignright - Example of a right-aligned layout
+// .alignleft - Example of a left-aligned layout
+// .alignfull - Example of a full-width layout
+// .is-size-narrow - Example of a quarter width closed drawer
+// .is-size-small - Example of a third width closed drawer
+// .is-size-medium - Example of a half width closed drawer
+// .is-size-wide - Example of a two-third width closed drawer
+// .has-light-background - Example of a light background
+// .has-dark-background - Example of a dark background
+//
+// Styleguide Blocks.Editorial.Drawer
+
+

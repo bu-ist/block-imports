@@ -1,0 +1,45 @@
+// =================================================================
+// Intro Paragraph Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/introparagraph/bu-blocks-block-introparagraph-base';
+@import 'src/blocks/introparagraph/bu-blocks-block-introparagraph-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Intro Paragraph Block
+//
+// This is a Intro Paragraph Block, you can use this as a base line for writing up the static markup and styles for a new block.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-introparagraph.hbs
+//
+// .is-style-large														 - Larger Opening Paragraph
+// .is-style-large.has-paragraph-color-primary							 - Larger Opening Paragraph with Color
+// .is-style-large.has-paragraph-color-secondary						 - Larger Opening Paragraph with Secondary Color
+// .is-style-large.has-paragraph-color-secondary						 - Larger Opening Paragraph
+// .is-style-split														 - 2 Column Split Opening Paragraph
+// .has-dropcap															 - Initial Drop Cap Styling
+// .has-dropcap.has-dropcap-color-primary								 - Drop Cap Color Added
+// .has-dropcap.has-dropcap-color-secondary								 - Drop Cap Secondary Color Added
+// .has-dropcap.is-style-dropcap-boxed									 - Drop Cap Boxed Style
+// .has-dropcap.is-style-dropcap-boxed.has-dropcap-color-primary		 - Drop Cap Boxed Style with Color
+// .has-dropcap.is-style-dropcap-boxed.has-dropcap-color-secondary		 - Drop Cap Boxed Style with Secondary Color
+// .has-dropcap.is-style-dropcap-outlined								 - Drop Cap Outline Style
+// .has-dropcap.is-style-dropcap-outlined.has-dropcap-color-primary	 	 - Drop Cap Outline Style with Color
+// .has-dropcap.is-style-dropcap-outlined.has-dropcap-color-secondary	 - Drop Cap Outline Style with Secondary Color
+// .has-dropcap.is-style-dropcap-dimensional							 - Drop Cap with Drop-Sadhow
+// .has-dropcap.is-style-dropcap-dimensional.has-dropcap-color-primary	 - Drop Cap with Drop-Sadhow and Color
+// .has-dropcap.is-style-dropcap-dimensional.has-dropcap-color-secondary - Drop Cap with Drop-Sadhow and Secondary Color
+// .has-dropcap.is-style-dropcap-image									 - Drop Cap with image knock out.
+//
+// Styleguide Blocks.Editorial.Intro Paragraph
+
+

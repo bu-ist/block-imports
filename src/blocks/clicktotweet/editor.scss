@@ -1,0 +1,44 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+
+.wp-block-bu-clicktotweet.has-format-highlight .wp-block-bu-clicktotweet-highlight {
+	&::after {
+		color: #0587B8;
+		content: "\f301";
+		font-family: "dashicons";
+	}
+}
+
+[data-type="core/paragraph"]:not(.is-selected) {
+	.wp-block-paragraph.wp-block-bu-clicktotweet:not(.has-format-highlight) {
+
+		.wp-block-bu-clicktotweet-content::before {
+			content: '';
+			border: 1px dashed gray;
+			display: block;
+			position: absolute;
+			left: -15px;
+			top: -15px;
+			bottom: -15px;
+			right: -15px;
+
+		}
+		&::after {
+			background: gray;
+			bottom: -15px;
+			color: #fff;
+			content: "tweet this";
+			display: block;
+			font-family: sans-serif;
+			font-size: 13px;
+			padding: 5px;
+			position: absolute;
+			right: -15px;
+		}
+	}
+}

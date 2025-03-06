@@ -1,0 +1,227 @@
+// =================================================================
+// Modal Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+.bu-blocks-modal-noscroll {
+  overflow: hidden;
+}
+
+.wp-block-editorial-modal {
+	@extend %clearfix;
+
+	&.has-media {
+		.wp-block-editorial-modal-callout-content {
+			h1,
+			p {
+				color: $color-grayscale-f;
+			}
+		}
+	}
+}
+
+// modal content styles
+
+.wp-block-editorial-modal-content {
+	display:none;
+	@extend %col-full;
+	padding: 60px 24px 24px;
+	background: $color-grayscale-f;
+	position: relative;
+
+	@include breakpoint( $xs ) {
+		padding: 90px 60px 60px;
+	}
+
+	> *:not( .alignwide ):not( .alignfull ) {
+		max-width: 740px;
+		margin: 0 auto;
+	}
+
+	.wp-block-editorial-modal-overlay-close {
+		@extend %icon-close;
+		position: absolute;
+		top: 20px;
+		left: 0;
+		right: 0;
+		text-align: center;
+
+		@include breakpoint( $xs ) {
+			top: 40px;
+		}
+
+		&::before {
+			color: $color-grayscale-6;
+		}
+	}
+
+	&.show-overlay {
+		display: block;
+		position: fixed;
+		overflow-y: scroll;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 10000;
+	}
+}
+
+// modal callout styles
+
+.wp-block-editorial-modal-callout {
+	@extend %col-full;
+	background: $color-grayscale-e;
+	text-align: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 60px 0;
+
+
+	.wp-block-editorial-modal-media {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+
+		.wp-block-editorial-modal-image {
+			width: 100%;
+			height: 100%;
+			max-height: 100%;
+		}
+
+		img {
+			@include object-fit( cover );
+			height: 100%;
+			width: 100%;
+			max-height: 100%;
+
+			&.has-background-opacity-10 {
+				opacity: .1;
+			}
+
+			&.has-background-opacity-20 {
+				opacity: .2;
+			}
+
+			&.has-background-opacity-30 {
+				opacity: .3;
+			}
+
+			&.has-background-opacity-40 {
+				opacity: .4;
+			}
+
+			&.has-background-opacity-50 {
+				opacity: .5;
+			}
+
+			&.has-background-opacity-60 {
+				opacity: .6;
+			}
+
+			&.has-background-opacity-70 {
+				opacity: .7;
+			}
+
+			&.has-background-opacity-80 {
+				opacity: .8;
+			}
+
+			&.has-background-opacity-90 {
+				opacity: .9;
+			}
+		}
+	}
+}
+
+
+.wp-block-editorial-modal-callout-content {
+	z-index: 1000;
+	padding: 40px;
+	position: relative;
+
+	@include breakpoint( $sm ) {
+		padding: 80px;
+	}
+
+	.button,
+	p:last-of-type {
+		margin-bottom: 0;
+	}
+
+	h1 {
+		font-size: 1.75em;
+
+		@include breakpoint( $sm ) {
+			font-size: 2.2em;
+		}
+	}
+
+	h1,
+	p {
+		color: $color-grayscale-0;
+	}
+}
+
+// themes
+
+.has-light-theme {
+	.wp-block-editorial-modal-content,
+	.wp-block-editorial-modal-callout {
+		background: $color-grayscale-e;
+	}
+
+	.wp-block-editorial-modal-callout {
+		h1,
+		p {
+			color: $color-grayscale-0;
+		}
+
+		.button {
+			background: $color-grayscale-f;
+		}
+	}
+}
+
+.has-dark-theme {
+	.wp-block-editorial-modal-content,
+	.wp-block-editorial-modal-callout {
+		background: $color-grayscale-3;
+	}
+
+	.wp-block-editorial-modal-content {
+		p,
+		.wp-block-editorial-modal-overlay-close {
+			color: $color-grayscale-e;
+		}
+	}
+
+	.wp-block-editorial-modal-callout {
+		h1,
+		p {
+			color: $color-grayscale-f;
+		}
+	}
+}
+
+.has-primary-theme,
+.has-secondary-theme {
+	.wp-block-editorial-modal-content {
+		a,
+		.wp-block-editorial-modal-overlay-close,
+		.wp-block-editorial-modal-overlay-close::before,
+		p {
+			color: $color-grayscale-1;
+		}
+	}
+}
+

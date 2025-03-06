@@ -1,0 +1,94 @@
+// =================================================================
+// Sample Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-editorial-aside {
+	@extend %col-full;
+	border: 1px solid $color-grayscale-d;
+	border-top: 3px solid $color-grayscale-1;
+	clear: both;
+	margin-bottom: 40px;
+	margin-top: 10px;
+	padding: 30px;
+	text-align: center;
+
+	figure {
+		margin-bottom: 0.7em;
+	}
+
+	p {
+		color: $color-grayscale-6;
+		line-height: 1.5;
+		margin: 0 0 1em 0;
+		font-size: 16px;
+	}
+
+	&.alignleft,
+	&.alignright {
+		@extend %col-full;
+		@extend %col-xs-half;
+		@extend %col-sm-third;
+		max-width: 100%;
+		margin-left: 8.3333%;
+		margin-right: 8.3333%;
+	}
+
+	&.alignleft {
+		margin: 20px auto;
+		margin-left: 8.3333%;
+		margin-right: 8.3333%;
+
+		@include breakpoint( $sm ) {
+			float: left;
+			margin: 0 30px 20px -40px;
+		}
+	}
+
+	&.alignright {
+		margin: 20px auto;
+
+		@include breakpoint( $sm ) {
+			margin: 0 -10px 20px 30px;
+			float: right;
+		}
+	}
+
+	&.has-dark-background,
+	&.has-light-background,
+	&.has-primary-background,
+	&.has-secondary-background,
+	&.has-tertiary-background,
+	&.has-quaternary-background,
+	&.has-quinary-background {
+		border: none;
+	}
+
+	&.has-dark-background {
+		background: $color-grayscale-4;
+
+		h2 {
+			color: $color-grayscale-f;
+		}
+
+		p {
+			color: $color-grayscale-f0;
+		}
+	}
+
+	&.has-light-background {
+		background: $color-grayscale-e;
+	}
+
+	&.has-primary-background {
+		h2 {
+			color: $color-grayscale-f;
+		}
+	}
+}
+

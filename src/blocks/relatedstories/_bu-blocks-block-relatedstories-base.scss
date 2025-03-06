@@ -1,0 +1,244 @@
+// =================================================================
+// Related Stories Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-editorial-relatedstories {
+	
+	text-align: left; // Override any theme styling to center aside blocks.
+
+	.wp-block-editorial-relatedstories-title {
+		margin-bottom: 30px;
+
+		&::after {
+			border-top: 3px solid $color-grayscale-b;
+			content:'';
+			display: block;
+			margin-top: 20px;
+			width: 70px;
+		}
+	}
+
+	.wp-block-editorial-relatedstories-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.wp-block-editorial-relatedstories-list-item {
+		margin-bottom: 20px;
+	}
+
+	.wp-block-editorial-relatedstories-article-title-link {
+		color: $color-link;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.wp-block-editorial-relatedstories-article-category {
+		margin-bottom: 0;
+
+		span {
+			@include border-radius( 2px );
+			background: $color-grayscale-3;
+			color: $color-grayscale-f;
+			font-family: $font-family-sans-serif;
+			font-size: 13px;
+			padding: 5px 5px 3px;
+			text-transform: uppercase;
+		}
+	}
+
+	.wp-block-editorial-relatedstories-article-date {
+		font-family: $font-family-sans-serif;
+		font-size: 0.8em;
+		margin-bottom: 10px;
+		text-transform: uppercase;
+	}
+
+	&.alignright,
+	&.alignleft {
+		@include breakpoint( $xs ) {
+			max-width: 83.33333%;
+		}
+
+		@include breakpoint( 600px ) {
+			max-width: 40%;
+		}
+
+		@include breakpoint( $lg ) {
+			max-width: 30%;
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+			margin-top: 10px;
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+
+			@include breakpoint( 600px ) {
+				font-size: 1em;
+			}
+
+			@include breakpoint( $lg ) {
+				font-size: 1.18169em;
+			}
+		}
+	}
+
+	&.is-style-card {
+
+		.wp-block-editorial-relatedstories-title {
+			text-align: center;
+			&:after {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+		.wp-block-editorial-relatedstories-article {
+			@include transform( perspective( 1px ) translateZ( 0 ));
+			@include transition( transform 0.3s ease 0s );
+			position: relative;
+
+			&:hover,
+			&:focus-within {
+				@include transform( scale( 1.05 ) );
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-image {
+
+			img {
+				@include object-fit( cover );
+				height: 250px;
+				width: 100%;
+
+				@include breakpoint( $lg ) {
+					height: 300px;
+				}
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-category {
+			left: 10px;
+			position: absolute;
+			top: 10px;
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+			margin-top: 10px;
+		}
+
+		.wp-block-editorial-relatedstories-article-title-link {
+
+			&::after {
+				bottom: 0;
+				content:'';
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+	}
+
+	&.is-style-card.has-two {
+
+		.wp-block-editorial-relatedstories-list {
+			@extend %clearfix;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+
+			@include breakpoint( $xs ) {
+				margin: 0 -15px;
+			}
+		}
+
+		.wp-block-editorial-relatedstories-list-item {
+			float: left;
+			margin: 0 0 20px;
+			padding: 0;
+			width: 100%;
+
+			@include breakpoint( $xs ) {
+				margin: 0 15px 20px;
+				width: calc( 50% - 30px );
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+
+			@include breakpoint( $xs ) {
+				font-size: 1em;
+			}
+
+			@include breakpoint( $lg ) {
+				font-size: 1.18169em;
+			}
+		}
+	}
+
+	&.is-style-card.has-three {
+
+		.wp-block-editorial-relatedstories-list {
+			@extend %clearfix;
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+
+			@include breakpoint( $sm ) {
+				margin: 0 -15px;
+			}
+		}
+
+		.wp-block-editorial-relatedstories-list-item {
+			float: left;
+			margin: 0 0 20px;
+			padding: 0;
+			width: 100%;
+
+			@include breakpoint( $sm ) {
+				margin: 0 15px 20px;
+				width: calc( 33.3% - 30px );
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-title {
+
+			@include breakpoint( $sm ) {
+				font-size: 1em;
+			}
+
+			@include breakpoint( $lg ) {
+				font-size: 1.18169em;
+			}
+		}
+
+		.wp-block-editorial-relatedstories-article-image {
+
+			img {
+				@include breakpoint( $sm ) {
+					@include object-fit( cover );
+					height: 165px;
+				}
+
+				@include breakpoint( $md ) {
+					height: 200px;
+				}
+
+				@include breakpoint( $lg ) {
+					height: 250px;
+				}
+			}
+		}
+	}
+}

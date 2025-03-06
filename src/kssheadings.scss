@@ -1,0 +1,54 @@
+// Blocks
+//
+// Blocks are Gutenberg Blocks that can be used in WordPress
+// Examples may include buttons, audio players, and callouts.
+//
+// Blocks should be further categorized by a sub-category such as:
+// Global, Homepage, Edition, Article corresponding to how they are used
+// and where they are available to users in the theme. Such as restricted by post type.
+//
+// Is-Header: true
+//
+// Styleguide Blocks
+
+// Global
+//
+//
+// These are blocks that are available throughout the site on
+// multiple post types and page templates
+//
+// Is-Subheader: true
+//
+// Weight: -10
+//
+// Styleguide Blocks.Global
+
+
+// Editorial
+//
+//
+// These are blocks that are typically used for editorial posts, blog posts, and
+// similar content in WordPress sites.
+//
+// Is-Subheader: true
+//
+// Styleguide Blocks.Editorial
+
+
+// Components
+//
+// Components are smaller building blocks of Gutenberg Blocks. Example:
+// Buttons, Input Fields, etc.
+//
+// Is-Header: true
+//
+// Styleguide Components
+
+
+// Utilities
+//
+// Need to define these
+//
+// Is-Header: true
+//
+// Styleguide Utilities

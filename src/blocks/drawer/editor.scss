@@ -1,0 +1,73 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+ // Mimic the 'show-drawer' class behavior when the block or its inner blocks are selected.
+[data-selected-drawer="true"] {
+
+	.wp-block-editorial-drawer-content {
+		display: block !important;
+		float: none !important;
+		opacity: 1 !important;
+	}
+}
+
+.wp-block-editorial-drawer {
+	.wp-block-editorial-drawer-teaser,
+	.wp-block-editorial-drawer-content {
+		float: none;
+	}
+
+	.wp-block-editorial-drawer-open-wrapper {
+		display: inline-block;
+		margin-top: 1.2em;
+
+		p[role="textbox"]:not(:only-child) {
+			height: 28px;
+		}
+	}
+}
+
+[data-type="editorial/drawer"] {
+
+	&[data-align="left"],
+	&[data-align="right"] {
+
+		.editor-block-list__block-edit,
+		.block-editor-block-list__block-edit {
+			width: 50%;
+		}
+
+		.wp-block-editorial-drawer {
+
+			&.is-size-narrow,
+			&.is-size-small,
+			&.is-size-medium,
+			&.is-size-wide {
+
+				.wp-block-editorial-drawer-teaser {
+					width: 100%;
+				}
+			}
+		}
+
+		.wp-block-editorial-drawer-teaser {
+
+			&::before,
+			&::after {
+				display: none;
+			}
+		}
+
+		.wp-block-editorial-drawer-content {
+
+			.editor-block-list__block-edit
+			.block-editor-block-list__block-edit {
+				width: 100%;
+			}
+		}
+	}
+}

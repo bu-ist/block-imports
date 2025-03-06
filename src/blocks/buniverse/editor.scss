@@ -1,0 +1,158 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+.buniverse-aspect-ratio-options .components-base-control__field {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: 1.5em;
+
+	.components-base-control__label {
+		padding-bottom: 1em;
+		width: 100%;
+	}
+
+	input {
+		display: none;
+	}
+
+	.components-radio-control__option label {
+		background-color: #fff;
+		border: 1px solid #e2e4e7;
+		padding: 8px 10px;
+	}
+
+	.components-radio-control__option input:checked + label {
+		color: #fff;
+		background-color: #1e8cbe;
+		border-color: #1e8cbe;
+	}
+
+	> div:first-of-type label {
+		border-radius: 5px 0 0 5px;
+	}
+
+	> div:last-of-type label {
+		border-radius: 0 5px 5px 0;
+	}
+
+	> div:not(:last-of-type) label {
+		border-right: 0;
+	}
+}
+
+.buniverse-parameter-toggles {
+	.components-base-control__field {
+		justify-content: space-between;
+	}
+
+	.components-toggle-control .components-base-control__field .components-form-toggle {
+		margin-right: 0;
+		order: 1;
+	}
+}
+
+.buniverse-start-time {
+	align-items: center;
+	display: flex;
+	margin: 24px 0;
+
+	> div:first-of-type {
+		flex: 1 0 auto;
+
+		.components-base-control__field {
+			align-items: center;
+			display: flex;
+			justify-content: space-between;
+		}
+
+
+		input {
+			width: 6ch;
+		}
+	}
+
+	.components-base-control,
+	.components-base-control:last-child {
+		margin-bottom: 0;
+	}
+
+	> div:last-of-type {
+		width: 6ch;
+	}
+}
+
+.edit-post-settings-sidebar__panel-block .components-panel__body .buniverse-start-time .components-base-control,
+.buniverse-start-time .components-base-control .components-base-control__field {
+	margin-bottom: 0;
+}
+
+.wp-block-global-buinverse-placeholder {
+	align-items: center;
+	background: #f3f3f3;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	min-height: 250px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 3;
+
+	.buniverse-logo {
+		background: center no-repeat url('./../images/buniverse/buniverse-logo.png');
+		background-size: 100%;
+		display: block;
+		height: 20px;
+		width: 100px;
+	}
+
+	.components-base-control {
+		margin: 20px 0;
+		width: 210px;
+	}
+
+	.buniverse-video-id-screenshot {
+		background: center no-repeat url('./../images/buniverse/video-id-screenshot.png');
+		background-size: 100%;
+		display: block;
+		height: 140px;
+		max-width: 400px;
+		width: 100%;
+	}
+}
+
+.buniverse-set-video-id {
+	.components-base-control__label,
+	.components-text-control__input {
+		display: inline-block;
+	}
+
+	.components-text-control__input {
+		margin-left: 1ch;
+		width: 100px;
+	}
+}
+
+// Remove default margin on figure.
+// Disable interactions on video iframe.
+.wp-block-global-buniverse {
+	margin: 0;
+
+	iframe {
+		pointer-events: none;
+	}
+}
+
+// Align option fixes.
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=right],
+.block-editor-block-list__layout .block-editor-block-list__block[data-align=left] {
+	>.is-block-content {
+		width: 50%;
+	}
+}
+

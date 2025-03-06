@@ -1,0 +1,40 @@
+// =================================================================
+// Pullquote Block Base Styles
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/global/bu-blocks-extends';
+@import 'src/blocks/pullquote/bu-blocks-block-pullquote-base';
+@import 'src/blocks/pullquote/bu-blocks-block-pullquote-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Pullquote Block
+//
+// This is a Pullquote Block. It has 3 Block Styles, Default, Modern, and Pop. The latter two styles can accomodate an image. The focus of the image can be set relative to 9 general regions (i.e. Top Left, Center Right, etc.)
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-pullquote.hbs
+//
+// .alignwide																	 - Wide version of pullquote
+// .alignfull																	 - full version of pullquote
+// .alignfull.has-image															 - full version of pullquote
+// .is-style-modern																 - Alternate Style (modern) of pullquote
+// .is-style-modern.alignwide													 - Modern pullquote in wide alignment
+// .is-style-modern.alignfull													 - Modern pullquote in full alignment
+// .is-style-modern.alignfull.has-image											 - Modern pullquote in full alignment
+// .is-style-pop																 - Alternate Style (pop) of pullquote
+// .is-style-pop.alignwide														 - Pop pullquote in wide alignment
+// .is-style-pop.alignfull														 - Pop pullquote in full alignment
+// .is-style-pop.alignfull.has-image											 - Pop pullquote in full alignment
+// .is-style-pop.alignfull.has-image.has-image-focus-top-left		 			 - image focus on top left
+// .is-style-pop.alignfull.has-image.has-image-focus-bottom-right				 - image focus on bottom right
+//
+// Styleguide Blocks.Global.Pullquote
+
+

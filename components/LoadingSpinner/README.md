@@ -13,13 +13,13 @@ some content.
 
 ## Usage
 ```js
-import { BULoadingSpinner } from '@bostonuniversity/block-components';
+import { LoadingSpinner } from '@bostonuniversity/block-components';
 ```
 
 
 ```js
 { isLoading && (
-	<BULoadingSpinner
+	<LoadingSpinner
 		text="Loading" // Default is undefined.
 		shadow={false} // Default is true.
 		className="a-custom-classname-to-add"

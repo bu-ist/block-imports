@@ -44,7 +44,7 @@ const getClasses = ( className ) => classnames(
 	}
 );
 
-export const BU_Image = ( props ) => {
+export const Image = ( props ) => {
 	const {
 		className = undefined,
 		id,
@@ -91,10 +91,10 @@ export const BU_Image = ( props ) => {
 	// console for block developers to utilize media object info in their block development.
 	if ( debug ) {
 		if ( isResolvingMedia ) {
-			console.log( "BU_Image Media Fetch in Progress: ", isResolvingMedia );
+			console.log( "Image Media Fetch in Progress: ", isResolvingMedia );
 		}
 		if ( hasResolvedMedia ) {
-			console.log( "BU_Image Media Fetched: ", media );
+			console.log( "Image Media Fetched: ", media );
 		}
 	}
 

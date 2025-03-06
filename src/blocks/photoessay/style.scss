@@ -1,0 +1,27 @@
+// =================================================================
+// Photo-Essay Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/global/bu-blocks-extends';
+@import 'src/blocks/photoessay/bu-blocks-block-photoessay-base';
+@import 'src/blocks/photoessay/bu-blocks-block-photoessay-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Photo-Essay Block
+//
+// This is a Photo-Essay Block, It allows you to lay out a cluster of images in a percise and predictable manner. It puts a handful of layouts at your disposal that are able to accommidate any combination of portrait, landscape, wide, ultra-wide, and square media. Each row is treated as a seperate block. On the sidebar you choose your layout (i.e. 4 portrait images side by side, or 1 landscape and two portrait images, so on and so forth). The images will always retain their same aspect ratios across all browser sizes, and retain their layout down to phone sizes (~500px) below that they will stack sequentially.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-photoessay.hbs
+//
+// Styleguide Blocks.Editorial.Photo-Essay
+
+

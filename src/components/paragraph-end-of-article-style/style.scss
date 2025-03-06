@@ -1,0 +1,23 @@
+// =================================================================
+// End of Article Paragraph Block Base Styles
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/components/paragraph-end-of-article-style/bu-blocks-component-end-of-article-base';
+@import 'src/components/paragraph-end-of-article-style/bu-blocks-component-end-of-article-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here.
+
+
+// Caption Paragraph End of Article Style
+//
+// Status: Ready
+//
+// Markup: end-article.hbs
+//
+// .is-style-end-of-article - End of Article Style
+//
+// Styleguide Blocks.Global.End of Article Paragraph

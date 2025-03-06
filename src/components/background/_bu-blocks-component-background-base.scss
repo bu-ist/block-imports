@@ -1,0 +1,45 @@
+img {
+	&.has-background-opacity-0 {
+		opacity: 0;
+	}
+
+	&.has-background-opacity-10 {
+		opacity: 0.1;
+	}
+
+	&.has-background-opacity-20 {
+		opacity: 0.2;
+	}
+
+	&.has-background-opacity-30 {
+		opacity: 0.3;
+	}
+
+	&.has-background-opacity-40 {
+		opacity: 0.4;
+	}
+
+	&.has-background-opacity-50 {
+		opacity: 0.5;
+	}
+
+	&.has-background-opacity-60 {
+		opacity: 0.6;
+	}
+
+	&.has-background-opacity-70 {
+		opacity: 0.7;
+	}
+
+	&.has-background-opacity-80 {
+		opacity: 0.8;
+	}
+
+	&.has-background-opacity-90 {
+		opacity: 0.9;
+	}
+
+	&.has-background-opacity-100 {
+		opacity: 1;
+	}
+}

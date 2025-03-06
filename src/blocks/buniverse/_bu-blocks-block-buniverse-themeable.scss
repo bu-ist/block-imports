@@ -1,0 +1,28 @@
+// =================================================================
+// BUniverse Styles - Configurable
+// =================================================================
+
+$blocks-block-buniverse-config: ();
+
+// Use the default Blocks configuration. You can override this globally
+// in a theme.
+
+$blocks-block-buniverse-config: map-merge( $blocks-block-buniverse-config, $blocks-config );
+
+// This allows themes to optionally set theme options for this
+// block only. You can set all or a few options - only the options
+// you set in $block-block-buniverse-theme will override the defaults.
+
+@if variable-exists( blocks-block-buniverse-theme ) {
+	$blocks-block-buniverse-config: map_merge( $blocks-block-buniverse-config, $blocks-block-buniverse-theme );
+}
+
+// A global helper variable for the block-get mixin.
+
+$current-map: $blocks-block-buniverse-config;
+
+
+$scope: blocks-get( 'scope' );
+
+.#{$scope}-block-global-buniverse {
+}

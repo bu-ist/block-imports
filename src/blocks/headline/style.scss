@@ -1,0 +1,27 @@
+// =================================================================
+// Headline Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/headline/bu-blocks-block-headline-base';
+@import 'src/blocks/headline/bu-blocks-block-headline-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Headline CSS for guidance purposes only,
+// do not use in production.
+
+// Headline Block
+//
+// This is a Headline Block, It has the headline text itself in additon to optional spans containing preemptive text, and post-text for follow up. Also a unique ID is added tot he h tag.
+//
+// Status: Ready
+//
+// Markup: bu-blocks-block-headline.hbs
+//
+// .is-style-emphasis-weight - Example of font weight emphasis headline variation
+// .is-style-emphasis-color - Example of font color emphasis headline variation
+//
+// Styleguide Blocks.Editorial.Headline

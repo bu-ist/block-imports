@@ -1,5 +1,5 @@
 /**
- * Component: blockIcons
+ * Component: BlockIcons
  *
  * Returns a set of block icons for use in the Gutenberg UI
  *
@@ -449,7 +449,7 @@ const getIcon = function( name ) {
 
 // exported component function for use
 // in Blocks to retrieve an icon by name.
-const blockIcons = function( name ) {
+const BlockIcons = function( name ) {
 	return (
 		<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -464,5 +464,5 @@ const blockIcons = function( name ) {
 	);
 }
 
-// Export the blockIcons function.
-export default blockIcons;
+// Export the BlockIcons function.
+export default BlockIcons;

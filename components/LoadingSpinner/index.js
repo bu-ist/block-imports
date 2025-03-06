@@ -27,7 +27,7 @@ const getClasses = ( className, text, shadow ) => classnames(
 	}
 );
 
-export const BULoadingSpinner = ( props ) => {
+export const LoadingSpinner = ( props ) => {
 	const {
 		text = undefined,
 		shadow = true,

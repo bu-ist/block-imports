@@ -13,7 +13,7 @@ import './editor.scss';
 
 // Internal dependencies.
 import { SearchItem } from './searchitem';
-import { BULoadingSpinner } from '../loading-spinner';
+import { LoadingSpinner } from '../LoadingSpinner';
 
 
 // WordPress dependencies.
@@ -308,7 +308,7 @@ export const PostChooser = ( props ) => {
 							</li>
 						) } */}
 						{ isLoading && (
-							<BULoadingSpinner text="Loading" />
+							<LoadingSpinner text="Loading" />
 						)}
 
 						{ !searchResults.length && (

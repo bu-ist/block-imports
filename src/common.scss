@@ -1,0 +1,59 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+
+// Colors. (these need to be removed from this file soon)
+$black: rgb(41, 41, 41);
+$white: #f4f4f4;
+$gray: #dedede;
+$green: #bada55;
+$red: orangered;
+
+
+// =================================================================
+// Libraries and Dependencies
+// =================================================================
+
+$burf-extras:							   false;
+$use-default-icons:                        false;
+$print-icon-classes:                       false;
+@import '~responsive-foundation/css-dev/burf-tools/tools-cgb';
+@import '~responsive-foundation/css-dev/burf-base/grid/package';
+@import 'src/global/bu-blocks-functions';
+@import '~object-fit-images/preprocessors/mixin.scss';
+
+
+
+// =================================================================
+// Global and Base Styles
+// =================================================================
+
+// =================================================================
+// Blocks
+// =================================================================
+
+//@import 'blocks/sample/style.scss';
+
+// =================================================================
+// Layout
+// =================================================================
+
+// =================================================================
+// Templates
+// =================================================================
+
+// =================================================================
+// Icons
+// =================================================================
+
+.icon-navigateright {
+	@extend %icon-navigateright;
+}
+
+.icon-navigateleft {
+	@extend %icon-navigateleft;
+}
+

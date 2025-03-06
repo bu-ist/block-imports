@@ -1,0 +1,40 @@
+// =================================================================
+// Lead-In Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/global/bu-blocks-extends';
+@import 'src/blocks/leadin/bu-blocks-block-leadin-base';
+@import 'src/blocks/leadin/bu-blocks-block-leadin-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Intro Paragraph CSS for guidance purposes only,
+// do not use in production.
+
+// Lead-In Block (Codename)
+//
+// This is a Lead-In Block, it's used as the opening headline and image of an article. The default layout shows the image (in its native aspect ration), followed by the headline; both taking up 100% of the island width of the theme. There are 5 Additional core styles, and a handful of variations that result form stating diffrent options on those base styles.
+//
+// Status: In-Progress
+//
+// Markup: bu-blocks-block-leadin.hbs
+//
+// .is-style-text-to-image																		 - Text over image is a pretty straight forward block style, primarily geared towards headline/image combinations that use horizontal images.  Though it will work with any image since the block will try to crop the fot as best it can into a horizontal layout.
+// .is-style-image-to-text																		 - This block style is similar to the last it simply flips the order so that the image preceeds the text.
+// .is-style-emphasis-on-text																	 - Emphasis on Text is a block style that partially overlays the text over the image. A has-box option can be used to  wrap the text inside of a box.
+// .is-style-emphasis-on-text.has-box															 - This is the same style as the previous block but with the has-box option toggled on. By default the box uses a darker color from the theme, and makes the text a lighter color. (if a custom color is specified, an additional has-text-normal option can be enabled to revert the text colors back to their defaults in cases where a lighter color like yellow is used in for the box background rather then the default darker theme color.)
+// .is-style-text-over-image																	 - This Block styles overlays the text over the image. By Default the image is given a 50% tint of the themes dark color. Both the colr and tint level should be adjustable.
+// .is-style-text-over-image.has-text-position-y-bottom.has-media-focus-left-top				 - This iteration of the text-over-image block is demonstrating two positioning classes. The first which is available for all styles is the image-focus option, with which the images focus can be locked on to 9 areas (top-left, thru bottom-right) so as to make sure that key parts of the image are not cut off as the image is scaled and croped responsively. The SEcond which is specific to the text-over-image style is the has-text-position option. This is one of two sets, has-text-position-x which anchors the text block to three areas horizontally (left, center, right), and has-text-position-y which anchors the text vertically two the top middle or bottom.
+// .is-style-text-over-image.has-box															 - When the has-box option is enabled on the text-over-image style the tint is diabled. Instead the text is wrapped in an opaque box treated similarly as the other has-box uses.
+// .is-style-text-over-image.has-box.has-text-position-x-left.has-media-focus-right-bottom		 - This iteration demonstrates the position and focus options.
+// .is-style-side-by-side																		 - The side-by-side option is primarily for accomidating vertical images. The text and image are displayed next to each other rather than above and below. On larger viewports the image and text  have 50% of the containers width. On smaller sizes the images container width goes down to 33.33%. And at the smallest sizes the images rever to a above below treatment.
+// .is-style-side-by-side.has-box																 - In this style the has box spans the height of the container to maintain symmetry with the image.
+// .is-style-side-by-side.has-wider																 - A has-wider option can be used to make the container span the width of the page.
+// .is-style-side-by-side.has-wider.has-box.has-flip											 - The has-flip puts the image on the left and the text on the right.
+//
+// Styleguide Blocks.Editorial.Lead-In
+
+

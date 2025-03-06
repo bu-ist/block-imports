@@ -1,0 +1,193 @@
+// =================================================================
+// Collapsible Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+//
+
+.wp-block-bu-collapsible {
+	margin-top: -1px;
+
+	.bu-block-collapsible-content {
+		display: none;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-top: 0;
+	}
+
+	.bu-block-collapsible-toggle {
+		appearance: none;
+		background-color: transparent;
+		display: block;
+		font-weight: bold;
+		margin: 0;
+		padding: 10px 20px;
+		position: relative;
+		text-align: left;
+		width: 100%;
+		z-index: 1;
+	}
+
+	.bu-collapsible-heading {
+		padding: 0;
+		position: relative;
+		border: 1px solid #ccc;
+		@include icon( 'plus', 'after' );
+
+		&:after {
+			font-size: .75em;
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY( -50% );
+			z-index: 0;
+		}
+
+		button {
+			padding-right: 50px;
+			white-space: normal;
+
+			&:hover {
+				background-image: none;
+				filter: none;
+			}
+		}
+
+	}
+
+	&.icon-style-arrows > .bu-collapsible-heading::after {
+		content: '\F501';
+	}
+
+
+
+	&.is-open {
+
+		& > .bu-collapsible-heading {
+			display: block;
+		}
+
+		& > .bu-block-collapsible-content {
+			display: block;
+		}
+
+		& > .bu-collapsible-heading::after {
+			content: '\002D';
+		}
+
+		&.icon-style-arrows > .bu-collapsible-heading::after {
+			content: '\F500'
+		}
+
+	}
+
+
+	&.is-style-plain,
+	&.is-style-outline {
+
+		// Remove default theme margin on heading tags.
+		.bu-collapsible-heading {
+			margin: 0;
+		}
+
+		// When open add a thin border between heading & content.
+		&.is-open {
+			.bu-collapsible-heading {
+				border-bottom: 1px solid #ccc;
+			}
+		}
+
+		// Try to remove bottom margin on last p tag so awkward space collapses between <p> tag and bottom border.
+		.bu-block-collapsible-content {
+			p:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	// The Default or Plain Style.
+	&.is-style-plain {
+
+	}
+
+	// Outline Style.
+	&.is-style-outline {
+		.bu-collapsible-heading {
+			border: 3px solid #000;
+		}
+
+		// Remove top border when collapsible is adjacent.
+		& + .is-style-outline .bu-collapsible-heading {
+			border-top: 0;
+		}
+
+		.bu-block-collapsible-content {
+			border: 3px solid #000;
+			border-top: 0;
+		}
+
+	}
+
+	// Preview Style.
+	&.is-style-preview {
+		border: none;
+		position: relative;
+		margin-bottom: $margin;
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: column;
+		justify-content: start;
+		align-items: start;
+		align-content: start;
+
+
+
+		// Don't show any icons to open/collapse.
+	 	> .bu-collapsible-heading::after {
+			display: none;
+		}
+
+		.bu-collapsible-heading {
+			border: none;
+			position: static;
+			flex: 0 1 auto;
+			align-self: stretch;
+		}
+
+		.bu-block-collapsible-content {
+			border: none;
+			padding: 0;
+			flex: 0 1 auto;
+			align-self: stretch;
+		}
+
+		.button {
+			-webkit-order: 3;
+			-ms-flex-order: 3;
+			order: 3;
+			flex: 0 0 auto;
+		}
+
+
+		&.is-closed .bu-block-collapsible-content {
+			display: block;
+			height: 100px;
+			overflow: hidden;
+			position: relative;
+
+			&:after {
+				content:'';
+				height: 50%;
+				position: absolute;
+				bottom:0;
+				left: 0;
+				right: 0;
+				background-image: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+			}
+		}
+	}
+}
+

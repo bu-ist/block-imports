@@ -1,0 +1,73 @@
+// =================================================================
+// Sample Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should mainly be for layout, width, etc that are
+// not able to be overwritten by the variables in the global sass array
+//
+
+//
+
+.wp-block-global-buniverse {
+	&.alignleft,
+	&.alignright {
+		width: 100%;
+
+		@include breakpoint( $sm ) {
+			width: 50%;
+		}
+	}
+}
+.wp-block-global-buniverse-wrapper {
+	position: relative;
+	&::before {
+		content: "";
+		display: block;
+		width: 1px;
+		padding-top: 56.25%;
+		position: relative;
+	}
+	iframe {
+		left: 0;
+		top: 0;
+		position: absolute;
+		width: 100% !important;
+		height: 100% !important;
+	}
+}
+.has-aspectratio-16by9 {
+	.wp-block-global-buniverse-wrapper {
+		&::before {
+			padding-top: 9 / 16 * 100%;
+		}
+	}
+}
+.has-aspectratio-4by3 {
+	.wp-block-global-buniverse-wrapper {
+		&::before {
+			padding-top: 3 / 4 * 100%;
+		}
+	}
+}
+.has-aspectratio-1by1 {
+	.wp-block-global-buniverse-wrapper {
+		&::before {
+			padding-top: 1 / 1 * 100%;
+		}
+	}
+}
+.has-aspectratio-3by4 {
+	.wp-block-global-buniverse-wrapper {
+		&::before {
+			padding-top: 4 / 3 * 100%;
+		}
+	}
+}
+.has-aspectratio-9by16 {
+	.wp-block-global-buniverse-wrapper {
+		&::before {
+			padding-top: 16 / 9 * 100%;
+		}
+	}
+}

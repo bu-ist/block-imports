@@ -1,0 +1,79 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+.wp-block-bu-stats {
+	padding: 20px 0; // Make parent block easier to select in editor.
+	.editor-inner-blocks,
+	.block-editor-inner-blocks {
+		width: 100%;
+	}
+
+	.editor-block-list__layout > div,
+	.block-editor-block-list__layout > div {
+		width: 50%;
+
+		.wp-block-bu-stat {
+			width: 100%;
+		}
+	}
+
+	&.has-2-stats,
+	&.has-3-stats,
+	&.has-4-stats {
+		.editor-block-list__layout > div,
+		.block-editor-block-list__layout > div {
+			float: left;
+			margin: 0;
+		}
+	}
+
+	&.has-3-stats {
+		.editor-block-list__layout > div,
+		.block-editor-block-list__layout > div {
+			width: calc(100% / 3);
+		}
+	}
+
+	&.has-4-stats {
+		.editor-block-list__layout > div,
+		.block-editor-block-list__layout > div {
+			width: 25%;
+		}
+	}
+
+	.wp-block-bu-stat-container-inner textarea {
+		background: transparent;
+		text-align: center;
+	}
+
+	// Might need to get more creative for 4-stat layouts.
+	.wp-block-bu-stat-number textarea::placeholder {
+		font-size: .6em;
+	}
+}
+
+div[data-align="left"],
+div[data-align="right"] {
+	.wp-block-bu-stats {
+		min-width: 230px;
+
+		.editor-inner-blocks .editor-block-list__layout > div,
+		.block-editor-inner-blocks .block-editor-block-list__layout > div {
+			width: 100%;
+
+			.editor-block-list__block-edit,
+			.block-editor-block-list__block-edit {
+				float: none;
+				margin: 0;
+			}
+
+			.wp-block-bu-stat-number textarea::placeholder {
+				font-size: .35em;
+			}
+		}
+	}
+}

@@ -1,0 +1,202 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+[data-type="editorial/photoessay"] {
+	// Adds some padding to the block just to make
+	// it a bit easier to select the parent block in the editor.
+	padding-bottom: 15px;
+	padding-top: 15px;
+
+	// Removes negative margin from front-end css to
+	// make toolbar for child blocks visible when parent
+	// is set to full width.
+	&[data-align="full"] div[class*="photo-row-"] {
+		margin: 0;
+	}
+
+	// This element only exists in the editor and is used
+	// to allow easier input of the caption for each photo.
+	.wp-block-photoessay-media-caption-editor-wrapper {
+		position: absolute;
+		bottom: 0;
+		left: 30px;
+		right: 30px;
+		max-height: 100%;
+		background-image: linear-gradient( rgba( 0, 0, 0, 0 ), rgba( 0, 0, 0, 1 ) );
+		color: #fff !important;
+		overflow-y: auto;
+		padding: 1em;
+		margin: 0;
+	}
+
+	// Make media placeholder same size as photo essay block.
+	.block-editor-media-placeholder {
+		min-height: 100%;
+		margin-bottom: 0;
+	}
+
+	// Set cursor to default in editor.
+	figure {
+		&:hover {
+			cursor: default;
+		}
+	}
+
+	// Remove float on single image row layouts.
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-f"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-1"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-2"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-3"],
+	.wp-block-editorial-photoessay [class*="photo-row-"] [class*="photo-4"] {
+		max-width: none;
+	}
+
+
+}
+
+
+/*
+* Styles for the Block Inspector to
+* insert images as a replacement for the
+* radio buttons to select a row layout.
+*/
+
+// Layout options styles.
+.bu-photoessay-layout-options {
+	input {
+		display: none;
+
+		+ label {
+			background: center no-repeat;
+			background-size: contain;
+			border: 1px solid transparent;
+			display: block;
+			height: 70px;
+			margin: 0 auto;
+			overflow: hidden;
+			text-indent: 100%;
+			white-space: nowrap;
+			width: 150px;
+
+			&:hover {
+				border-color: #e2e4e7;
+			}
+		}
+
+		&:checked + label {
+			border-color: #1e8cbe;
+		}
+	}
+}
+
+input[value="photo-row-fourths-1-1-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-1-1-1.png' );
+}
+
+input[value="photo-row-fourths-1-1-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-1-2.png' );
+}
+
+input[value="photo-row-fourths-1-2-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-2-1.png' );
+}
+
+input[value="photo-row-fourths-2-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-2-2.png' );
+}
+
+input[value="photo-row-fourths-1-3"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-1-3.png' );
+}
+
+input[value="photo-row-fourths-2-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-2-1-1.png' );
+}
+
+input[value="photo-row-fourths-3-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-3-1.png' );
+}
+
+input[value="photo-row-fourths-4"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_fourths-4.png' );
+}
+
+input[value="photo-row-short-2-2-2-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-2-2.png' );
+}
+
+input[value="photo-row-short-2-2-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-2.png' );
+}
+
+input[value="photo-row-short-2-2-4"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-2-4.png' );
+}
+
+input[value="photo-row-short-2-4-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-2-4-2.png' );
+}
+
+input[value="photo-row-short-4-2-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_short-4-2-2.png' );
+}
+
+input[value="photo-row-square-1-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-1-s.png' );
+}
+
+input[value="photo-row-square-2-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-2-s.png' );
+}
+
+input[value="photo-row-square-3-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-3-s.png' );
+}
+
+input[value="photo-row-square-s-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-1.png' );
+}
+
+input[value="photo-row-square-s-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-2.png' );
+}
+
+input[value="photo-row-square-s-3"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-3.png' );
+}
+
+input[value="photo-row-square-s-s-s-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-s-s-s.png' );
+}
+
+input[value="photo-row-square-s-s-s"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_square-s-s-s.png' );
+}
+
+input[value="photo-row-thirds-1-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-1-1-1.png' );
+}
+
+input[value="photo-row-thirds-1-2"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-1-2.png' );
+}
+
+input[value="photo-row-thirds-2-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-2-1.png' );
+}
+
+input[value="photo-row-thirds-3"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_thirds-3.png' );
+}
+
+input[value="photo-row-full-f"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_full-f.png' );
+}
+
+input[value="photo-row-tall-1-1"] + label {
+	background-image: url( './../images/photoessay-row-types/photoessay-row-types_tall-1-1.png' );
+}

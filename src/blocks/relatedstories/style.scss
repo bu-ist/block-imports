@@ -1,0 +1,31 @@
+// =================================================================
+// Related Stories Block Base Styles
+// TODO: Should this be in Responsive Foundation?
+// =================================================================
+
+@import 'src/global/bu-blocks-config';
+@import 'src/blocks/relatedstories/bu-blocks-block-relatedstories-base';
+@import 'src/blocks/relatedstories/bu-blocks-block-relatedstories-themeable';
+
+
+// Default styles which apply to all instances of
+// this block, regardless of where it shows up,
+// go here. Sample CSS for guidance purposes only,
+// do not use in production.
+
+// Related Stories
+//
+// This is a Related Stories block that automatically pulls in related stories, using the YARPP plugin. We'd also like the option to manually curate (select) stories instead of using the default YARPP suggestions when needed. There are two layout options, a list style and a card style. The list style can pull in a minimum of 2 and a max of 5 stories, and be positioned on the left or right side of the article. The card style can pull in a minimum of 2 and a max of 3 stories, and takes up the full width of the article.
+//
+// Status: Ready
+//
+// Markup: bu-blocks-block-relatedstories.hbs
+//
+// .is-style-list.alignright - List style stories, align right
+// .is-style-list.alignleft - List style stories, align left
+// .is-style-card.has-two - Card style stories, with two stories
+// .is-style-card.has-three - Card style stories, with three stories
+//
+// Styleguide Blocks.Editorial.Related Stories
+
+

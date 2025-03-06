@@ -27,7 +27,7 @@ const getClasses = ( className, offset  ) => classnames(
 	}
 );
 
-export const BU_Help_Wrapper = ( props ) => {
+export const HelpWrapper = ( props ) => {
 	const {
 		text = undefined,
 		className = undefined,

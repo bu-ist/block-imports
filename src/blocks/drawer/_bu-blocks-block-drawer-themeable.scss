@@ -1,0 +1,164 @@
+// =================================================================
+// Drawer Styles - Configurable
+// =================================================================
+//
+//
+// Styles in this file should only be using properties that are
+// in the global array ($blocks-defaults) so they can be overwritten by
+// the child theme
+// Examples: color, border-color, font-family
+//
+// Variant styles, such as "open", or an alternate layout should be declared here
+// as shown below IF that variant needs to modify one of the properties that
+// can be overwritten via the array. This lets the child theme overwrite that
+// as well.
+//
+// If you aren't using styles from the global array ($blocks-defaults) by
+// using blocks-get() it doesn't belong in this file as it will be printed
+// in the stylesheet multiple times (for each publication)
+//
+
+$blocks-block-drawer-config: ();
+
+// use the above array if you need to override the global $blocks-defaults array
+// of styles ONLY for this block IN the plugin.
+// You can then override THIS array by using $blocks-block-drawer-theme in the child theme to
+// override this array
+//
+// Remember, with great power comes great responsibility. This should not be used unless
+// you really need it. Think carefully about why you aren't modifying the global config by adding
+// a different variable.
+//
+// $blocks-block-drawer-config: (
+// 		primary-color:red,
+// 		secondary-color: rebeccapurple,
+// );
+
+
+// Use the default Blocks configuration. You can override this globally
+// in a theme.
+
+$blocks-block-drawer-config: map-merge( $blocks-block-drawer-config, $blocks-config );
+
+// This allows themes to optionally set theme options for this
+// block only. You can set all or a few options - only the options
+// you set in $block-block-drawer-theme will override the defaults.
+
+@if variable-exists( blocks-block-drawer-theme ) {
+	$blocks-block-drawer-config: map_merge( $blocks-block-drawer-config, $blocks-block-drawer-theme );
+}
+
+// A global helper variable for the block-get mixin.
+
+$current-map: $blocks-block-drawer-config;
+
+
+$scope: blocks-get( 'scope' );
+
+.#{$scope}-block-editorial-drawer {
+	font-family: blocks-get( 'font-family-primary');
+
+	p {
+		font-family: blocks-get( 'font-family-secondary');
+		color: blocks-get( 'font-color-aside' );
+	}
+
+	.wp-block-editorial-drawer-teaser {
+		&::before,
+		&::after {
+			border-color: blocks-get( 'color-primary' );
+		}
+	}
+
+	&.has-light-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'background-color-light' );
+		}
+	}
+
+	&.has-dark-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'background-color-dark' );
+
+			p,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: blocks-get( 'font-color-aside-lighter' );
+			}
+		}
+	}
+
+	&.has-primary-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-primary' );
+
+			p {
+				color: blocks-get( 'font-color-aside-lighter' );
+			}
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-primary' );
+			}
+		}
+	}
+
+	&.has-secondary-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-secondary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-secondary' );
+			}
+		}
+	}
+
+	&.has-tertiary-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-tertiary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-tertiary' );
+			}
+		}
+	}
+
+	&.has-quaternary-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-quaternary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quaternary' );
+			}
+		}
+	}
+
+	&.has-quinary-background {
+		.wp-block-editorial-drawer-content  {
+			background: blocks-get( 'color-quinary' );
+		}
+
+		.wp-block-editorial-drawer-teaser {
+			&::before,
+			&::after {
+				border-color: blocks-get( 'color-quinary' );
+			}
+		}
+	}
+}
+
