@@ -2,12 +2,18 @@
 
 Standardized set of components, hooks, and utilities that can be used within WordPress blocks.
 
+__In Development:__ This is just starting (March 2025) and it should be assumed that nothing actually works yet. Bug reports, feature requests, questions, and pull requests are welcome.
+
 ## Installation
 
 1. Run `npm i @bostonuniversity/block-imports -D` within your WordPress theme or plugin.
 2. Within your block editor code, import the relevant component(s) e.g. `import { ContentPicker } from '@bostonuniversity/block-imports';`
 
 ## Components
+
+[Components](https://www.w3schools.com/react/react_components.asp) are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
+
+**These should be named in PascalCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
 - [AllowedBlocks](components/AllowedBlocks)
 - [Background](components/Background)
@@ -34,7 +40,9 @@ Standardized set of components, hooks, and utilities that can be used within Wor
 
 ## Hooks
 
-These are React Hooks, not WordPress Hooks.
+These are [React Hooks](https://www.w3schools.com/react/react_hooks.asp), not WordPress Hooks. Hooks allow function components to have access to state, lifecycle methods, and other React features.
+
+**These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
 - [useAllTerms](hooks/useAllTerms)
 - [useMedia](hooks/useMedia)
@@ -43,13 +51,15 @@ These are React Hooks, not WordPress Hooks.
 
 ## Utils
 
-Not a hook, but something more...
+These are just your standard garden variety javascript functions. They don't need all the features that hooks have.
+
+**These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
 - [umlautEverything](utils/umlautEverything)
 
-## Support Level
+### Development
 
-__In Development:__ This is just starting (March 2025) and it should be assumed that nothing actually works yet. Bug reports, feature requests, questions, and pull requests are welcome.
+Each folder should contain a README.md file explaining the purpose and usage of the component/hook/util.
 
 ### Debugging
 
