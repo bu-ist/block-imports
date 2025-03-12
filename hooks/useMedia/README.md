@@ -4,7 +4,7 @@ The `useMedia` hook is a simple helper to quickly get something from the WordPre
 
 ## Usage
 
-@todo paste link to working demo here
+@todo paste link to working demo here; probably on documentation site
 
 ## Original Code
 
