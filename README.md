@@ -57,7 +57,9 @@ These are just your standard garden variety javascript functions. They don't nee
 
 - [umlautEverything](utils/umlautEverything)
 
-### Development
+---
+
+## Development
 
 Each folder should contain a README.md file explaining the purpose and usage of the component/hook/util.
 
@@ -65,7 +67,7 @@ Each folder should contain a README.md file explaining the purpose and usage of 
 
 There is no build for this package. You can debug it though by running `npx wp-scripts build debug.js` and ensure all paths can be resolved.
 
-## Publishing & Release Process
+### Publishing & Release Process
 
 This package is managed through NPM.  It can be found here: <https://www.npmjs.com/package/@bostonuniversity/block-components>
 
