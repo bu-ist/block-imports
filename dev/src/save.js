@@ -26,8 +26,8 @@ export default function save() {
 	return (
 		<p { ...useBlockProps.save() }>
 			{ __(
-				'Example Static – hello from the saved content!',
-				'example-static'
+				'Block Import Dev - hello from the saved content!',
+				'imports-dev'
 			) }
 		</p>
 	);

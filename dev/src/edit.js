@@ -21,6 +21,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 import './editor.scss';
 
+console.log( 'the dev block is devving');
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -33,8 +35,8 @@ export default function Edit() {
 	return (
 		<p { ...useBlockProps() }>
 			{ __(
-				'Example Static – hello from the editor!',
-				'example-static'
+				'Block Imports Dev -> hello from the editor!',
+				'imports-dev'
 			) }
 		</p>
 	);

@@ -1,16 +1,16 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "bu-id/imports-block",
+	"name": "bu-id/imports-dev",
 	"version": "0.1.0",
-	"title": "Import Blocks Dev",
+	"title": "Block Imports Dev",
 	"category": "widgets",
-	"icon": "smiley",
+	"icon": "block-default",
 	"description": "Example static block scaffolded with Create Block tool.",
 	"supports": {
 		"html": false
 	},
-	"textdomain": "imports-block",
+	"textdomain": "imports-dev",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

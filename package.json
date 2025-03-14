@@ -36,7 +36,6 @@
     "@wordpress/icons": "^10.1.0",
     "@wordpress/scripts": "^27.1.0",
     "npm-run-all": "^4.1.5",
-    "npm-watch": "^0.13.0",
     "react-window": "^1.8.11",
     "yalc": "^1.0.0-pre.53"
   },
@@ -44,10 +43,10 @@
     "access": "public"
   },
   "scripts": {
-    "yalc": "yalc publish",
-    "yalc:push": "yalc publish --push",
-    "yalc:changed": "yalc push --changed",
-    "watch": "npm-watch",
+		"__DEVELOPMENT__": "===================================================================",
+		"start": "wp-scripts start",
+		"dev-start": "npm run start -w dev",
+		"dev-build": "npm run build -w dev",
     "__CLEANUP__": "=======================================================================",
     "format": "wp-scripts format",
     "lint": "npm-run-all lint:css lint:html lint:js lint:md lint:pkg",
@@ -64,17 +63,6 @@
 		"env-destroy": "npm run env-destroy -w dev",
 		"env-wp": "npm run env-wp -w dev",
 		"env-shell": "npm run env-shell -w dev"
-  },
-  "watch": {
-    "yalc:changed": {
-      "patterns": [
-        "components",
-        "index.js",
-        "package.json"
-      ],
-      "extensions": "js,scss,php,json",
-      "quiet": false
-    }
   },
 	"workspaces": [
 		"./",
