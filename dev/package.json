@@ -6,8 +6,13 @@
 	"scripts": {
 		"build": "wp-scripts build && wp-scripts build-blocks-manifest",
 		"start": "wp-scripts start && wp-scripts build-blocks-manifest",
+		"clean-build": "rm -rf ./build",
 		"wp-env": "wp-env",
-		"clean-build": "rm -rf ./build"
+		"env-start": "wp-env start",
+		"env-stop": "wp-env stop",
+		"env-destroy": "wp-env destroy",
+		"env-wp": "wp-env cli wp",
+		"env-shell": "wp-env shell"
 	},
 	"keywords": [],
 	"author": "",

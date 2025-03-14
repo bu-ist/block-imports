@@ -56,7 +56,14 @@
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
     "lint:md": "wp-scripts lint-md-docs",
-    "lint:pkg": "wp-scripts lint-pkg-json"
+    "lint:pkg": "wp-scripts lint-pkg-json",
+		"__WP-ENV__":  "=======================================================================",
+		"wp-env": "npm run wp-env -w dev",
+		"env-start": "npm run env-start -w dev",
+		"env-stop": "npm run env-stop -w dev",
+		"env-destroy": "npm run env-destroy -w dev",
+		"env-wp": "npm run env-wp -w dev",
+		"env-shell": "npm run env-shell -w dev"
   },
   "watch": {
     "yalc:changed": {
@@ -68,5 +75,9 @@
       "extensions": "js,scss,php,json",
       "quiet": false
     }
-  }
+  },
+	"workspaces": [
+		"./",
+		"dev/"
+	]
 }

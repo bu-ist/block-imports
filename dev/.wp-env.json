@@ -10,8 +10,10 @@
 		"SCRIPT_DEBUG": true
 	},
 	"themes": [
+		"wordpress/twentytwentyone"
 	],
 	"plugins": [
+		"oliverschloebe/disable-wordpress-updates",
 		"."
 	]
 }
