@@ -1,0 +1,1 @@
+console.log("Hello World! (from super-fun-static-super-fun-static-block block)");

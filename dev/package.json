@@ -4,8 +4,8 @@
 	"description": "Dev enviroment for imports",
 	"main": "index.js",
 	"scripts": {
-		"build": "wp-scripts build && wp-scripts build-blocks-manifest",
-		"start": "wp-scripts start && wp-scripts build-blocks-manifest",
+		"build": "npm run clean-build && wp-scripts build",
+		"start": "npm run clean-build && wp-scripts start",
 		"clean-build": "rm -rf ./build",
 		"wp-env": "wp-env",
 		"env-start": "wp-env start",
@@ -28,7 +28,7 @@
 		"@wordpress/scripts": "^27.8.0"
 	},
 	"dependencies": {
-		"@bostonuniversity/block-imports": "file:../build/debug.js",
+		"@bostonuniversity/block-imports": "file:../build/index.js",
 		"@wordpress/icons": "^9.48.0"
 	}
 }

@@ -25,6 +25,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_imports_dev_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	register_block_type( __DIR__ . '/build/blocks/static-starter' );
 }
 add_action( 'init', 'create_block_imports_dev_block_init' );

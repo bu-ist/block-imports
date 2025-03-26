@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "imports-dev/imports-dev-starter-block",
+  "version": "0.1.0",
+  "title": "Starter Block for Imports Testing",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "This block stands still, but is still super fun",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "imports-dev-starter-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
