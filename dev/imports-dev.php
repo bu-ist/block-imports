@@ -26,5 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function create_block_imports_dev_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/static-starter' );
+	register_block_type( __DIR__ . '/build/blocks/use-request-data' );
 }
 add_action( 'init', 'create_block_imports_dev_block_init' );

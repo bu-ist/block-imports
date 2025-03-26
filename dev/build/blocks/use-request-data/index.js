@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/blocks/static-starter/block.json":
-/*!**********************************************!*\
-  !*** ./src/blocks/static-starter/block.json ***!
-  \**********************************************/
+/***/ "./src/blocks/use-request-data/block.json":
+/*!************************************************!*\
+  !*** ./src/blocks/use-request-data/block.json ***!
+  \************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"imports-dev/imports-dev-starter-block","version":"0.1.0","title":"Starter Block for Imports Testing","category":"widgets","icon":"smiley","description":"This block stands still, but is still super fun","example":{},"supports":{"html":false},"textdomain":"imports-dev-starter-block","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"imports-dev/use-request-data","version":"0.1.0","title":"Testing block for useRequestData","category":"widgets","icon":"database","description":"Use that Request Data","example":{},"supports":{"html":false},"textdomain":"imports-dev-use-request-data","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }),
 
-/***/ "./src/blocks/static-starter/edit.js":
-/*!*******************************************!*\
-  !*** ./src/blocks/static-starter/edit.js ***!
-  \*******************************************/
+/***/ "./src/blocks/use-request-data/edit.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/use-request-data/edit.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -28,7 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/static-starter/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/use-request-data/editor.scss");
 
 /**
  * Retrieves the translation of text.
@@ -69,10 +69,10 @@ function Edit() {
 
 /***/ }),
 
-/***/ "./src/blocks/static-starter/editor.scss":
-/*!***********************************************!*\
-  !*** ./src/blocks/static-starter/editor.scss ***!
-  \***********************************************/
+/***/ "./src/blocks/use-request-data/editor.scss":
+/*!*************************************************!*\
+  !*** ./src/blocks/use-request-data/editor.scss ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -81,19 +81,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/static-starter/index.js":
-/*!********************************************!*\
-  !*** ./src/blocks/static-starter/index.js ***!
-  \********************************************/
+/***/ "./src/blocks/use-request-data/index.js":
+/*!**********************************************!*\
+  !*** ./src/blocks/use-request-data/index.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/static-starter/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/static-starter/edit.js");
-/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/static-starter/save.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/static-starter/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/use-request-data/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/use-request-data/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/use-request-data/save.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/use-request-data/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -135,10 +135,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/blocks/static-starter/save.js":
-/*!*******************************************!*\
-  !*** ./src/blocks/static-starter/save.js ***!
-  \*******************************************/
+/***/ "./src/blocks/use-request-data/save.js":
+/*!*********************************************!*\
+  !*** ./src/blocks/use-request-data/save.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -175,10 +175,10 @@ function save() {
 
 /***/ }),
 
-/***/ "./src/blocks/static-starter/style.scss":
-/*!**********************************************!*\
-  !*** ./src/blocks/static-starter/style.scss ***!
-  \**********************************************/
+/***/ "./src/blocks/use-request-data/style.scss":
+/*!************************************************!*\
+  !*** ./src/blocks/use-request-data/style.scss ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -337,8 +337,8 @@ module.exports = window["React"];
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"blocks/static-starter/index": 0,
-/******/ 			"blocks/static-starter/style-index": 0
+/******/ 			"blocks/use-request-data/index": 0,
+/******/ 			"blocks/use-request-data/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -388,7 +388,7 @@ module.exports = window["React"];
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/static-starter/style-index"], () => (__webpack_require__("./src/blocks/static-starter/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["blocks/use-request-data/style-index"], () => (__webpack_require__("./src/blocks/use-request-data/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

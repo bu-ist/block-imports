@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "imports-dev/use-request-data",
+  "version": "0.1.0",
+  "title": "Testing block for useRequestData",
+  "category": "widgets",
+  "icon": "database",
+  "description": "Use that Request Data",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "imports-dev-use-request-data",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
