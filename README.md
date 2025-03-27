@@ -15,28 +15,28 @@ __In Development:__ This is just starting (March 2025) and it should be assumed 
 
 **These should be named in PascalCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
-- [AllowedBlocks](components/AllowedBlocks)
-- [Background](components/Background)
-- [BlockIcons](components/BlockIcons)
-- [ColorSettings](components/ColorSettings)
-- [ContentPicker](components/ContentPicker)
-- [CustomBlockAppender](components/CustomBlockAppender)
-- [FetchAllTermSelectControl](components/FetchAllTermSelectControl)
-- [HelpWrapper](components/HelpWrapper)
-- [IconPicker](components/IconPicker)
-- [Image](components/Image)
-- [LinkToolbar](components/LinkToolbar)
-- [LoadingSpinner](components/LoadingSpinner)
-- [MediaCredit](components/MediaCredit)
-- [Optional](components/Optional)
-- [ParagraphCaptionStyle](components/ParagraphCaptionStyle)
-- [ParagraphEndOfArticleStyle](components/ParagraphEndOfArticleStyle)
-- [PlainTextWithLimit](components/PlainTextWithLimit)
-- [PostChooser](components/PostChooser)
-- [PostPicker](components/PostPicker)
-- [Repeater](components/Repeater)
-- [RichTextWithLimit](components/RichTextWithLimit)
-- [ShareTool](components/ShareTool)
+- ![alt text](readme-icons/IssueClosedOld.svg) [AllowedBlocks](components/AllowedBlocks)
+- ![alt text](readme-icons/IssueClosedOld.svg) [Background](components/Background)
+- ![alt text](readme-icons/IssueClosedOld.svg) [BlockIcons](components/BlockIcons)
+- ![alt text](readme-icons/IssueClosedOld.svg) [ColorSettings](components/ColorSettings)
+- ![alt text](readme-icons/IssueClosedOld.svg) [ContentPicker](components/ContentPicker)
+- ![alt text](readme-icons/IssueClosedOld.svg) [CustomBlockAppender](components/CustomBlockAppender)
+- ![alt text](readme-icons/IssueClosedOld.svg) [FetchAllTermSelectControl](components/FetchAllTermSelectControl)
+- ![alt text](readme-icons/IssueClosedOld.svg) [HelpWrapper](components/HelpWrapper)
+- ![alt text](readme-icons/IssueClosedOld.svg) [IconPicker](components/IconPicker)
+- ![alt text](readme-icons/IssueClosedOld.svg) [Image](components/Image)
+- ![alt text](readme-icons/IssueClosedOld.svg) [LinkToolbar](components/LinkToolbar)
+- ![alt text](readme-icons/IssueClosedOld.svg) [LoadingSpinner](components/LoadingSpinner)
+- ![alt text](readme-icons/IssueClosedOld.svg) [MediaCredit](components/MediaCredit)
+- ![alt text](readme-icons/IssueClosedOld.svg) [Optional](components/Optional)
+- ![alt text](readme-icons/IssueClosedOld.svg) [ParagraphCaptionStyle](components/ParagraphCaptionStyle)
+- ![alt text](readme-icons/IssueClosedOld.svg) [ParagraphEndOfArticleStyle](components/ParagraphEndOfArticleStyle)
+- ![alt text](readme-icons/IssueClosedOld.svg) [PlainTextWithLimit](components/PlainTextWithLimit)
+- ![alt text](readme-icons/IssueClosedOld.svg) [PostChooser](components/PostChooser)
+- ![alt text](readme-icons/IssueClosedOld.svg) [PostPicker](components/PostPicker)
+- ![alt text](readme-icons/IssueClosedOld.svg) [Repeater](components/Repeater)
+- ![alt text](readme-icons/IssueClosedOld.svg) [RichTextWithLimit](components/RichTextWithLimit)
+- ![alt text](readme-icons/IssueClosedOld.svg) [ShareTool](components/ShareTool)
 
 ## Hooks
 
@@ -44,10 +44,10 @@ These are [React Hooks](https://www.w3schools.com/react/react_hooks.asp), not Wo
 
 **These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
-- [useAllTerms](hooks/useAllTerms)
-- [useMedia](hooks/useMedia)
-- [useRenderAppenderWithBlockLimit](hooks/useRenderAppenderWithBlockLimit)
-- [useRequestData](hooks/useRequestData)
+- ![alt text](readme-icons/IssueClosedOld.svg) [useAllTerms](hooks/useAllTerms)
+- ![alt text](readme-icons/ApprovedChanges.svg) [useMedia](hooks/useMedia)
+- ![alt text](readme-icons/IssueClosedOld.svg) [useRenderAppenderWithBlockLimit](hooks/useRenderAppenderWithBlockLimit)
+- ![alt text](readme-icons/IssueClosedOld.svg) [useRequestData](hooks/useRequestData)
 
 ## Utils
 
@@ -55,7 +55,7 @@ These are just your standard garden variety javascript functions. They don't nee
 
 **These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
-- [umlautEverything](utils/umlautEverything)
+- ![alt text](readme-icons/IssueDrafted.svg) [umlautEverything](utils/umlautEverything)
 
 ---
 
@@ -65,7 +65,7 @@ Each folder should contain a README.md file explaining the purpose and usage of 
 
 ### Debugging
 
-There is no build for this package. You can debug it though by running `npx wp-scripts build debug.js` and ensure all paths can be resolved.
+There is no build for this package. You can debug it though by running `npx wp-scripts build index.js` and ensure all paths can be resolved.
 
 ### Publishing & Release Process
 
