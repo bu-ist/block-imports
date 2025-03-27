@@ -1,15 +1,11 @@
 // External dependencies.
 import classnames from 'classnames';
 
-
-import {
-	Spinner
-} from '@wordpress/components';
-
+// Import the WP Spinner component.
+import { Spinner } from '@wordpress/components';
 
 // Import CSS.
 import './editor.scss';
-
 
 /**
  * Returns the class list for the component based on the current settings.
@@ -35,13 +31,11 @@ export const LoadingSpinner = ( props ) => {
 	} = props;
 
 	return (
-		<>
-			<div className={ getClasses( className, text, shadow ) }>
-				{ text && (
-					<strong className="bu-components-loading-spinner-label">{ text }</strong>
-				)}
-				 <Spinner />
-			</div>
-		</>
+		<div className={ getClasses( className, text, shadow ) }>
+			{ text && (
+				<strong className="bu-components-loading-spinner-label">{ text }</strong>
+			)}
+				<Spinner />
+		</div>
 	)
 };

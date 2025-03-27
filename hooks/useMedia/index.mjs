@@ -9,7 +9,7 @@ export function useMedia(id) {
       const mediaParameters = [id, { context: "view" }]
 
       return {
-        media: getMedia(...mediaParameters),
+        mediaObj: getMedia(...mediaParameters),
         isResolvingMedia: isResolving("getMedia", mediaParameters),
         hasResolvedMedia: hasFinishedResolution("getMedia", mediaParameters)
       }
