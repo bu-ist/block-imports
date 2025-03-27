@@ -32,7 +32,7 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<p { ...useBlockProps() }>
-			{ __( 'Super Fun Static Block – hello from the editor!', 'super-fun-static-block' ) }
+			{ __( 'Super Fun Static Block -- hello from the editor!', 'imports-dev-starter-block' ) }
 		</p>
 	);
 }

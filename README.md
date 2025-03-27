@@ -44,6 +44,8 @@ These are [React Hooks](https://www.w3schools.com/react/react_hooks.asp), not Wo
 
 **These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
 
+- ![alt text](readme-icons/IssueClosedOld.svg) [use-filtered-list](hooks/use-filtered-list)
+- ![alt text](readme-icons/IssueClosedOld.svg) [use-icons](hooks/use-icons)
 - ![alt text](readme-icons/IssueClosedOld.svg) [useAllTerms](hooks/useAllTerms)
 - ![alt text](readme-icons/ApprovedChanges.svg) [useMedia](hooks/useMedia)
 - ![alt text](readme-icons/IssueClosedOld.svg) [useRenderAppenderWithBlockLimit](hooks/useRenderAppenderWithBlockLimit)

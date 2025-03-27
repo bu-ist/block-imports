@@ -5,6 +5,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
 import { useBlockProps } from '@wordpress/block-editor';
+import { useRequestData } from '@bostonuniversity/block-imports';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -18,7 +19,7 @@ import { useBlockProps } from '@wordpress/block-editor';
 export default function save() {
 	return (
 		<p { ...useBlockProps.save() }>
-			{ 'Super Fun Static Block – hello from the saved content!' }
+			{ useRequestData() }
 		</p>
 	);
 }
