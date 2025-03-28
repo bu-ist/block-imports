@@ -1,7 +1,9 @@
 /**
- * Returns a slug-safe string.
+ * Slugify any string.
  *
  * @param {string} string Any text.
+ *
+ * @return {Element} A slug-safe string.
  */
 
 export function slugify( string ) {

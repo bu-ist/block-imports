@@ -10,7 +10,7 @@
 // export { FetchAllTermSelectControl } from './components/FetchAllTermSelectControl';
 // export { HelpWrapper } from './components/HelpWrapper';
 // export { IconPicker } from './components/IconPicker';
-// export { Image } from './components/Image';
+export { Image } from './components/Image/index.mjs';
 // export { LinkToolbar } from './components/LinkToolbar';
 export { LoadingSpinner } from './components/LoadingSpinner/index.mjs';
 // @todo make index
@@ -30,15 +30,16 @@ export { LoadingSpinner } from './components/LoadingSpinner/index.mjs';
 // export { TermSelector } from './components/TermSelector';
 
 // Hooks
+// A React Hook is a special function that lets you "hook into" React state and lifecycle features from within functional components. Hooks enable stateful logic and side effects within functional components, offering a way to reuse logic across components. Crucially, hooks can only be called inside React functional components or custom hooks, and they must follow the "rules of hooks," such as being called at the top level of a component and not within loops or conditional statements.
 // export { useFilteredList } from './hooks/use-filtered-list';
 // export { useIcons } from './hooks/use-icons';
 // export { useAllTerms } from './hooks/useAllTerms';
-export { useMedia } from './hooks/useMedia/index.mjs';
+export { fetchMedia } from './hooks/fetchMedia/index.mjs';
 // export { useRenderAppenderWithBlockLimit } from './hooks/useRenderAppenderWithBlockLimit';
 // export { useRequestData } from './hooks/useRequestData';
 
 // Utils
-export { getMedia } from './utils/getMedia/index.mjs';
-export { getSrcset } from './utils/getSrcset/index.mjs';
+// A utility function is a standard JavaScript function that performs a specific task and is not tied to any particular framework or library. Utility functions are often used for tasks like data formatting, calculations, or other operations that don't require access to React's state or lifecycle. They can be called from anywhere in your code, including within React components or hooks.
+export { fetchImage } from './utils/fetchImage/index.mjs';
 export { slugify } from './utils/slugify/index.mjs';
-export { writeMedia } from './utils/writeMedia/index.mjs';
+// export { writeMedia } from './utils/writeMedia/index.mjs';

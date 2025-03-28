@@ -4,15 +4,17 @@
  * @param {string} mediaObj  todo.
  * @param {string} size     todo.
  * @param {string} sizeFallback    todo.
+ *
+ * @return {Object} Simplified object containing image metadata.
  */
 
-export function getMedia( mediaObj, size='full', sizeFallback=false ) {
+export function fetchImage( mediaObj, size='full', sizeFallback=false ) {
 
   let sizeToFetch = '';
 
-  if( mediaObj.media_details.sizes[size] ){
+  if( mediaObj?.media_details?.sizes[size] ){
     sizeToFetch = size;
-  } else if ( mediaObj.media_details.sizes[sizeFallback] ) {
+  } else if ( mediaObj?.media_details?.sizes[sizeFallback] ) {
     sizeToFetch = sizeFallback;
   } else {
     return false;

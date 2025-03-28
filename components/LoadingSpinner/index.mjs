@@ -1,3 +1,9 @@
+/**
+ * A loading spinner to be used to indicate some activity is occuring.
+ *
+ * @return {Element} Element to render, in this case an DIV.
+ */
+
 // External dependencies.
 import classnames from 'classnames';
 
@@ -10,9 +16,9 @@ import './editor.scss';
 /**
  * Returns the class list for the component based on the current settings.
  *
- * @param {string} className  Additional classes assigned to the component.
- * @param {string} text     If the component has loading text set.
- * @param {string} shadow    If the component has a shadow set.
+ * @param {string} className	Additional classes assigned to the component.
+ * @param {string} text			If the component has loading text set.
+ * @param {string} shadow		If the component has a shadow set.
  */
 const getClasses = ( className, text, shadow ) => classnames(
 	'bu-components-loading-spinner',
