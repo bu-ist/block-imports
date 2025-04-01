@@ -14,6 +14,10 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps } from '@wordpress/block-editor';
 
 import { useRequestData } from '@bostonuniversity/block-imports';
+import { useMedia } from '@bostonuniversity/block-imports';
+//import { useRequestData } from '@10up/block-components';
+
+import { Spinner } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -22,6 +26,7 @@ import { useRequestData } from '@bostonuniversity/block-imports';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -32,9 +37,70 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit() {
+	let imageID = '';
+
+	const PostImage = ( props ) => {
+		const { id } = props;
+		console.log( "in getmedia", id );
+		let { media, isResolvingMedia, hasResolvedMedia } = useMedia( id );
+
+		console.log(isResolvingMedia);
+		console.log(hasResolvedMedia);
+
+		if ( isResolvingMedia ) {
+			return (
+				<Spinner />
+			)
+		}
+
+		if ( hasResolvedMedia ) {
+			console.log( media );
+			return (
+				<>
+					<img src={ media.source_url } width="100" />
+				</>
+			)
+		}
+		return null;
+
+	};
+	const GetPost = ( props ) => {
+		const { id } = props;
+		const [data, isLoading, invalidateRequest ] = useRequestData('postType', 'post', id );
+
+
+		if ( data ) {
+			console.log( "Featured Image",  data.featured_media );
+			imageID = data.featured_media;
+		}
+		if (isLoading) {
+			return (
+				<Spinner />
+			)
+		}
+
+		return (
+			<>
+				{data && (
+					<>
+						<div>{data.title.rendered}</div>
+						{ imageID && (
+							<PostImage id={imageID} />
+						) }
+					</>
+
+				) }
+				<button type="button" onClick={invalidateRequest}>
+					Refresh list
+				</button>
+			</>
+		)
+	};
+
 	return (
 		<p { ...useBlockProps() }>
-			{ useRequestData() }
+
+            <GetPost id={5} />
 		</p>
 	);
 }

@@ -64,9 +64,5 @@
     "env-destroy": "npm run env-destroy -w dev",
     "env-wp": "npm run env-wp -w dev",
     "env-shell": "npm run env-shell -w dev"
-  },
-  "workspaces": [
-    "./",
-    "dev/"
-  ]
+  }
 }
