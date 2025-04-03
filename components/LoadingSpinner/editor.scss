@@ -5,14 +5,15 @@
 	display: flex;
 	justify-content: center;
 	padding: 1em;
+	width: max-content;
 
 
-	.bu-components-loading-spinner-label {
+	.bu-components-loading-spinner--label {
 		font-weight: bold;
 		margin-right: 1ch;
 	}
 
-	&.has-shadow {
+	&.bu-components-loading-spinner--has-shadow {
 		box-shadow:
 		3.4px 4.7px 2.7px rgba(0, 0, 0, 0.043),
 		8.7px 11.8px 6.9px rgba(0, 0, 0, 0.062),
