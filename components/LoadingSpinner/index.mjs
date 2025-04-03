@@ -23,8 +23,8 @@ import './editor.scss';
 const getClasses = ( className, text, shadow ) => classnames(
 	'bu-components-loading-spinner',
 	{
-		[ `has-shadow` ]: shadow,
-		[ `has-text` ]: text,
+		[ `bu-components-loading-spinner--has-shadow` ]: shadow,
+		[ `bu-components-loading-spinner--has-text` ]: text,
 		[ className ]: className,
 	}
 );
@@ -39,7 +39,7 @@ export const LoadingSpinner = ( props ) => {
 	return (
 		<div className={ getClasses( className, text, shadow ) }>
 			{ text && (
-				<strong className="bu-components-loading-spinner-label">{ text }</strong>
+				<strong className="bu-components-loading-spinner--label">{ text }</strong>
 			)}
 				<Spinner />
 		</div>
