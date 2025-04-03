@@ -5,7 +5,7 @@
  *
  * Import this component and its attributes into a block with:
  * 	`import Background, { BackgroundAttributes } from '../../components/background';`
-*/
+ */
 
 // External dependencies.
 import classnames from 'classnames';
@@ -18,12 +18,8 @@ import './style.scss';
 import BackgroundAttributes from './attributes.js';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	Fragment,
-} = wp.element;
+const { __ } = wp.i18n;
+const { Fragment } = wp.element;
 const {
 	IconButton,
 	PanelBody,
@@ -39,34 +35,26 @@ const {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const {
-	getAuthority,
-	getPath,
-	getQueryString,
-} = wp.url;
-const {
-	isBlobURL,
-} = wp.blob;
-const {
-	withState,
-} = wp.compose;
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { getAuthority, getPath, getQueryString } = wp.url;
+const { isBlobURL } = wp.blob;
+const { withState } = wp.compose;
 
 /**
  * Return a classname based on the value of the 'Background Opacity' setting.
  *
  * @param {number} ratio The value of the 'Background Opacity' setting.
-*/
+ */
 const BackgroundOpacityToClass = ( ratio ) => {
-	return ( ratio === 100 ) ?
-		null :
-		'has-background-opacity-' + ( 10 * Math.round( ratio / 10 ) );
-}
+	return ratio === 100
+		? null
+		: 'has-background-opacity-' + 10 * Math.round( ratio / 10 );
+};
 
 /**
  * The background component.
  *
- * @param {array} props The properties passed to the component.
+ * @param {Array} props The properties passed to the component.
  */
 function Background( props ) {
 	// Destructure properties of this component with defaults.
@@ -83,10 +71,7 @@ function Background( props ) {
 	} = props;
 
 	// Get the properties of the block using this component.
-	const {
-		attributes,
-		setAttributes,
-	} = blockProps;
+	const { attributes, setAttributes } = blockProps;
 
 	// Get the attributes for handling the background data.
 	const {
@@ -111,7 +96,7 @@ function Background( props ) {
 
 	// Set attributes based on the selected or uploaded media.
 	const onSelectMedia = ( media ) => {
-		if ( !media || !media.url ) {
+		if ( ! media || ! media.url ) {
 			onRemoveMedia();
 
 			return;
@@ -131,14 +116,11 @@ function Background( props ) {
 			// Determine the media type from selections originating from a file upload.
 			// Only images and videos are accepted. If the media_type is not an image,
 			// we can assume it is a video (which contains the media type of 'file').
-			mediaType = ( 'image' === media.media_type ) ? 'image' : 'video';
+			mediaType = 'image' === media.media_type ? 'image' : 'video';
 		} else {
 			// Determine the media type from selections originating from existing files
 			// in the media library.
-			if (
-				media.type !== 'image' &&
-				media.type !== 'video'
-			) {
+			if ( media.type !== 'image' && media.type !== 'video' ) {
 				return;
 			}
 			mediaType = media.type;
@@ -152,7 +134,10 @@ function Background( props ) {
 			// The second is for newly uploaded images.
 			if ( media.sizes && media.sizes[ imageSize ] ) {
 				url = media.sizes[ imageSize ].url;
-			} else if ( media.media_details && media.media_details.sizes[ imageSize ] ) {
+			} else if (
+				media.media_details &&
+				media.media_details.sizes[ imageSize ]
+			) {
 				url = media.media_details.sizes[ imageSize ].source_url;
 			}
 		}
@@ -176,11 +161,19 @@ function Background( props ) {
 
 	// Set attributes based on a selected URL.
 	const onSelectURL = ( newURL ) => {
-		const allowedAuthorities = [ 'vimeo.com', 'www.youtube.com', 'youtu.be', 'www.bu.edu' ];
+		const allowedAuthorities = [
+			'vimeo.com',
+			'www.youtube.com',
+			'youtu.be',
+			'www.bu.edu',
+		];
 		const authority = getAuthority( newURL );
 
 		// Stop here if the selected URL isn't from one of the allowed domains.
-		if ( newURL === backgroundUrl || ! allowedAuthorities.includes( authority ) ) {
+		if (
+			newURL === backgroundUrl ||
+			! allowedAuthorities.includes( authority )
+		) {
 			return;
 		}
 
@@ -191,7 +184,7 @@ function Background( props ) {
 			backgroundAlt: undefined,
 			backgroundCaption: undefined,
 		} );
-	}
+	};
 
 	/**
 	 * Return the media placeholder if no media has been set.
@@ -204,19 +197,28 @@ function Background( props ) {
 		return (
 			<MediaUploadCheck>
 				<MediaPlaceholder
-					icon='format-image'
+					icon="format-image"
 					className={ className }
 					labels={ {
 						title: placeholderText,
-						instructions: __( 'Drag, upload, or select a file from your library.' ),
+						instructions: __(
+							'Drag, upload, or select a file from your library.'
+						),
 					} }
 					onSelect={ onSelectMedia }
-					onSelectURL={ ( allowedMediaTypes.includes( 'video' ) ) ? onSelectURL : undefined }
+					onSelectURL={
+						allowedMediaTypes.includes( 'video' )
+							? onSelectURL
+							: undefined
+					}
 					allowedTypes={ allowedMediaTypes }
 				/>
-				{ allowedMediaTypes.includes( 'video' ) &&
-					<p className="description components-bu-background-url-note">YouTube, Vimeo, and BUniverse URLs are supported at this time.</p>
-				}
+				{ allowedMediaTypes.includes( 'video' ) && (
+					<p className="description components-bu-background-url-note">
+						YouTube, Vimeo, and BUniverse URLs are supported at this
+						time.
+					</p>
+				) }
 			</MediaUploadCheck>
 		);
 	};
@@ -226,20 +228,23 @@ function Background( props ) {
 		<InspectorControls>
 			<PanelBody
 				title={ __( 'Media Settings' ) }
-				className='components-panel__body-bu-background-media'
+				className="components-panel__body-bu-background-media"
 			>
-				{ ! inlinePlaceholder && ( placeholder() ) }
+				{ ! inlinePlaceholder && placeholder() }
 				{ !! backgroundUrl && (
 					<Fragment>
 						{ backgroundType === 'url' ? (
 							<TextControl
 								label={ __( 'URL' ) }
 								value={ backgroundUrl }
-								onChange={ backgroundUrl => {
+								onChange={ ( backgroundUrl ) => {
 									setAttributes( {
 										backgroundUrl,
-										backgroundType: ( backgroundUrl === '' ) ? undefined : backgroundType,
-									} )
+										backgroundType:
+											backgroundUrl === ''
+												? undefined
+												: backgroundType,
+									} );
 								} }
 							/>
 						) : (
@@ -251,8 +256,10 @@ function Background( props ) {
 									render={ ( { open } ) => (
 										<IconButton
 											onClick={ open }
-											icon='edit'
-											label={ __( 'Edit Background Media' ) }
+											icon="edit"
+											label={ __(
+												'Edit Background Media'
+											) }
 											isDefault
 											isLarge
 										>
@@ -262,8 +269,8 @@ function Background( props ) {
 								/>
 								<IconButton
 									onClick={ onRemoveMedia }
-									icon='no'
-									label={ ( 'Remove Background Media' ) }
+									icon="no"
+									label={ 'Remove Background Media' }
 									isDefault
 									isLarge
 								>
@@ -277,17 +284,24 @@ function Background( props ) {
 					<RangeControl
 						label={ __( 'Background Opacity' ) }
 						value={ backgroundOpacity }
-						onChange={ ratio => setAttributes( { backgroundOpacity: ratio } ) }
+						onChange={ ( ratio ) =>
+							setAttributes( { backgroundOpacity: ratio } )
+						}
 						min={ 10 }
 						max={ 100 }
 						step={ 10 }
 					/>
 				) }
-				{ ( backgroundType === 'video' || backgroundType === 'url' ) && (
+				{ ( backgroundType === 'video' ||
+					backgroundType === 'url' ) && (
 					<ToggleControl
 						label={ __( 'Autoplay video' ) }
 						checked={ backgroundAutoplay }
-						onChange={ () => setAttributes( { backgroundAutoplay: !backgroundAutoplay } ) }
+						onChange={ () =>
+							setAttributes( {
+								backgroundAutoplay: ! backgroundAutoplay,
+							} )
+						}
 					/>
 				) }
 			</PanelBody>
@@ -297,8 +311,8 @@ function Background( props ) {
 	// Defines the controls for the background options.
 	const controls = (
 		<Fragment>
-			{ inlinePlaceholder && ( placeholder() ) }
-			{ ( !!backgroundUrl && backgroundType !== 'url' ) && (
+			{ inlinePlaceholder && placeholder() }
+			{ !! backgroundUrl && backgroundType !== 'url' && (
 				<BlockControls>
 					<Toolbar>
 						<MediaUploadCheck>
@@ -308,36 +322,35 @@ function Background( props ) {
 								value={ backgroundId }
 								render={ ( { open } ) => (
 									<IconButton
-										className='components-toolbar__control'
+										className="components-toolbar__control"
 										label={ __( 'Edit Background Media' ) }
-										icon='edit'
+										icon="edit"
 										onClick={ open }
 									/>
 								) }
 							/>
 							<IconButton
-								className='components-toolbar__control'
-								label={ ( 'Remove Background Media' ) }
-								icon='no'
+								className="components-toolbar__control"
+								label={ 'Remove Background Media' }
+								icon="no"
 								onClick={ onRemoveMedia }
 							/>
 						</MediaUploadCheck>
 					</Toolbar>
 				</BlockControls>
 			) }
-			{ ( !inlinePlaceholder || backgroundUrl ) && inspectorControls }
+			{ ( ! inlinePlaceholder || backgroundUrl ) && inspectorControls }
 		</Fragment>
-	)
+	);
 
 	// Build the classes to apply to the background element.
-	const classes = classnames(
-		className,
-		{
-			'has-background-opacity': backgroundOpacity !== 100,
-			[ BackgroundOpacityToClass( backgroundOpacity ) ]: BackgroundOpacityToClass( backgroundOpacity ),
-			[ `wp-image-${backgroundId}` ]: backgroundId && 'image' === backgroundType,
-		}
-	);
+	const classes = classnames( className, {
+		'has-background-opacity': backgroundOpacity !== 100,
+		[ BackgroundOpacityToClass( backgroundOpacity ) ]:
+			BackgroundOpacityToClass( backgroundOpacity ),
+		[ `wp-image-${ backgroundId }` ]:
+			backgroundId && 'image' === backgroundType,
+	} );
 
 	// Return an image element for use as the background.
 	const backgroundImage = (
@@ -346,7 +359,7 @@ function Background( props ) {
 			src={ backgroundUrl }
 			alt={ backgroundAlt }
 		/>
-	)
+	);
 
 	// Return a video element for use as the background.
 	const backgroundVideo = (
@@ -365,50 +378,57 @@ function Background( props ) {
 		let url = '';
 
 		if ( authority === 'www.youtube.com' || authority === 'youtu.be' ) {
-			const videoId = ( authority === 'youtu.be' ) ?
-				getPath( backgroundUrl ) :
-				getQueryString( backgroundUrl ).split( '?' )[0].substr(2);
+			const videoId =
+				authority === 'youtu.be'
+					? getPath( backgroundUrl )
+					: getQueryString( backgroundUrl )
+							.split( '?' )[ 0 ]
+							.substr( 2 );
 
 			// Build the url, adding autoplay parameters if appropriate.
-			url = `//www.youtube.com/embed/${videoId}`;
-			url += ( backgroundAutoplay ) ? `?controls=0&autoplay=1&mute=1&origin=http://bu.edu&version=3&loop=1&playlist=${videoId}` : '';
+			url = `//www.youtube.com/embed/${ videoId }`;
+			url += backgroundAutoplay
+				? `?controls=0&autoplay=1&mute=1&origin=http://bu.edu&version=3&loop=1&playlist=${ videoId }`
+				: '';
 		}
 
 		if ( authority === 'vimeo.com' ) {
 			const videoId = getPath( backgroundUrl );
 
 			// Build the url, adding the background parameter for autoplaying if appropriate.
-			url = `//player.vimeo.com/video/${videoId}`;
-			url += ( backgroundAutoplay ) ? '?background=1' : '';
+			url = `//player.vimeo.com/video/${ videoId }`;
+			url += backgroundAutoplay ? '?background=1' : '';
 		}
 
 		if ( authority === 'www.bu.edu' ) {
-			const videoId = getQueryString( backgroundUrl ).split( '?' )[0].substr(2);
+			const videoId = getQueryString( backgroundUrl )
+				.split( '?' )[ 0 ]
+				.substr( 2 );
 
 			// Build the URL, adding the autoplay parameter if appropriate.
-			url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${videoId}&jsapi=1`;
-			url += ( backgroundAutoplay ) ? '&autoplay=true&controls=0' : '';
+			url = `//www.bu.edu/buniverse/interface/embed/embed.html?v=${ videoId }&jsapi=1`;
+			url += backgroundAutoplay ? '&autoplay=true&controls=0' : '';
 		}
 
 		if ( url !== '' ) {
 			return (
 				<iframe
 					src={ url }
-					frameborder="0"
+					frameBorder="0"
 					allow="autoplay; fullscreen"
 					className={ classes }
 				></iframe>
-			)
+			);
 		}
-	}
+	};
 
 	// Return the interface for the background component.
 	return (
 		<Fragment>
 			{ controls }
-			{ ( 'image' === backgroundType ) && ( backgroundImage ) }
-			{ ( 'video' === backgroundType ) && ( backgroundVideo ) }
-			{ ( 'url' === backgroundType ) && (
+			{ 'image' === backgroundType && backgroundImage }
+			{ 'video' === backgroundType && backgroundVideo }
+			{ 'url' === backgroundType && (
 				<div className="wp-block-background-video">
 					<div className="wp-block-background-video-ratio">
 						<div className="wp-block-background-video-iframe">
@@ -422,17 +442,13 @@ function Background( props ) {
 					<img src={ backgroundUrl } />
 					<Spinner />
 				</div>
-
 			) }
 		</Fragment>
 	);
 }
 
 // Export dependencies for easy importing in blocks.
-export {
-	BackgroundAttributes,
-	BackgroundOpacityToClass,
-};
+export { BackgroundAttributes, BackgroundOpacityToClass };
 
 // Export the background interface.
 export default withState( {

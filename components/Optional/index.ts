@@ -13,7 +13,10 @@ interface OptionalProps {
 	children: React.ReactNode;
 }
 
-export const Optional: React.FC<OptionalProps> = ({ value = '', children }) => {
+export const Optional: React.FC< OptionalProps > = ( {
+	value = '',
+	children,
+} ) => {
 	const { isSelected } = useBlockEditContext();
-	return (isSelected || !!value) && children;
+	return ( isSelected || !! value ) && children;
 };

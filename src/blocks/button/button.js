@@ -20,32 +20,18 @@ import './style.scss';
 import './editor.scss';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	registerBlockType,
-} = wp.blocks;
-const {
-	Button,
-	Dashicon,
-	G,
-	IconButton,
-	PanelBody,
-	Path,
-	RadioControl,
-	SVG,
-} = wp.components;
-const {
-	Fragment,
-} = wp.element;
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { Button, Dashicon, G, IconButton, PanelBody, Path, RadioControl, SVG } =
+	wp.components;
+const { Fragment } = wp.element;
 const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
 	URLInput,
 	withColors,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
 
 // The current publication owner.
 const publication = publicationSlug();
@@ -57,23 +43,19 @@ const publication = publicationSlug();
  * @param {string} themeColor The theme color assigned to the block.
  * @param {string} icon       The icon placement.
  */
-const getClasses = ( className, themeColor, icon ) => classnames(
-	'wp-block-button',
-	'wp-block-bu-button',
-	{
-		[ `${publication}-block-button` ]: publication && publication !== '',
-		[ `has-${themeColor}-theme` ]: themeColor,
-		[ `icon-navigateright ${icon}` ]: icon,
+const getClasses = ( className, themeColor, icon ) =>
+	classnames( 'wp-block-button', 'wp-block-bu-button', {
+		[ `${ publication }-block-button` ]: publication && publication !== '',
+		[ `has-${ themeColor }-theme` ]: themeColor,
+		[ `icon-navigateright ${ icon }` ]: icon,
 		[ className ]: className,
-	}
-);
+	} );
 
 // Register the block.
 registerBlockType( 'bu/button', {
-
 	title: __( 'Button' ),
 	description: __( 'Prompt visitors to take action with a custom button.' ),
-	icon: blockIcons('button'),
+	icon: blockIcons( 'button' ),
 	category: 'bu',
 	attributes: {
 		url: {
@@ -101,25 +83,25 @@ registerBlockType( 'bu/button', {
 		},
 		className: {
 			type: 'string',
-		}
+		},
 	},
 	styles: [
 		{
 			name: 'default',
 			label: __( 'Default' ),
-			isDefault: true
+			isDefault: true,
 		},
 		{
 			name: 'outline',
-			label: __( 'Outline' )
+			label: __( 'Outline' ),
 		},
 		{
 			name: 'text',
-			label: __( 'Text' )
+			label: __( 'Text' ),
 		},
 		{
 			name: 'accent',
-			label: __( 'Accent' )
+			label: __( 'Accent' ),
 		},
 	],
 	supports: {
@@ -128,13 +110,9 @@ registerBlockType( 'bu/button', {
 		align: [ 'left', 'center', 'right' ],
 	},
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: withColors( 'themeColor' )( ( props ) => {
 		const {
-			attributes: {
-				text,
-				url,
-				icon,
-			},
+			attributes: { text, url, icon },
 			themeColor,
 			setThemeColor,
 			setAttributes,
@@ -157,61 +135,78 @@ registerBlockType( 'bu/button', {
 							},
 						] }
 					/>
-						<PanelBody title={ __( 'Icon Settings' ) }>
-							<RadioControl
-								label='Placement'
-								selected={ icon }
-								options={ [
-									{ label: 'Before text', value: 'align-icon-left' },
-									{ label: 'After text', value: 'align-icon-right' },
-								] }
-								onChange={ ( value ) => { setAttributes( { icon: value } ) } }
-							/>
-							<Button
-								onClick={ () => setAttributes( { icon: undefined } ) }
-								label={ ( 'Clear icon settings' ) }
-								isDefault
-								isSmall
-							>
-								{ __( 'Clear' ) }
-							</Button>
-						</PanelBody>
-
-						<PanelBody
-							className="components-panel__body-bu-button-block-url"
-							title={ __( 'URL' ) }
+					<PanelBody title={ __( 'Icon Settings' ) }>
+						<RadioControl
+							label="Placement"
+							selected={ icon }
+							options={ [
+								{
+									label: 'Before text',
+									value: 'align-icon-left',
+								},
+								{
+									label: 'After text',
+									value: 'align-icon-right',
+								},
+							] }
+							onChange={ ( value ) => {
+								setAttributes( { icon: value } );
+							} }
+						/>
+						<Button
+							onClick={ () =>
+								setAttributes( { icon: undefined } )
+							}
+							label={ 'Clear icon settings' }
+							isDefault
+							isSmall
 						>
-							<p className="description">Add link to the button</p>
-							<URLInput
-								value={ url }
-								onChange={ ( value ) => setAttributes( { url: value } ) }
-							/>
-						</PanelBody>
-					</InspectorControls>
+							{ __( 'Clear' ) }
+						</Button>
+					</PanelBody>
+
+					<PanelBody
+						className="components-panel__body-bu-button-block-url"
+						title={ __( 'URL' ) }
+					>
+						<p className="description">Add link to the button</p>
+						<URLInput
+							value={ url }
+							onChange={ ( value ) =>
+								setAttributes( { url: value } )
+							}
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<p>
 					<RichText
 						placeholder={ __( 'Add text…' ) }
 						value={ text }
-						onChange={ ( value ) => setAttributes( { text: value } ) }
-						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
-						className={ getClasses( className, themeColor.slug, icon ) }
+						onChange={ ( value ) =>
+							setAttributes( { text: value } )
+						}
+						formattingControls={ getAllowedFormats(
+							'formattingControls',
+							[ 'bold', 'italic' ]
+						) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [
+							'core/bold',
+							'core/italic',
+						] ) }
+						className={ getClasses(
+							className,
+							themeColor.slug,
+							icon
+						) }
 						keepPlaceholderOnFocus
 					/>
 				</p>
-
 			</Fragment>
 		);
 	} ),
 
 	save( { attributes } ) {
-		const {
-			url,
-			text,
-			themeColor,
-			icon,
-			className,
-		} = attributes;
+		const { url, text, themeColor, icon, className } = attributes;
 
 		return (
 			<p>
@@ -226,5 +221,4 @@ registerBlockType( 'bu/button', {
 	},
 
 	deprecated,
-
 } );

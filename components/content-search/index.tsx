@@ -1,9 +1,18 @@
-import { Spinner, NavigableMenu, Button, SearchControl } from '@wordpress/components';
+import {
+	Spinner,
+	NavigableMenu,
+	Button,
+	SearchControl,
+} from '@wordpress/components';
 import { useState, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import styled from '@emotion/styled';
 import { useMergeRefs } from '@wordpress/compose';
-import { QueryClient, QueryClientProvider, useInfiniteQuery } from '@tanstack/react-query';
+import {
+	QueryClient,
+	QueryClientProvider,
+	useInfiniteQuery,
+} from '@tanstack/react-query';
 import SearchItem from './SearchItem';
 import { StyledComponentContext } from '../styled-components-context';
 import type {
@@ -32,9 +41,9 @@ const ListItem = styled.li`
 	margin-bottom: 0;
 `;
 
-const StyledSpinner = styled(Spinner)`
+const StyledSpinner = styled( Spinner )`
 	/* Custom styles to reduce jumping while loading the results */
-	min-height: ${listMinHeight};
+	min-height: ${ listMinHeight };
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -51,11 +60,11 @@ const LoadingContainer = styled.div`
 	}
 `;
 
-const StyledNavigableMenu = styled(NavigableMenu)`
+const StyledNavigableMenu = styled( NavigableMenu )`
 	width: 100%;
 `;
 
-const StyledSearchControl = styled(SearchControl)`
+const StyledSearchControl = styled( SearchControl )`
 	width: 100%;
 `;
 
@@ -67,146 +76,165 @@ const StyledNoResults = styled.li`
 
 const ContentSearchNoResults: React.FC = () => (
 	<StyledNoResults className="tenup-content-search-list-item components-button">
-		{__('Nothing found.', '10up-block-components')}
+		{ __( 'Nothing found.', '10up-block-components' ) }
 	</StyledNoResults>
 );
 
 export interface ContentSearchProps {
-	onSelectItem: (item: NormalizedSuggestion) => void;
+	onSelectItem: ( item: NormalizedSuggestion ) => void;
 	placeholder?: string;
 	label?: string;
 	hideLabelFromVision?: boolean;
-	contentTypes?: Array<string>;
+	contentTypes?: Array< string >;
 	mode?: ContentSearchMode;
 	perPage?: number;
 	queryFilter?: QueryFilter;
-	excludeItems?: Array<IdentifiableObject>;
-	renderItemType?: (props: NormalizedSuggestion) => string;
-	renderItem?: (props: RenderItemComponentProps) => JSX.Element;
+	excludeItems?: Array< IdentifiableObject >;
+	renderItemType?: ( props: NormalizedSuggestion ) => string;
+	renderItem?: ( props: RenderItemComponentProps ) => JSX.Element;
 	fetchInitialResults?: boolean;
 }
 
-const ContentSearch: React.FC<ContentSearchProps> = ({
+const ContentSearch: React.FC< ContentSearchProps > = ( {
 	onSelectItem = () => {
-		console.log('Select!'); // eslint-disable-line no-console
+		console.log( 'Select!' ); // eslint-disable-line no-console
 	},
 	placeholder = '',
 	label,
 	hideLabelFromVision = true,
-	contentTypes = ['post', 'page'],
+	contentTypes = [ 'post', 'page' ],
 	mode = 'post',
 	perPage = 20,
-	queryFilter = (query: string) => query,
+	queryFilter = ( query: string ) => query,
 	excludeItems = [],
 	renderItemType = undefined,
 	renderItem: SearchResultItem = SearchItem,
 	fetchInitialResults,
-}) => {
-	const [searchString, setSearchString] = useState('');
-	const [isFocused, setIsFocused] = useState(false);
-	const searchContainer = useRef<HTMLDivElement>(null);
+} ) => {
+	const [ searchString, setSearchString ] = useState( '' );
+	const [ isFocused, setIsFocused ] = useState( false );
+	const searchContainer = useRef< HTMLDivElement >( null );
 
-	const handleItemSelection = (item: NormalizedSuggestion) => {
-		setSearchString('');
-		setIsFocused(false);
-		onSelectItem(item);
+	const handleItemSelection = ( item: NormalizedSuggestion ) => {
+		setSearchString( '' );
+		setIsFocused( false );
+		onSelectItem( item );
 	};
 
-	const clickOutsideRef = useOnClickOutside(() => {
-		setIsFocused(false);
-	});
+	const clickOutsideRef = useOnClickOutside( () => {
+		setIsFocused( false );
+	} );
 
-	const mergedRef = useMergeRefs([searchContainer, clickOutsideRef]);
+	const mergedRef = useMergeRefs( [ searchContainer, clickOutsideRef ] );
 
-	const { status, data, error, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
-		useInfiniteQuery({
-			queryKey: ['search', searchString, contentTypes.join(','), mode, perPage, queryFilter],
-			queryFn: async ({ pageParam = 1 }) =>
-				fetchSearchResults({
-					keyword: searchString,
-					page: pageParam,
-					mode,
-					perPage,
-					contentTypes,
-					queryFilter,
-					excludeItems,
-				}),
-			getNextPageParam: (lastPage) => lastPage.nextPage,
-			getPreviousPageParam: (firstPage) => firstPage.previousPage,
-			initialPageParam: 1,
-		});
+	const {
+		status,
+		data,
+		error,
+		isFetching,
+		isFetchingNextPage,
+		fetchNextPage,
+		hasNextPage,
+	} = useInfiniteQuery( {
+		queryKey: [
+			'search',
+			searchString,
+			contentTypes.join( ',' ),
+			mode,
+			perPage,
+			queryFilter,
+		],
+		queryFn: async ( { pageParam = 1 } ) =>
+			fetchSearchResults( {
+				keyword: searchString,
+				page: pageParam,
+				mode,
+				perPage,
+				contentTypes,
+				queryFilter,
+				excludeItems,
+			} ),
+		getNextPageParam: ( lastPage ) => lastPage.nextPage,
+		getPreviousPageParam: ( firstPage ) => firstPage.previousPage,
+		initialPageParam: 1,
+	} );
 
-	const searchResults = data?.pages.map((page) => page?.results).flat() || undefined;
+	const searchResults =
+		data?.pages.map( ( page ) => page?.results ).flat() || undefined;
 
-	const hasSearchString = !!searchString.length;
-	const hasSearchResults = status === 'success' && searchResults && !!searchResults.length;
+	const hasSearchString = !! searchString.length;
+	const hasSearchResults =
+		status === 'success' && searchResults && !! searchResults.length;
 	const hasInitialResults = fetchInitialResults && isFocused;
-	const hasNoResults = !!error || (!isFetching && !hasSearchResults);
+	const hasNoResults = !! error || ( ! isFetching && ! hasSearchResults );
 	const isPending = status === 'pending';
 
 	return (
-		<StyledNavigableMenu ref={mergedRef} orientation="vertical">
+		<StyledNavigableMenu ref={ mergedRef } orientation="vertical">
 			<StyledSearchControl
-				value={searchString}
-				onChange={(newSearchString: string) => {
-					setSearchString(newSearchString);
-				}}
-				label={label}
-				hideLabelFromVision={hideLabelFromVision}
-				placeholder={placeholder}
+				value={ searchString }
+				onChange={ ( newSearchString: string ) => {
+					setSearchString( newSearchString );
+				} }
+				label={ label }
+				hideLabelFromVision={ hideLabelFromVision }
+				placeholder={ placeholder }
 				autoComplete="off"
-				onFocus={() => {
-					setIsFocused(true);
-				}}
+				onFocus={ () => {
+					setIsFocused( true );
+				} }
 			/>
 
-			{hasSearchString || hasInitialResults ? (
+			{ hasSearchString || hasInitialResults ? (
 				<>
 					<List className="tenup-content-search-list">
-						{isPending && <StyledSpinner />}
-						{hasNoResults && <ContentSearchNoResults />}
-						{hasSearchResults &&
-							searchResults.map((item) => {
+						{ isPending && <StyledSpinner /> }
+						{ hasNoResults && <ContentSearchNoResults /> }
+						{ hasSearchResults &&
+							searchResults.map( ( item ) => {
 								const selectItem = () => {
-									handleItemSelection(item);
+									handleItemSelection( item );
 								};
 								return (
 									<ListItem
-										key={item.id}
+										key={ item.id }
 										className="tenup-content-search-list-item"
 									>
 										<SearchResultItem
-											item={item}
-											onSelect={selectItem}
-											searchTerm={searchString}
-											contentTypes={contentTypes}
-											renderType={renderItemType}
+											item={ item }
+											onSelect={ selectItem }
+											searchTerm={ searchString }
+											contentTypes={ contentTypes }
+											renderType={ renderItemType }
 										/>
 									</ListItem>
 								);
-							})}
+							} ) }
 					</List>
 
-					{hasSearchResults && hasNextPage && (
+					{ hasSearchResults && hasNextPage && (
 						<LoadingContainer>
-							<Button onClick={() => fetchNextPage()} variant="secondary">
-								{__('Load more', '10up-block-components')}
+							<Button
+								onClick={ () => fetchNextPage() }
+								variant="secondary"
+							>
+								{ __( 'Load more', '10up-block-components' ) }
 							</Button>
 						</LoadingContainer>
-					)}
+					) }
 
-					{isFetchingNextPage && <StyledSpinner />}
+					{ isFetchingNextPage && <StyledSpinner /> }
 				</>
-			) : null}
+			) : null }
 		</StyledNavigableMenu>
 	);
 };
 
-const ContentSearchWrapper: React.FC<ContentSearchProps> = (props) => {
+const ContentSearchWrapper: React.FC< ContentSearchProps > = ( props ) => {
 	return (
 		<StyledComponentContext cacheKey="tenup-component-content-search">
-			<QueryClientProvider client={queryClient}>
-				<ContentSearch {...props} />
+			<QueryClientProvider client={ queryClient }>
+				<ContentSearch { ...props } />
 			</QueryClientProvider>
 		</StyledComponentContext>
 	);

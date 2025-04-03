@@ -22,8 +22,8 @@ import TermSelector from '../TermSelector';
 /**
  * List of selectable posts
  *
- * @param {object} props Component props
- * @returns {ReactNode} Component
+ * @param {Object} props Component props
+ * @return {ReactNode} Component
  */
 function PostList( props ) {
 	const {
@@ -34,12 +34,25 @@ function PostList( props ) {
 		isSortable = false,
 	} = props;
 
-	const queriedPosts = useSelect( ( select ) => {
-		return select( 'core' ).getEntityRecords( 'postType', postType, queryArgs ) ?? [];
-	}, [ postType, queryArgs ] );
+	const queriedPosts = useSelect(
+		( select ) => {
+			return (
+				select( 'core' ).getEntityRecords(
+					'postType',
+					postType,
+					queryArgs
+				) ?? []
+			);
+		},
+		[ postType, queryArgs ]
+	);
 
 	const isResolving = useSelect( ( select ) => {
-		return select( 'core/data' ).isResolving( 'core', 'getEntityRecords', [ 'postType', postType, queryArgs ] );
+		return select( 'core/data' ).isResolving( 'core', 'getEntityRecords', [
+			'postType',
+			postType,
+			queryArgs,
+		] );
 	} );
 
 	const reorderUp = ( postId ) => {
@@ -75,69 +88,78 @@ function PostList( props ) {
 	};
 
 	return (
-		<div style={ {
-			// Overflow at top.
-			marginTop: -24,
-			paddingTop: 24,
-			// Offset to display checkbox focus outline.
-			paddingLeft: 4,
-			marginLeft: -4,
-		} }>
-			{
-				( isResolving && <Spinner /> )
-					|| ( queriedPosts.length < 1 &&
-						<Notice
-							isDismissible={ false }
-						>
-							{ __( 'No results found', 'block-editor-components' ) }
-						</Notice>
-					)
-					|| (
-						queriedPosts.map( post => (
-							<div
-								style={ {
-									display: 'grid',
-									gridTemplateColumns: '1fr auto',
-									marginRight: -2,
-									paddingRight: 2,
-								} }
-							>
-								<CheckboxControl
-									key={ post.id }
-									checked={ values.includes( post.id ) }
-									label={ post.title?.rendered || __( '(No title)', 'block-editor-components' ) }
-									onChange={ ( checked ) => {
-										if ( checked ) {
-											onChange( [ ...values, post.id ] );
-										} else {
-											onChange( values.filter( value => ( value !== post.id ) ) );
-										}
-									} }
+		<div
+			style={ {
+				// Overflow at top.
+				marginTop: -24,
+				paddingTop: 24,
+				// Offset to display checkbox focus outline.
+				paddingLeft: 4,
+				marginLeft: -4,
+			} }
+		>
+			{ ( isResolving && <Spinner /> ) ||
+				( queriedPosts.length < 1 && (
+					<Notice isDismissible={ false }>
+						{ __( 'No results found', 'block-editor-components' ) }
+					</Notice>
+				) ) ||
+				queriedPosts.map( ( post ) => (
+					<div
+						style={ {
+							display: 'grid',
+							gridTemplateColumns: '1fr auto',
+							marginRight: -2,
+							paddingRight: 2,
+						} }
+					>
+						<CheckboxControl
+							key={ post.id }
+							checked={ values.includes( post.id ) }
+							label={
+								post.title?.rendered ||
+								__( '(No title)', 'block-editor-components' )
+							}
+							onChange={ ( checked ) => {
+								if ( checked ) {
+									onChange( [ ...values, post.id ] );
+								} else {
+									onChange(
+										values.filter(
+											( value ) => value !== post.id
+										)
+									);
+								}
+							} }
+						/>
+						{ isSortable && (
+							<ButtonGroup>
+								<Button
+									icon={ 'arrow-up-alt2' }
+									iconSize={ 12 }
+									isSmall
+									label={ __(
+										'Move up',
+										'block-editor-components'
+									) }
+									variant="secondary"
+									onClick={ () => reorderUp( post.id ) }
 								/>
-								{ isSortable && (
-									<ButtonGroup>
-										<Button
-											icon={ 'arrow-up-alt2' }
-											iconSize={ 12 }
-											isSmall
-											label={ __( 'Move up', 'block-editor-components' ) }
-											variant="secondary"
-											onClick={ () => reorderUp( post.id ) }
-										/>
-										<Button
-											icon={ 'arrow-down-alt2' }
-											iconSize={ 12 }
-											isSmall
-											label={ __( 'Move down', 'block-editor-components' ) }
-											variant="secondary"
-											onClick={ () => reorderDown( post.id ) }
-										/>
-									</ButtonGroup>
-								) }
-							</div>
-						) )
-					)
-			}
+								<Button
+									icon={ 'arrow-down-alt2' }
+									iconSize={ 12 }
+									isSmall
+									label={ __(
+										'Move down',
+										'block-editor-components'
+									) }
+									variant="secondary"
+									onClick={ () => reorderDown( post.id ) }
+								/>
+							</ButtonGroup>
+						) }
+					</div>
+				) ) }
 		</div>
 	);
 }
@@ -145,22 +167,22 @@ function PostList( props ) {
 /**
  * Post Picker Browse Post Panel.
  *
- * @param {object} props Component props.
- * @returns {ReactNode} Component.
+ * @param {Object} props Component props.
+ * @return {ReactNode} Component.
  */
 function BrowsePanel( props ) {
-	const {
-		postType,
-		onChange,
-		values,
-		taxonomies,
-	} = props;
+	const { postType, onChange, values, taxonomies } = props;
 
 	const [ search, setSearch ] = useState( '' );
 
-	const taxObjects = useSelect( select => {
-		return taxonomies.map( taxonomy => select( 'core' ).getTaxonomy( taxonomy ) );
-	}, [ taxonomies ] );
+	const taxObjects = useSelect(
+		( select ) => {
+			return taxonomies.map( ( taxonomy ) =>
+				select( 'core' ).getTaxonomy( taxonomy )
+			);
+		},
+		[ taxonomies ]
+	);
 
 	const [ taxQueries, setTaxQueries ] = useState( [] );
 
@@ -173,21 +195,26 @@ function BrowsePanel( props ) {
 	 * @param {*} taxonomy Taxonomy.
 	 * @param {*} newTerms New terms.
 	 */
-	const updateTaxQueryState = useCallback( ( taxonomy, newTerms ) => {
-		const taxObject = taxObjects.find( t => t && t.slug === taxonomy );
+	const updateTaxQueryState = useCallback(
+		( taxonomy, newTerms ) => {
+			const taxObject = taxObjects.find(
+				( t ) => t && t.slug === taxonomy
+			);
 
-		if ( taxObject ) {
-			setTaxQueries( {
-				...taxQueries,
-				[`${taxObject.rest_base}`]: newTerms,
-			} );
-		}
-	}, [ taxQueries, taxObjects ] );
+			if ( taxObject ) {
+				setTaxQueries( {
+					...taxQueries,
+					[ `${ taxObject.rest_base }` ]: newTerms,
+				} );
+			}
+		},
+		[ taxQueries, taxObjects ]
+	);
 
 	// Ensure initial tax query state is set.
 	// Use effect to account for delay loading tax objects.
 	useEffect( () => {
-		taxObjects.forEach( taxObject => {
+		taxObjects.forEach( ( taxObject ) => {
 			if ( taxObject && ! taxQueries[ taxObject.rest_base ] ) {
 				updateTaxQueryState( taxObject.rest_base, [] );
 			}
@@ -202,10 +229,7 @@ function BrowsePanel( props ) {
 	};
 
 	return (
-		<Flex
-			align="flex-start"
-			style={ { gap: 24 } }
-		>
+		<Flex align="flex-start" style={ { gap: 24 } }>
 			<FlexItem
 				style={ {
 					width: '35%',
@@ -217,14 +241,18 @@ function BrowsePanel( props ) {
 					value={ search }
 					onChange={ ( text ) => setSearch( text ) }
 				/>
-				{ taxonomies.map( taxonomy => {
-					const taxObject = taxObjects.find( t => t && t.slug === taxonomy );
+				{ taxonomies.map( ( taxonomy ) => {
+					const taxObject = taxObjects.find(
+						( t ) => t && t.slug === taxonomy
+					);
 
 					return taxObject ? (
 						<TermSelector
 							taxonomy={ taxonomy }
 							value={ taxQueries[ taxObject.rest_base ] }
-							onChange={ terms => updateTaxQueryState( taxonomy, terms ) }
+							onChange={ ( terms ) =>
+								updateTaxQueryState( taxonomy, terms )
+							}
 						/>
 					) : null;
 				} ) }
@@ -244,8 +272,8 @@ function BrowsePanel( props ) {
 /**
  * Post Picker Modal Component.
  *
- * @param {object} props Props.
- * @returns {ReactNode} Component
+ * @param {Object} props Props.
+ * @return {ReactNode} Component
  */
 export function PostPickerModal( props ) {
 	const {
@@ -271,24 +299,32 @@ export function PostPickerModal( props ) {
 					tabs={ [
 						{
 							name: 'browse',
-							title: __( 'Browse Posts', 'block-editor-components' ),
-							content: () => (
-								<>Foo</>
+							title: __(
+								'Browse Posts',
+								'block-editor-components'
 							),
+							content: () => <>Foo</>,
 						},
 						{
 							name: 'selection',
-							title: __( 'Current Selection', 'block-editor-components' ),
+							title: __(
+								'Current Selection',
+								'block-editor-components'
+							),
 						},
 					] }
 				>
-					{ tabPanel => (
-						<div style={ {
-							marginTop: 'calc( var(--wp-admin-border-width-focus) * -1 )',
-							borderStyle: 'none',
-							borderTop: 'var( --wp-admin-border-width-focus ) solid #ddd',
-							paddingTop: 24,
-						} }>
+					{ ( tabPanel ) => (
+						<div
+							style={ {
+								marginTop:
+									'calc( var(--wp-admin-border-width-focus) * -1 )',
+								borderStyle: 'none',
+								borderTop:
+									'var( --wp-admin-border-width-focus ) solid #ddd',
+								paddingTop: 24,
+							} }
+						>
 							{ tabPanel.name === 'browse' && (
 								<BrowsePanel
 									postType={ postType }
@@ -322,8 +358,8 @@ export function PostPickerModal( props ) {
 /**
  * Post picker toolbar button.
  *
- * @param {object} props Props.
- * @returns {ReactNode} Component
+ * @param {Object} props Props.
+ * @return {ReactNode} Component
  */
 export function PostPickerToolbarButton( props ) {
 	const {
@@ -356,22 +392,17 @@ export function PostPickerToolbarButton( props ) {
 /**
  * Component allowing the selection of one or more posts
  *
- * @param {object} props Component props
- * @returns {ReactNode} Component
+ * @param {Object} props Component props
+ * @return {ReactNode} Component
  */
 export function PostPickerButton( props ) {
-	const {
-		title = __( 'Select posts', 'block-editor-components' ),
-	} = props;
+	const { title = __( 'Select posts', 'block-editor-components' ) } = props;
 
 	const [ modalOpen, setModalOpen ] = useState( false );
 
 	return (
 		<>
-			<Button
-				variant="primary"
-				onClick={ () => setModalOpen( true ) }
-			>
+			<Button variant="primary" onClick={ () => setModalOpen( true ) }>
 				{ title }
 			</Button>
 			{ modalOpen && (

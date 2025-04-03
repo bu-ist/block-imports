@@ -11,7 +11,7 @@ import { getTextContent, create } from '@wordpress/rich-text';
 import { RenderItemComponentProps } from './types';
 import { NormalizedSuggestion } from './utils';
 
-const SearchItemWrapper = styled(Button)`
+const SearchItemWrapper = styled( Button )`
 	&&& {
 		display: flex;
 		text-align: left;
@@ -27,7 +27,7 @@ const SearchItemWrapper = styled(Button)`
 		&:hover {
 			/* Add opacity background to support future color changes */
 			/* Reduce background from #ddd to 0.05 for text contrast  */
-			background-color: rgba(0, 0, 0, 0.05);
+			background-color: rgba( 0, 0, 0, 0.05 );
 		}
 	}
 `;
@@ -38,16 +38,16 @@ const SearchItemHeader = styled.span`
 	align-items: flex-start;
 `;
 
-const SearchItemTitle = styled.span<{ showType: boolean }>`
-	padding-right: ${({ showType }) => (showType ? 0 : undefined)};
+const SearchItemTitle = styled.span< { showType: boolean } >`
+	padding-right: ${ ( { showType } ) => ( showType ? 0 : undefined ) };
 `;
 
-const SearchItemInfo = styled.span<{ showType: boolean }>`
-	padding-right: ${({ showType }) => (showType ? 0 : undefined)};
+const SearchItemInfo = styled.span< { showType: boolean } >`
+	padding-right: ${ ( { showType } ) => ( showType ? 0 : undefined ) };
 `;
 
 const SearchItemType = styled.span`
-	background-color: rgba(0, 0, 0, 0.05);
+	background-color: rgba( 0, 0, 0, 0.05 );
 	color: black;
 	padding: 2px 4px;
 	text-transform: capitalize;
@@ -55,52 +55,67 @@ const SearchItemType = styled.span`
 	flex-shrink: 0;
 `;
 
-const StyledTextHighlight = styled(TextHighlight)`
+const StyledTextHighlight = styled( TextHighlight )`
 	margin: 0 !important;
 	padding: 0 !important;
 `;
 
-export function defaultRenderItemType(suggestion: NormalizedSuggestion): string {
+export function defaultRenderItemType(
+	suggestion: NormalizedSuggestion
+): string {
 	// Rename 'post_tag' to 'tag'. Ideally, the API would return the localized CPT or taxonomy label.
-	if (suggestion.type === 'post_tag') {
+	if ( suggestion.type === 'post_tag' ) {
 		return 'tag';
 	}
 
-	if (suggestion.subtype) {
+	if ( suggestion.subtype ) {
 		return suggestion.subtype;
 	}
 
 	return suggestion.type;
 }
 
-const SearchItem: React.FC<RenderItemComponentProps> = ({
+const SearchItem: React.FC< RenderItemComponentProps > = ( {
 	item: suggestion,
 	onSelect: onClick,
 	searchTerm = '',
 	id = '',
 	contentTypes,
 	renderType = defaultRenderItemType,
-}) => {
-	const showType = !!(suggestion.type && contentTypes.length > 1);
+} ) => {
+	const showType = !! ( suggestion.type && contentTypes.length > 1 );
 
-	const richTextContent = create({ html: suggestion.title });
-	const textContent = getTextContent(richTextContent);
-	const titleContent = decodeEntities(textContent);
+	const richTextContent = create( { html: suggestion.title } );
+	const textContent = getTextContent( richTextContent );
+	const titleContent = decodeEntities( textContent );
 
 	return (
-		<Tooltip text={decodeEntities(suggestion.title)}>
-			<SearchItemWrapper id={id} onClick={onClick}>
+		<Tooltip text={ decodeEntities( suggestion.title ) }>
+			<SearchItemWrapper id={ id } onClick={ onClick }>
 				<SearchItemHeader>
-					<SearchItemTitle showType={showType}>
-						<StyledTextHighlight text={titleContent} highlight={searchTerm} />
+					<SearchItemTitle showType={ showType }>
+						<StyledTextHighlight
+							text={ titleContent }
+							highlight={ searchTerm }
+						/>
 					</SearchItemTitle>
-					<SearchItemInfo aria-hidden showType={showType}>
-						<Truncate numberOfLines={1} limit={55} ellipsizeMode="middle">
-							{filterURLForDisplay(safeDecodeURI(suggestion.url)) || ''}
+					<SearchItemInfo aria-hidden showType={ showType }>
+						<Truncate
+							numberOfLines={ 1 }
+							limit={ 55 }
+							ellipsizeMode="middle"
+						>
+							{ filterURLForDisplay(
+								safeDecodeURI( suggestion.url )
+							) || '' }
 						</Truncate>
 					</SearchItemInfo>
 				</SearchItemHeader>
-				{showType && <SearchItemType>{renderType(suggestion)}</SearchItemType>}
+				{ showType && (
+					<SearchItemType>
+						{ renderType( suggestion ) }
+					</SearchItemType>
+				) }
 			</SearchItemWrapper>
 		</Tooltip>
 	);

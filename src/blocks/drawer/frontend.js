@@ -1,11 +1,10 @@
-bu_blocks.drawer = ( function() {
-	var drawerBlocks = []; //stores all of our found blocks
-	var $body = document.getElementsByTagName( 'body' )[0]; //target body tag
-	var eventOpen = new CustomEvent( 'bu-blocks-drawer-open' );
-	var eventClose = new CustomEvent( 'bu-blocks-drawer-close' );
+bu_blocks.drawer = ( function () {
+	const drawerBlocks = []; //stores all of our found blocks
+	const $body = document.getElementsByTagName( 'body' )[ 0 ]; //target body tag
+	const eventOpen = new CustomEvent( 'bu-blocks-drawer-open' );
+	const eventClose = new CustomEvent( 'bu-blocks-drawer-close' );
 
-	var toggleDrawer = function( drawer ) {
-
+	const toggleDrawer = function ( drawer ) {
 		// Using an if statement to check the class
 		if ( drawer.classList.contains( 'show-drawer' ) ) {
 			drawer.classList.remove( 'show-drawer' );
@@ -18,22 +17,25 @@ bu_blocks.drawer = ( function() {
 		}
 	};
 
-	var findElements = function() {
+	const findElements = function () {
 		//find all the blocks
-		var elements = document.querySelectorAll( '.js-bu-block-drawer' );
+		const elements = document.querySelectorAll( '.js-bu-block-drawer' );
 		//if found
 		if ( elements.length > 0 ) {
 			//for each found block do stuff
-			for ( var i = 0; i < elements.length; i++ ) {
-
-				var block = {};
+			for ( let i = 0; i < elements.length; i++ ) {
+				const block = {};
 
 				//get first returned drawer content element
-				block.drawer = elements[i];
+				block.drawer = elements[ i ];
 				//get all matched trigger btns
-				block.button = elements[i].querySelectorAll( '.js-bu-block-drawer-open' );
+				block.button = elements[ i ].querySelectorAll(
+					'.js-bu-block-drawer-open'
+				);
 				//get first returned overlay element
-				block.close = elements[i].querySelector( '.js-bu-block-drawer-close' );
+				block.close = elements[ i ].querySelector(
+					'.js-bu-block-drawer-close'
+				);
 
 				//for each one found store as object in the array
 				drawerBlocks.push( block );
@@ -41,31 +43,28 @@ bu_blocks.drawer = ( function() {
 		}
 	};
 
-	var setupHandlers = function() {
+	const setupHandlers = function () {
 		if ( drawerBlocks.length > 0 ) {
-			drawerBlocks.forEach( function( thisDrawer, item ) {
-
+			drawerBlocks.forEach( function ( thisDrawer, item ) {
 				//some drawer blocks may have more than one trigger btn
 				//so loop through all matched to setup events
-				thisDrawer.button.forEach( function( button, index ) {
+				thisDrawer.button.forEach( function ( button, index ) {
 					//for each btn we find, add an event handler
-					button.addEventListener( "click", function(e) {
+					button.addEventListener( 'click', function ( e ) {
 						e.preventDefault();
 						toggleDrawer( thisDrawer.drawer );
-					});
+					} );
+				} );
 
-				});
-
-				thisDrawer.close.addEventListener( "click", function(e) {
+				thisDrawer.close.addEventListener( 'click', function ( e ) {
 					e.preventDefault();
 					toggleDrawer( thisDrawer.drawer );
-				});
-
-			});
+				} );
+			} );
 		}
 	};
 
-	var drawerInit = function() {
+	const drawerInit = function () {
 		//find the elements
 		findElements();
 
@@ -74,19 +73,18 @@ bu_blocks.drawer = ( function() {
 	};
 
 	//start on dom ready (ie8+)
-	document.addEventListener( "DOMContentLoaded", function() {
-  		drawerInit();
-
-	});
+	document.addEventListener( 'DOMContentLoaded', function () {
+		drawerInit();
+	} );
 
 	return {
-		getdrawerBlocks: function() {
+		getdrawerBlocks() {
 			return drawerBlocks;
 		},
-		toggleDrawer: function( drawer ) {
-			if( drawer ) {
+		toggleDrawer( drawer ) {
+			if ( drawer ) {
 				toggleDrawer( drawer );
 			}
-		}
+		},
 	};
-})();
+} )();

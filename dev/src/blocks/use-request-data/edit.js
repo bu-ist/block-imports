@@ -27,7 +27,6 @@ import { Spinner } from '@wordpress/components';
  */
 import './editor.scss';
 
-
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -41,16 +40,14 @@ export default function Edit() {
 
 	const PostImage = ( props ) => {
 		const { id } = props;
-		console.log( "in getmedia", id );
-		let { media, isResolvingMedia, hasResolvedMedia } = useMedia( id );
+		console.log( 'in getmedia', id );
+		const { media, isResolvingMedia, hasResolvedMedia } = useMedia( id );
 
-		console.log(isResolvingMedia);
-		console.log(hasResolvedMedia);
+		console.log( isResolvingMedia );
+		console.log( hasResolvedMedia );
 
 		if ( isResolvingMedia ) {
-			return (
-				<Spinner />
-			)
+			return <Spinner />;
 		}
 
 		if ( hasResolvedMedia ) {
@@ -59,48 +56,44 @@ export default function Edit() {
 				<>
 					<img src={ media.source_url } width="100" />
 				</>
-			)
+			);
 		}
 		return null;
-
 	};
 	const GetPost = ( props ) => {
 		const { id } = props;
-		const [data, isLoading, invalidateRequest ] = useRequestData('postType', 'post', id );
-
+		const [ data, isLoading, invalidateRequest ] = useRequestData(
+			'postType',
+			'post',
+			id
+		);
 
 		if ( data ) {
-			console.log( "Featured Image",  data.featured_media );
+			console.log( 'Featured Image', data.featured_media );
 			imageID = data.featured_media;
 		}
-		if (isLoading) {
-			return (
-				<Spinner />
-			)
+		if ( isLoading ) {
+			return <Spinner />;
 		}
 
 		return (
 			<>
-				{data && (
+				{ data && (
 					<>
-						<div>{data.title.rendered}</div>
-						{ imageID && (
-							<PostImage id={imageID} />
-						) }
+						<div>{ data.title.rendered }</div>
+						{ imageID && <PostImage id={ imageID } /> }
 					</>
-
 				) }
-				<button type="button" onClick={invalidateRequest}>
+				<button type="button" onClick={ invalidateRequest }>
 					Refresh list
 				</button>
 			</>
-		)
+		);
 	};
 
 	return (
 		<p { ...useBlockProps() }>
-
-            <GetPost id={5} />
+			<GetPost id={ 5 } />
 		</p>
 	);
 }

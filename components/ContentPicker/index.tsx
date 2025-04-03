@@ -7,7 +7,11 @@ import { ContentSearch } from '../content-search';
 import SortableList from './SortableList';
 import { StyledComponentContext } from '../styled-components-context';
 import { defaultRenderItemType } from '../content-search/SearchItem';
-import { ContentSearchMode, QueryFilter, RenderItemComponentProps } from '../content-search/types';
+import {
+	ContentSearchMode,
+	QueryFilter,
+	RenderItemComponentProps,
+} from '../content-search/types';
 import { NormalizedSuggestion } from '../content-search/utils';
 import { PickedItemType } from './PickedItem';
 
@@ -41,7 +45,7 @@ interface ContentPickerProps {
 	mode?: ContentSearchMode;
 	contentTypes?: string[];
 	placeholder?: string;
-	onPickChange?: (ids: any[]) => void;
+	onPickChange?: ( ids: any[] ) => void;
 	queryFilter?: QueryFilter;
 	maxContentItems?: number;
 	isOrderable?: boolean;
@@ -52,25 +56,33 @@ interface ContentPickerProps {
 	excludeCurrentPost?: boolean;
 	perPage?: number;
 	fetchInitialResults?: boolean;
-	renderItemType?: (props: NormalizedSuggestion) => string;
-	renderItem?: (props: RenderItemComponentProps) => JSX.Element;
-	PickedItemPreviewComponent?: React.ComponentType<{ item: PickedItemType }>;
+	renderItemType?: ( props: NormalizedSuggestion ) => string;
+	renderItem?: ( props: RenderItemComponentProps ) => JSX.Element;
+	PickedItemPreviewComponent?: React.ComponentType< {
+		item: PickedItemType;
+	} >;
 }
 
-export const ContentPicker: React.FC<ContentPickerProps> = ({
+export const ContentPicker: React.FC< ContentPickerProps > = ( {
 	label = '',
 	hideLabelFromVision = true,
 	mode = 'post',
-	contentTypes = ['post', 'page'],
+	contentTypes = [ 'post', 'page' ],
 	placeholder = '',
-	onPickChange = (ids) => {
-		console.log('Content picker list change', ids); // eslint-disable-line no-console
+	onPickChange = ( ids ) => {
+		console.log( 'Content picker list change', ids ); // eslint-disable-line no-console
 	},
 	queryFilter = undefined,
 	maxContentItems = 1,
 	isOrderable = false,
-	singlePickedLabel = __('You have selected the following item:', '10up-block-components'),
-	multiPickedLabel = __('You have selected the following items:', '10up-block-components'),
+	singlePickedLabel = __(
+		'You have selected the following item:',
+		'10up-block-components'
+	),
+	multiPickedLabel = __(
+		'You have selected the following items:',
+		'10up-block-components'
+	),
 	content = [],
 	uniqueContentItems = true,
 	excludeCurrentPost = true,
@@ -79,114 +91,126 @@ export const ContentPicker: React.FC<ContentPickerProps> = ({
 	renderItemType = defaultRenderItemType,
 	renderItem = undefined,
 	PickedItemPreviewComponent = undefined,
-}) => {
-	const currentPostId = select('core/editor')?.getCurrentPostId();
+} ) => {
+	const currentPostId = select( 'core/editor' )?.getCurrentPostId();
 
 	/**
 	 * This legacy code allows you to pass in only IDs to content like [ 1, 4, 5 ].
 	 * This really shouldn't be done as of version 1.5.0.
 	 */
-	if (content.length && typeof content[0] !== 'object') {
-		for (let i = 0; i < content.length; i++) {
-			content[i] = {
-				id: content[i],
-				type: contentTypes[0],
+	if ( content.length && typeof content[ 0 ] !== 'object' ) {
+		for ( let i = 0; i < content.length; i++ ) {
+			content[ i ] = {
+				id: content[ i ],
+				type: contentTypes[ 0 ],
 			};
 		}
 	}
 
-	const handleSelect = (item: { id: number; subtype?: string; type: string }) => {
+	const handleSelect = ( item: {
+		id: number;
+		subtype?: string;
+		type: string;
+	} ) => {
 		const newItems = [
 			{
 				id: item.id,
 				uuid: uuidv4(),
-				type: 'subtype' in item && item.subtype ? item.subtype : item.type,
+				type:
+					'subtype' in item && item.subtype
+						? item.subtype
+						: item.type,
 			},
 			...content,
 		];
-		onPickChange(newItems);
+		onPickChange( newItems );
 	};
 
-	const onDeleteItem = (deletedItem: PickedItemType) => {
-		const newItems = content.filter(({ id, uuid }) => {
-			if (deletedItem.uuid) {
+	const onDeleteItem = ( deletedItem: PickedItemType ) => {
+		const newItems = content.filter( ( { id, uuid } ) => {
+			if ( deletedItem.uuid ) {
 				return uuid !== deletedItem.uuid;
 			}
 			return id !== deletedItem.id;
-		});
+		} );
 
-		onPickChange(newItems);
+		onPickChange( newItems );
 	};
 
-	const excludeItems = useMemo(() => {
-		const items = uniqueContentItems ? [...content] : [];
+	const excludeItems = useMemo( () => {
+		const items = uniqueContentItems ? [ ...content ] : [];
 
-		if (excludeCurrentPost && currentPostId) {
-			items.push({
+		if ( excludeCurrentPost && currentPostId ) {
+			items.push( {
 				id: currentPostId,
-			});
+			} );
 		}
 
 		return items;
-	}, [content, currentPostId, excludeCurrentPost, uniqueContentItems]);
+	}, [ content, currentPostId, excludeCurrentPost, uniqueContentItems ] );
 
 	return (
 		<StyledComponentContext cacheKey="tenup-component-content-picker">
-			<ContentPickerWrapper className={NAMESPACE}>
-				{!content.length || (content.length && content.length < maxContentItems) ? (
+			<ContentPickerWrapper className={ NAMESPACE }>
+				{ ! content.length ||
+				( content.length && content.length < maxContentItems ) ? (
 					<ContentSearch
-						placeholder={placeholder}
-						label={label}
-						hideLabelFromVision={hideLabelFromVision}
-						excludeItems={excludeItems}
-						onSelectItem={handleSelect}
-						contentTypes={contentTypes}
-						mode={mode}
-						queryFilter={queryFilter}
-						perPage={perPage}
-						fetchInitialResults={fetchInitialResults}
-						renderItemType={renderItemType}
-						renderItem={renderItem}
+						placeholder={ placeholder }
+						label={ label }
+						hideLabelFromVision={ hideLabelFromVision }
+						excludeItems={ excludeItems }
+						onSelectItem={ handleSelect }
+						contentTypes={ contentTypes }
+						mode={ mode }
+						queryFilter={ queryFilter }
+						perPage={ perPage }
+						fetchInitialResults={ fetchInitialResults }
+						renderItemType={ renderItemType }
+						renderItem={ renderItem }
 					/>
 				) : (
 					label && (
 						<div
-							style={{
+							style={ {
 								marginBottom: '8px',
-							}}
+							} }
 						>
-							{label}
+							{ label }
 						</div>
 					)
-				)}
+				) }
 
-				{Boolean(content?.length) && (
+				{ Boolean( content?.length ) && (
 					<StyleWrapper>
 						<span
-							style={{
+							style={ {
 								marginTop: '15px',
 								marginBottom: '2px',
 								display: 'block',
-							}}
+							} }
 						>
-							{content.length > 1 ? multiPickedLabel : singlePickedLabel}
+							{ content.length > 1
+								? multiPickedLabel
+								: singlePickedLabel }
 						</span>
 
 						<ul
 							className="block-editor-link-control__search-items"
-							style={{ padding: 0 }}
+							style={ { padding: 0 } }
 						>
 							<SortableList
-								posts={content}
-								handleItemDelete={onDeleteItem}
-								isOrderable={isOrderable}
-								mode={mode}
-								setPosts={onPickChange}
-								PickedItemPreviewComponent={PickedItemPreviewComponent}
+								posts={ content }
+								handleItemDelete={ onDeleteItem }
+								isOrderable={ isOrderable }
+								mode={ mode }
+								setPosts={ onPickChange }
+								PickedItemPreviewComponent={
+									PickedItemPreviewComponent
+								}
 							/>
 						</ul>
 					</StyleWrapper>
-				)}
+				) }
 			</ContentPickerWrapper>
 		</StyledComponentContext>
 	);

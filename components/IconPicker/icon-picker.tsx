@@ -25,22 +25,30 @@ import { Icon } from './icon';
  * workaround for that. It will just wrap the children in a div and pass that to the
  * Tooltip component.
  */
-const TooltipContent = forwardRef<HTMLDivElement, React.ComponentPropsWithoutRef<'div'>>(
-	function TooltipContent(props, ref) {
-		const { children } = props;
+const TooltipContent = forwardRef<
+	HTMLDivElement,
+	React.ComponentPropsWithoutRef< 'div' >
+>( function TooltipContent( props, ref ) {
+	const { children } = props;
 
-		return (
-			<div ref={ref} className="component-icon-picker__tooltip-content" {...props}>
-				{children}
-			</div>
-		);
-	},
-);
+	return (
+		<div
+			ref={ ref }
+			className="component-icon-picker__tooltip-content"
+			{ ...props }
+		>
+			{ children }
+		</div>
+	);
+} );
 
-const StyledIconButton = styled(Icon)`
-	background-color: ${({ selected }: { selected: boolean }) => (selected ? 'black' : 'white')};
-	color: ${({ selected }: { selected: boolean }) => (selected ? 'white' : 'black')};
-	fill: ${({ selected }: { selected: boolean }) => (selected ? 'white' : 'black')};
+const StyledIconButton = styled( Icon )`
+	background-color: ${ ( { selected }: { selected: boolean } ) =>
+		selected ? 'black' : 'white' };
+	color: ${ ( { selected }: { selected: boolean } ) =>
+		selected ? 'white' : 'black' };
+	fill: ${ ( { selected }: { selected: boolean } ) =>
+		selected ? 'white' : 'black' };
 	padding: 5px;
 	border: none;
 	border-radius: 4px;
@@ -51,7 +59,8 @@ const StyledIconButton = styled(Icon)`
 	justify-content: center;
 
 	&:hover {
-		background-color: ${({ selected }) => (selected ? '#555D66' : '#f3f4f5')};
+		background-color: ${ ( { selected } ) =>
+			selected ? '#555D66' : '#f3f4f5' };
 	}
 
 	& svg {
@@ -74,16 +83,16 @@ interface IconLabelProps {
 	isChecked: boolean;
 }
 
-const IconLabel: React.FC<IconLabelProps> = (props) => {
+const IconLabel: React.FC< IconLabelProps > = ( props ) => {
 	const { icon, isChecked } = props;
 	return (
-		<Tooltip text={icon.label}>
+		<Tooltip text={ icon.label }>
 			<TooltipContent>
 				<StyledIconButton
-					selected={isChecked}
-					key={icon.name}
-					name={icon.name}
-					iconSet={icon.iconSet}
+					selected={ isChecked }
+					key={ icon.name }
+					name={ icon.name }
+					iconSet={ icon.iconSet }
 				/>
 			</TooltipContent>
 		</Tooltip>
@@ -109,38 +118,42 @@ interface IconGridItemProps {
 	data: unknown;
 }
 
-const IconGridItem = memo<IconGridItemProps>((props) => {
+const IconGridItem = memo< IconGridItemProps >( ( props ) => {
 	const { columnIndex, rowIndex, style, data } = props;
 	const { icons, selectedIcon, onChange } = data as {
 		icons: { name: string; iconSet: string; label: string }[];
 		selectedIcon: { name: string; iconSet: string };
-		onChange: (icon: { name: string; iconSet: string }) => void;
+		onChange: ( icon: { name: string; iconSet: string } ) => void;
 	};
 	const index = rowIndex * 5 + columnIndex;
-	const icon = icons[index];
-	const isChecked = selectedIcon?.name === icon?.name && selectedIcon?.iconSet === icon?.iconSet;
+	const icon = icons[ index ];
+	const isChecked =
+		selectedIcon?.name === icon?.name &&
+		selectedIcon?.iconSet === icon?.iconSet;
 
-	if (!icon) {
+	if ( ! icon ) {
 		return null;
 	}
 
 	// We need to cast the IconLabel to a string because types in WP are not correct
-	const label = (<IconLabel isChecked={isChecked} icon={icon} />) as unknown as string;
+	const label = (
+		<IconLabel isChecked={ isChecked } icon={ icon } />
+	 ) as unknown as string;
 
 	return (
-		<div style={style}>
+		<div style={ style }>
 			<CheckboxControl
-				key={icon.name}
-				label={label}
-				checked={isChecked}
-				onChange={() => onChange(icon)}
+				key={ icon.name }
+				label={ label }
+				checked={ isChecked }
+				onChange={ () => onChange( icon ) }
 				className="component-icon-picker__checkbox-control"
 			/>
 		</div>
 	);
-}, areEqual);
+}, areEqual );
 
-const StyledIconGrid = styled(Grid)`
+const StyledIconGrid = styled( Grid )`
 	.component-icon-picker__checkbox-control {
 		margin-bottom: 0;
 	}
@@ -163,35 +176,41 @@ interface IconGridProps {
 	/**
 	 * Change handler for when a new icon is selected
 	 */
-	onChange: (icon: { name: string; iconSet: string }) => void;
+	onChange: ( icon: { name: string; iconSet: string } ) => void;
 }
 
-const IconGrid: React.FC<IconGridProps> = (props) => {
+const IconGrid: React.FC< IconGridProps > = ( props ) => {
 	const { icons, selectedIcon, onChange } = props;
 
 	const itemData = useMemo(
-		() => ({ icons, selectedIcon, onChange }),
-		[icons, selectedIcon, onChange],
+		() => ( { icons, selectedIcon, onChange } ),
+		[ icons, selectedIcon, onChange ]
 	);
 
 	return (
-		<NavigableMenu orientation="vertical" className="component-icon-picker__list">
+		<NavigableMenu
+			orientation="vertical"
+			className="component-icon-picker__list"
+		>
 			<StyledIconGrid
-				columnCount={5}
-				columnWidth={248 / 5}
-				rowCount={Math.ceil(icons.length / 5)}
-				rowHeight={248 / 5}
-				itemData={itemData}
-				height={200}
-				width={248}
+				columnCount={ 5 }
+				columnWidth={ 248 / 5 }
+				rowCount={ Math.ceil( icons.length / 5 ) }
+				rowHeight={ 248 / 5 }
+				itemData={ itemData }
+				height={ 200 }
+				width={ 248 }
 			>
-				{IconGridItem}
+				{ IconGridItem }
 			</StyledIconGrid>
 		</NavigableMenu>
 	);
 };
 
-export type IconPickerProps = Omit<React.ComponentProps<typeof BaseControl>, 'children'> & {
+export type IconPickerProps = Omit<
+	React.ComponentProps< typeof BaseControl >,
+	'children'
+> & {
 	/**
 	 * Value of the selected icon
 	 */
@@ -199,30 +218,43 @@ export type IconPickerProps = Omit<React.ComponentProps<typeof BaseControl>, 'ch
 	/**
 	 * Change handler for when a new icon is selected
 	 */
-	onChange: (icon: { name: string; iconSet: string }) => void;
+	onChange: ( icon: { name: string; iconSet: string } ) => void;
 };
 
-export const IconPicker: React.FC<IconPickerProps> = (props) => {
+export const IconPicker: React.FC< IconPickerProps > = ( props ) => {
 	const { value, onChange, label = '', ...rest } = props;
 
 	const icons = useIcons();
 
-	const instanceId = useInstanceId(IconPicker);
-	const id = `icon-picker-${instanceId}`;
+	const instanceId = useInstanceId( IconPicker );
+	const id = `icon-picker-${ instanceId }`;
 
-	const [searchTerm, setSearchTerm] = useState('');
-	const [filteredIcons] = useFilteredList(icons, searchTerm);
+	const [ searchTerm, setSearchTerm ] = useState( '' );
+	const [ filteredIcons ] = useFilteredList( icons, searchTerm );
 
-	const hasIcons = !!filteredIcons.length;
+	const hasIcons = !! filteredIcons.length;
 
 	return (
-		<BaseControl label={label} id={id} className="component-icon-picker" {...rest}>
-			<SearchControl value={searchTerm} onChange={setSearchTerm} id={id} />
-			{hasIcons ? (
-				<IconGrid icons={filteredIcons} selectedIcon={value} onChange={onChange} />
+		<BaseControl
+			label={ label }
+			id={ id }
+			className="component-icon-picker"
+			{ ...rest }
+		>
+			<SearchControl
+				value={ searchTerm }
+				onChange={ setSearchTerm }
+				id={ id }
+			/>
+			{ hasIcons ? (
+				<IconGrid
+					icons={ filteredIcons }
+					selectedIcon={ value }
+					onChange={ onChange }
+				/>
 			) : (
-				<p>{__('No icons were found...')}</p>
-			)}
+				<p>{ __( 'No icons were found…' ) }</p>
+			) }
 		</BaseControl>
 	);
 };

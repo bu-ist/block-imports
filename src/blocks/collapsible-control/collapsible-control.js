@@ -10,72 +10,64 @@ import blockIcons from '../../components/block-icons';
 // WordPress dependencies.
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const {
-	PanelBody,
-	RadioControl,
-	Path,
-	SVG
-} = wp.components;
-const {
-	InspectorControls,
-	RichText
-} = wp.blockEditor;
+const { PanelBody, RadioControl, Path, SVG } = wp.components;
+const { InspectorControls, RichText } = wp.blockEditor;
 
 // Register the block.
 registerBlockType( 'bu/collapsible-control', {
-
 	title: __( 'Collapsible Control' ),
 	description: __( 'Toggle Collapsible blocks on the page' ),
 	keywords: [ __( 'collapsible' ), __( 'control' ), __( 'toggle' ) ],
-	icon: blockIcons('collapsiblecontrol'),
+	icon: blockIcons( 'collapsiblecontrol' ),
 	category: 'bu',
 	attributes: {
 		text: {
 			type: 'string',
 			source: 'html',
-			selector: 'button'
+			selector: 'button',
 		},
 		target: {
 			type: 'string',
-			default: 'all'
-		}
+			default: 'all',
+		},
 	},
 	supports: {
-		align: [ 'left', 'center', 'right' ]
+		align: [ 'left', 'center', 'right' ],
 	},
 
 	edit( props ) {
-
 		const { attributes, setAttributes } = props;
 		const { text, target } = attributes;
 
 		return (
-
 			<div>
-
 				<InspectorControls>
-
 					<PanelBody title={ __( 'Control Options' ) }>
-
 						<RadioControl
 							label={ __( 'Target' ) }
-							help={ __( 'To control expanding/collapsing a select number of collapsible blocks on the page, place the collapsible blocks AND this control block inside a Group block.' ) }
+							help={ __(
+								'To control expanding/collapsing a select number of collapsible blocks on the page, place the collapsible blocks AND this control block inside a Group block.'
+							) }
 							selected={ target }
-							onChange={ ( value ) => setAttributes( { target: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { target: value } )
+							}
 							options={ [
 								{
-									label: __( 'All Collapsible blocks on this page' ),
-									value: 'all'
+									label: __(
+										'All Collapsible blocks on this page'
+									),
+									value: 'all',
 								},
 								{
-									label: __( 'All Collapsible blocks in this group' ),
-									value: 'group'
-								}
+									label: __(
+										'All Collapsible blocks in this group'
+									),
+									value: 'group',
+								},
 							] }
 						/>
-
 					</PanelBody>
-
 				</InspectorControls>
 
 				<RichText
@@ -87,21 +79,18 @@ registerBlockType( 'bu/collapsible-control', {
 					withoutInteractiveFormatting
 					keepPlaceholderOnFocus
 				/>
-
 			</div>
-
 		);
-
 	},
 
 	save( { attributes } ) {
-
 		const { text, target } = attributes;
 
-		const classes = 'bu-collapsible-control-toggle js-bu-collapsible-control-target-' + target;
+		const classes =
+			'bu-collapsible-control-toggle js-bu-collapsible-control-target-' +
+			target;
 
-		return(
-
+		return (
 			<p>
 				<RichText.Content
 					tagName="button"
@@ -109,9 +98,6 @@ registerBlockType( 'bu/collapsible-control', {
 					className={ classes }
 				/>
 			</p>
-
 		);
-
-	}
-
+	},
 } );

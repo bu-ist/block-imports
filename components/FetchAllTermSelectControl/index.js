@@ -22,8 +22,8 @@ const FALLBACK_OPTION = {
 /**
  * A dropdown control that allows for selecting a single term in the given taxonomy.
  *
- * @param {object} props - Component props
- * @returns {ReactNode} Component.
+ * @param {Object} props - Component props
+ * @return {ReactNode} Component.
  */
 function FetchAllTermSelectControl( props ) {
 	const {
@@ -41,38 +41,38 @@ function FetchAllTermSelectControl( props ) {
 		[ taxonomy ]
 	);
 
-	useEffect(
-		() => {
-			if ( ! basePath ) {
-				return;
-			}
+	useEffect( () => {
+		if ( ! basePath ) {
+			return;
+		}
 
-			( async () => {
-				try {
-					const response = await apiFetch( {
-						path: addQueryArgs( `/wp/v2/${ basePath }`, {
-							_fields: 'id,name',
-							context: 'view',
-							per_page: -1,
-						} ),
-					} );
-					if ( ! response?.length ) {
-						setOptions( fallbackOption ? [ fallbackOption ] : [] );
+		( async () => {
+			try {
+				const response = await apiFetch( {
+					path: addQueryArgs( `/wp/v2/${ basePath }`, {
+						_fields: 'id,name',
+						context: 'view',
+						per_page: -1,
+					} ),
+				} );
+				if ( ! response?.length ) {
+					setOptions( fallbackOption ? [ fallbackOption ] : [] );
 
-						return;
-					}
-
-					setOptions( [
-						...( defaultOption ? [ defaultOption ] : [] ),
-						...createOptionsFromTerms( response ),
-					] );
-				} catch ( error ) {
-					setError( error.message ?? __( 'Unknown error.', 'block-editor-components' ) );
+					return;
 				}
-			} )();
-		},
-		[ basePath, defaultOption, fallbackOption ]
-	);
+
+				setOptions( [
+					...( defaultOption ? [ defaultOption ] : [] ),
+					...createOptionsFromTerms( response ),
+				] );
+			} catch ( error ) {
+				setError(
+					error.message ??
+						__( 'Unknown error.', 'block-editor-components' )
+				);
+			}
+		} )();
+	}, [ basePath, defaultOption, fallbackOption ] );
 
 	if ( error ) {
 		return (
@@ -83,17 +83,10 @@ function FetchAllTermSelectControl( props ) {
 	}
 
 	if ( ! options ) {
-		return (
-			<Spinner />
-		);
+		return <Spinner />;
 	}
 
-	return (
-		<SelectControl
-			{ ...selectProps }
-			options={ options }
-		/>
-	);
+	return <SelectControl { ...selectProps } options={ options } />;
 }
 
 export default FetchAllTermSelectControl;

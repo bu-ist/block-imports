@@ -27,7 +27,7 @@ const RegisterBlockPreset = ( originalBlock, presetTemplate ) => {
 		}
 
 		return className;
-	}
+	};
 
 	presetBlock.name = nameParts[ 0 ] + '-preset/' + nameParts[ 1 ];
 	presetBlock.title = title + ' (preset)';
@@ -35,10 +35,10 @@ const RegisterBlockPreset = ( originalBlock, presetTemplate ) => {
 	presetBlock.save = save;
 
 	// Add a `presetTemplate` property to the default block's edit component.
-	presetBlock.edit = function( props ) {
+	presetBlock.edit = function ( props ) {
 		return createElement(
 			edit,
-			Object.assign( props, { presetTemplate: presetTemplate } )
+			Object.assign( props, { presetTemplate } )
 		);
 	};
 
@@ -51,6 +51,6 @@ const RegisterBlockPreset = ( originalBlock, presetTemplate ) => {
 		'bu-blocks/preset-block-class-name/',
 		filterBlockClassName
 	);
-}
+};
 
 export default RegisterBlockPreset;

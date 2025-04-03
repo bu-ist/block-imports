@@ -21,17 +21,15 @@ const {
 	PanelColorSettings,
 	RichText,
 	withColors,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const {
-	select,
-} = wp.data;
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { select } = wp.data;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
-const {
-	hasSelectedInnerBlock,
-	isBlockSelected,
-} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+const { hasSelectedInnerBlock, isBlockSelected } =
+	'undefined' === typeof select( 'core/block-editor' )
+		? select( 'core/editor' )
+		: select( 'core/block-editor' );
 
 // Only allow images in the background component for this block.
 const allowedMedia = [ 'image' ];
@@ -51,24 +49,20 @@ class BUEditorialModalEdit extends Component {
 			clientId,
 		} = this.props;
 
-		const {
-			backgroundId,
-			calloutHeading,
-			calloutText,
-			trigger,
-		} = attributes;
+		const { backgroundId, calloutHeading, calloutText, trigger } =
+			attributes;
 
-		const classes = classnames(
-			className,
-			{
-				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
-				'has-media': backgroundId,
-			}
-		);
+		const classes = classnames( className, {
+			[ `has-${ themeColor.slug }-theme` ]: themeColor.slug,
+			'has-media': backgroundId,
+		} );
 
 		// Set the clientId attribute so it can be accessed in the `getEditWrapperProps` function.
-		if ( hasSelectedInnerBlock( clientId, true ) || isBlockSelected( clientId ) ) {
-			setAttributes( { clientId: clientId } );
+		if (
+			hasSelectedInnerBlock( clientId, true ) ||
+			isBlockSelected( clientId )
+		) {
+			setAttributes( { clientId } );
 		}
 
 		return (
@@ -103,29 +97,61 @@ class BUEditorialModalEdit extends Component {
 							<div className="modal-valign">
 								<RichText
 									tagName="h1"
-									onChange={ value => setAttributes( { calloutHeading: value } ) }
+									onChange={ ( value ) =>
+										setAttributes( {
+											calloutHeading: value,
+										} )
+									}
 									value={ calloutHeading }
 									placeholder={ __( 'Enter heading…' ) }
-									formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
-									allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
+									formattingControls={ getAllowedFormats(
+										'formattingControls',
+										[]
+									) }
+									allowedFormats={ getAllowedFormats(
+										'allowedFormats',
+										[]
+									) }
 								/>
 								<RichText
 									tagName="p"
-									onChange={ value => setAttributes( { calloutText: value } ) }
+									onChange={ ( value ) =>
+										setAttributes( { calloutText: value } )
+									}
 									value={ calloutText }
 									placeholder={ __( 'Enter text…' ) }
-									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+									formattingControls={ getAllowedFormats(
+										'formattingControls',
+										[ 'bold', 'italic', 'link' ]
+									) }
+									allowedFormats={ getAllowedFormats(
+										'allowedFormats',
+										[
+											'core/bold',
+											'core/italic',
+											'core/link',
+										]
+									) }
 								/>
 								<div className="wp-block-editorial-modal-trigger-wrapper">
 									<RichText
 										tagName="p"
 										className="js-bu-block-modal-trigger-overlay button"
-										onChange={ value => setAttributes( { trigger: value } ) }
+										onChange={ ( value ) =>
+											setAttributes( { trigger: value } )
+										}
 										value={ trigger }
-										placeholder={ __( 'Enter trigger label…' ) }
-										formattingControls={ getAllowedFormats( 'formattingControls', [] ) }
-										allowedFormats={ getAllowedFormats( 'allowedFormats', [] ) }
+										placeholder={ __(
+											'Enter trigger label…'
+										) }
+										formattingControls={ getAllowedFormats(
+											'formattingControls',
+											[]
+										) }
+										allowedFormats={ getAllowedFormats(
+											'allowedFormats',
+											[]
+										) }
 									/>
 								</div>
 							</div>
@@ -133,7 +159,12 @@ class BUEditorialModalEdit extends Component {
 					</div>
 					<div className="wp-block-editorial-modal-content js-bu-block-modal-overlay">
 						<div className="overlay overlay-scale">
-							<a href="#" class="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close">Close</a>
+							<a
+								href="#"
+								className="wp-block-editorial-modal-overlay-close js-bu-block-modal-overlay-close"
+							>
+								Close
+							</a>
 							<article>
 								<InnerBlocks
 									allowedBlocks={ allowedBlocks() }
@@ -147,6 +178,6 @@ class BUEditorialModalEdit extends Component {
 	}
 }
 
-export default compose( [
-	withColors( 'themeColor' )
-] )( BUEditorialModalEdit );
+export default compose( [ withColors( 'themeColor' ) ] )(
+	BUEditorialModalEdit
+);

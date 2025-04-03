@@ -23,7 +23,8 @@
  */
 
 const getAllowedFormats = ( type, allowedFormats ) => {
-	const supportsAllowedFormats = ( 'undefined' === typeof wp.blockEditor ) ? false : true;
+	const supportsAllowedFormats =
+		'undefined' === typeof wp.blockEditor ? false : true;
 
 	if ( 'allowedFormats' === type ) {
 		return supportsAllowedFormats ? allowedFormats : false;
@@ -32,6 +33,6 @@ const getAllowedFormats = ( type, allowedFormats ) => {
 	}
 
 	return allowedFormats;
-}
+};
 
 export default getAllowedFormats;
