@@ -1,4 +1,5 @@
 # BU Loading Spinner
+
 ## Status: BETA
 
 ![Loading Spinner Component Example](BU_Loading_Spinner.gif)
@@ -10,19 +11,15 @@ some text, a background, and an optional shadow for placing the
 this Loading indicator as an absolutely positioned element covering
 some content.
 
-
 ## Usage
+
 ```js
 import { LoadingSpinner } from '@bostonuniversity/block-components';
-```
-
-
-```js
 { isLoading && (
-	<LoadingSpinner
-		text="Loading" // Default is undefined.
-		shadow={false} // Default is true.
-		className="a-custom-classname-to-add"
-	/>
+ <LoadingSpinner
+  text="Loading" // Default is undefined.
+  shadow={false} // Default is true.
+  className="a-custom-classname-to-add"
+ />
 )}
 ```
