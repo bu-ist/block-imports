@@ -15,9 +15,6 @@ some content.
 
 ```js
 import { LoadingSpinner } from '@bostonuniversity/block-components';
-```
-
-```js
 { isLoading && (
  <LoadingSpinner
   text="Loading" // Default is undefined.

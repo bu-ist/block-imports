@@ -16,9 +16,7 @@ export { LoadingSpinner } from './components/LoadingSpinner/index.mjs';
 // @todo make index
 // export { MediaCredit } from './components/MediaCredit/media-credit.js';
 // export { Optional } from './components/Optional';
-// @todo make index
 // export { ParagraphCaptionStyle } from './components/ParagraphCaptionStyle/paragraph-caption-style.js';
-// @todo make index
 // export { ParagraphEndOfArticleStyle } from './components/ParagraphEndOfArticleStyle/paragraph-end-of-article-style.js';
 // export { PlainTextWithLimit } from './components/PlainTextWithLimit';
 // export { PostChooser } from './components/PostChooser';
@@ -34,12 +32,10 @@ export { LoadingSpinner } from './components/LoadingSpinner/index.mjs';
 // export { useFilteredList } from './hooks/use-filtered-list';
 // export { useIcons } from './hooks/use-icons';
 // export { useAllTerms } from './hooks/useAllTerms';
-export { fetchMedia } from './hooks/fetchMedia/index.mjs';
+export { useMedia } from './hooks/useMedia/index.mjs';
 // export { useRenderAppenderWithBlockLimit } from './hooks/useRenderAppenderWithBlockLimit';
 // export { useRequestData } from './hooks/useRequestData';
 
 // Utils
 // A utility function is a standard JavaScript function that performs a specific task and is not tied to any particular framework or library. Utility functions are often used for tasks like data formatting, calculations, or other operations that don't require access to React's state or lifecycle. They can be called from anywhere in your code, including within React components or hooks.
-export { fetchImage } from './utils/fetchImage/index.mjs';
-export { slugify } from './utils/slugify/index.mjs';
-// export { writeMedia } from './utils/writeMedia/index.mjs';
+// export { parseMedia } from './utils/parseMedia/index.mjs';
