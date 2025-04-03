@@ -10,9 +10,10 @@
 // export { FetchAllTermSelectControl } from './components/FetchAllTermSelectControl';
 // export { HelpWrapper } from './components/HelpWrapper';
 // export { IconPicker } from './components/IconPicker';
-// export { Image } from './components/Image/index.mjs';
+export { Image } from './components/Image/index.mjs';
 // export { LinkToolbar } from './components/LinkToolbar';
 export { LoadingSpinner } from './components/LoadingSpinner/index.mjs';
+// @todo make index
 // export { MediaCredit } from './components/MediaCredit/media-credit.js';
 // export { Optional } from './components/Optional';
 // export { ParagraphCaptionStyle } from './components/ParagraphCaptionStyle/paragraph-caption-style.js';
