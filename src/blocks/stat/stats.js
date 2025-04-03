@@ -17,41 +17,26 @@ import getAllowedFormats from '../../global/allowed-formats';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	createBlock,
-	registerBlockType,
-} = wp.blocks;
-const {
-	PanelBody,
-	Path,
-	RangeControl,
-	SVG,
-} = wp.components;
-const {
-	InnerBlocks,
-	InspectorControls,
-	RichText,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const {
-	dispatch,
-	select,
-} = wp.data;
+const { __ } = wp.i18n;
+const { createBlock, registerBlockType } = wp.blocks;
+const { PanelBody, Path, RangeControl, SVG } = wp.components;
+const { InnerBlocks, InspectorControls, RichText } =
+	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { dispatch, select } = wp.data;
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
-const {
-	getBlocksByClientId,
-} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+const { getBlocksByClientId } =
+	'undefined' === typeof select( 'core/block-editor' )
+		? select( 'core/editor' )
+		: select( 'core/block-editor' );
 
 // Populate actions that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
-const {
-	removeBlock,
-	insertBlock,
-} = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
+const { removeBlock, insertBlock } =
+	'undefined' === typeof dispatch( 'core/block-editor' )
+		? dispatch( 'core/editor' )
+		: dispatch( 'core/block-editor' );
 
 /**
  * Returns the class list for the block based on the current settings.
@@ -60,21 +45,16 @@ const {
  * @param {number} stats     The number of stat blocks to display.
  */
 const getBlockClasses = ( className, stats ) => {
-	return (
-		classnames(
-			className,
-			{
-				[ `has-${stats}-stats` ]: stats,
-			}
-		)
-	);
+	return classnames( className, {
+		[ `has-${ stats }-stats` ]: stats,
+	} );
 };
 
 // Register the block.
 registerBlockType( 'bu/stats', {
 	title: __( 'Stats' ),
 	description: __( 'Add one to four statistics to your content.' ),
-	icon: blockIcons('stat'),
+	icon: blockIcons( 'stat' ),
 	category: 'bu',
 	attributes: {
 		align: {
@@ -102,18 +82,14 @@ registerBlockType( 'bu/stats', {
 
 	edit( props ) {
 		const {
-			attributes: {
-				align,
-				caption,
-				stats,
-			},
+			attributes: { align, caption, stats },
 			className,
 			clientId,
 			setAttributes,
 		} = props;
 
 		// Determine whether the block is aligned left or right.
-		const isAlignedLeftOrRight = ( align === 'left' || align === 'right' );
+		const isAlignedLeftOrRight = align === 'left' || align === 'right';
 
 		/**
 		 * Updates the stats attribute and handles innerBlock insertions or removals.
@@ -156,7 +132,7 @@ registerBlockType( 'bu/stats', {
 							allowedBlocks={ [ 'bu/stat' ] }
 							templateLock={ false }
 						/>
-						{ !isAlignedLeftOrRight &&
+						{ ! isAlignedLeftOrRight && (
 							<InspectorControls>
 								<PanelBody title={ __( 'Options' ) }>
 									<RangeControl
@@ -169,16 +145,25 @@ registerBlockType( 'bu/stats', {
 									/>
 								</PanelBody>
 							</InspectorControls>
-						}
+						) }
 					</div>
 					<RichText
 						tagName="figcaption"
 						className="wp-block-bu-stats-caption"
 						placeholder={ __( 'Add a caption (optional)…' ) }
 						value={ caption }
-						onChange={ value => setAttributes( { caption: value } ) }
-						formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-						allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+						onChange={ ( value ) =>
+							setAttributes( { caption: value } )
+						}
+						formattingControls={ getAllowedFormats(
+							'formattingControls',
+							[ 'bold', 'italic', 'link' ]
+						) }
+						allowedFormats={ getAllowedFormats( 'allowedFormats', [
+							'core/bold',
+							'core/italic',
+							'core/link',
+						] ) }
 						keepPlaceholderOnFocus
 					/>
 				</figure>
@@ -187,11 +172,7 @@ registerBlockType( 'bu/stats', {
 	},
 
 	save( { attributes } ) {
-		const {
-			caption,
-			className,
-			stats,
-		} = attributes;
+		const { caption, className, stats } = attributes;
 
 		return (
 			<div className={ getBlockClasses( className, stats ) }>

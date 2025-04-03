@@ -10,18 +10,24 @@
  *
  * Runs once the dom is loaded in order to avoid a race condition.
  */
-wp.domReady( function() {
-
+wp.domReady( function () {
 	// Bail if the default support has been filtered off.
-	if ( wp.hooks.applyFilters( 'buBlocks.blockSupport.disableDefault', false ) ) {
+	if (
+		wp.hooks.applyFilters( 'buBlocks.blockSupport.disableDefault', false )
+	) {
 		return;
 	}
 
 	// Create a filterable array of post types to restrict the blocks to.
-	const postTypes = wp.hooks.applyFilters( 'buBlocks.blockSupport.postTypes', [ 'post', 'page' ] );
+	const postTypes = wp.hooks.applyFilters(
+		'buBlocks.blockSupport.postTypes',
+		[ 'post', 'page' ]
+	);
 
 	// Get the current post type.
-	const currentPostType = wp.data.select( 'core/editor' ).getCurrentPost().type;
+	const currentPostType = wp.data
+		.select( 'core/editor' )
+		.getCurrentPost().type;
 
 	// Bail if the current post type is in the array of post types to restrict the blocks to.
 	if ( postTypes.includes( currentPostType ) ) {
@@ -53,7 +59,7 @@ wp.domReady( function() {
 	] );
 
 	// Unregister the blocks.
-	buBlocks.forEach( block => {
+	buBlocks.forEach( ( block ) => {
 		wp.blocks.unregisterBlockType( block );
 	} );
 } );

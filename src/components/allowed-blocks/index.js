@@ -7,12 +7,8 @@
  */
 
 // WordPress dependencies.
-const {
-	getBlockTypes,
-} = wp.blocks;
-const {
-	applyFilters,
-} = wp.hooks;
+const { getBlockTypes } = wp.blocks;
+const { applyFilters } = wp.hooks;
 
 // Blocks to exclude from allowedBlocks array for layout-type blocks.
 let excludeBlocks = [
@@ -29,16 +25,19 @@ let excludeBlocks = [
 
 // Returns a list of all block namess except those in the excludeBlocks array.
 const allowedBlocks = () => {
-	excludeBlocks = applyFilters( 'buBlocks.layoutBlockTypes.excludeBlocks', excludeBlocks );
+	excludeBlocks = applyFilters(
+		'buBlocks.layoutBlockTypes.excludeBlocks',
+		excludeBlocks
+	);
 
 	const allowed = getBlockTypes().map( ( { name } ) => {
-		if ( name && !excludeBlocks.includes( name ) ) {
+		if ( name && ! excludeBlocks.includes( name ) ) {
 			return name;
 		}
 	} );
 
 	return allowed;
-}
+};
 
 // Export the allowedBlocks function.
 export default allowedBlocks;

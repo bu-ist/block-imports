@@ -15,14 +15,10 @@ import './editor.scss';
 import { SearchItem } from './searchitem';
 import { LoadingSpinner } from '../LoadingSpinner';
 
-
 // WordPress dependencies.
 import { __ } from '@wordpress/i18n';
 
-import {
-	useState,
-	useEffect
-} from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 
 import {
 	Button,
@@ -32,17 +28,9 @@ import {
 	RadioControl,
 } from '@wordpress/components';
 
+import apiFetch from '@wordpress/api-fetch';
 
-
-
-import apiFetch from '@wordpress/api-fetch'
-
-import {
-	addQueryArgs
-} from '@wordpress/url';
-
-
-
+import { addQueryArgs } from '@wordpress/url';
 
 /**
  * The main PostChooser component
@@ -54,17 +42,16 @@ import {
  *
  * @param {*} props
  *
- * @returns
+ * @return
  */
 export const PostChooser = ( props ) => {
-
 	const {
 		onSelectPost,
-		label          = 'Enter a search query',
+		label = 'Enter a search query',
 		buttonLabel = __( 'Select Post' ),
-		postTypes      = [ 'posts', 'pages' ], // Default post types to search.
-		placeholder    = '',
-		minCharacters  = 3,
+		postTypes = [ 'posts', 'pages' ], // Default post types to search.
+		placeholder = '',
+		minCharacters = 3,
 		metaQueryArgs,
 	} = props;
 
@@ -74,50 +61,35 @@ export const PostChooser = ( props ) => {
 	 * Manages the open/closed state of the Modal
 	 * that contains the Post Chooser UI.
 	 */
-	const [
-		isModalOpen,
-		setIsModalOpen
-	] = useState( false );
+	const [ isModalOpen, setIsModalOpen ] = useState( false );
 
 	/**
 	 * Search Results State Handler.
 	 *
 	 * Manages the state of the Search results.
 	 */
-	const [
-		searchResults,
-		setSearchResults
-	] = useState( [] );
+	const [ searchResults, setSearchResults ] = useState( [] );
 
 	/**
 	 * Search String State Handler.
 	 *
 	 * Manages the state of the actual search query string.
 	 */
-	const [
-		searchString,
-		setSearchString
-	] = useState( '' );
+	const [ searchString, setSearchString ] = useState( '' );
 
 	/**
 	 * Loading results from endpoint state handler.
 	 *
 	 * Manages the Loading state when fetching results from the endpoint.
 	 */
-	const [
-		isLoading,
-		setIsLoading
-	] = useState( false );
+	const [ isLoading, setIsLoading ] = useState( false );
 
 	/**
 	 * Selected Post State Handler.
 	 *
 	 * Manages the state of a user selected post from the post query results.
 	 */
-	const [
-		selectedItem,
-		setSelectedItem
-	] = useState( null );
+	const [ selectedItem, setSelectedItem ] = useState( null );
 
 	/**
 	 * Slug Query Param State Handler.
@@ -126,12 +98,7 @@ export const PostChooser = ( props ) => {
 	 * such as "content", "slug", or "postid". Whichever type of search the user
 	 * selects is stored by this state handler.
 	 */
-	const [
-		searchType,
-		setSearchType
-	] = useState( 'content' );
-
-
+	const [ searchType, setSearchType ] = useState( 'content' );
 
 	/**
 	 * Update the searchString when the search field value is changed.
@@ -158,10 +125,12 @@ export const PostChooser = ( props ) => {
 		}
 
 		// Show the results after typing at least 3 characters
-		if ( searchString && ( searchString.length >= minCharacters || searchType === 'postid' ) ) {
+		if (
+			searchString &&
+			( searchString.length >= minCharacters || searchType === 'postid' )
+		) {
 			searchPosts( searchString );
 		}
-
 	}, [ searchString ] );
 
 	/**
@@ -172,18 +141,18 @@ export const PostChooser = ( props ) => {
 	 */
 	const searchPosts = ( keyword ) => {
 		// Remove existing search results.
-		setSearchResults([]);
+		setSearchResults( [] );
 
 		// Set our IsLoading state to block the UI.
-		setIsLoading(true);
+		setIsLoading( true );
 
 		// Store our requests.
-		let requests = [];
+		const requests = [];
 
-		postTypes.forEach( postType => {
+		postTypes.forEach( ( postType ) => {
 			// Build a request for each post type.
 			// Use the standard but simpler endpoint.
-			let path = addQueryArgs( `/wp/v2/${postType}`, {
+			let path = addQueryArgs( `/wp/v2/${ postType }`, {
 				//search: searchString,
 			} );
 
@@ -204,23 +173,21 @@ export const PostChooser = ( props ) => {
 
 			// Make the request to the standard endpoint.
 			const request = apiFetch( {
-				path: path,
+				path,
 			} );
 
 			// Add this request to the requests array.
 			requests.push( request );
-
 		} );
 
-
 		Promise.all( requests ).then( ( results ) => {
-			let data = results.reduce( ( result, final ) => [...final, ...result], [] );
+			const data = results.reduce(
+				( result, final ) => [ ...final, ...result ],
+				[]
+			);
 			setSearchResults( data );
 			setIsLoading( false );
 		} );
-
-
-
 	};
 
 	/**
@@ -232,8 +199,7 @@ export const PostChooser = ( props ) => {
 	 * @param {*} item
 	 */
 	function handleSelection( item ) {
-
-		if ( item === 0) {
+		if ( item === 0 ) {
 			setSelectedItem( null );
 		}
 
@@ -245,7 +211,7 @@ export const PostChooser = ( props ) => {
 		}
 
 		// Close the Modal.
-		setIsModalOpen(false);
+		setIsModalOpen( false );
 	}
 
 	return (
@@ -254,14 +220,16 @@ export const PostChooser = ( props ) => {
 				isPrimary
 				className="bu-components-post-chooser-button"
 				onClick={ () => {
-					setIsModalOpen(true);
+					setIsModalOpen( true );
 				} }
-			>{ buttonLabel }</Button>
+			>
+				{ buttonLabel }
+			</Button>
 
 			{ isModalOpen && (
 				<Modal
 					title={ __( 'Post Chooser' ) }
-					onRequestClose={ () => setIsModalOpen(false) }
+					onRequestClose={ () => setIsModalOpen( false ) }
 					className="bu-components-post-chooser-modal"
 				>
 					<div className="bu-components-search-controls">
@@ -277,14 +245,16 @@ export const PostChooser = ( props ) => {
 							] }
 							onChange={ ( option ) => setSearchType( option ) }
 						/>
-						<div className='bu-components-post-chooser-search-bar'>
+						<div className="bu-components-post-chooser-search-bar">
 							<TextControl
-								className='bu-components-post-chooser-search-field'
+								className="bu-components-post-chooser-search-field"
 								label={ label }
 								value={ searchString }
 								onChange={ handleSearchStringChange }
 								placeholder={ placeholder }
-								type={ 'postid' === searchType ? 'number' : 'text' }
+								type={
+									'postid' === searchType ? 'number' : 'text'
+								}
 							/>
 							<Button
 								className="bu-components-post-chooser-search-button"
@@ -292,58 +262,71 @@ export const PostChooser = ( props ) => {
 								disabled={ isLoading }
 								isBusy={ isLoading }
 								onClick={ () => {
-									searchPosts( searchString )
+									searchPosts( searchString );
 								} }
-							>{ __( 'Search', 'bu-stories' ) }</Button>
-
+							>
+								{ __( 'Search', 'bu-stories' ) }
+							</Button>
 						</div>
 					</div>
 
-
-
-					<ul className={ 'bu-components-post-chooser-results' } >
-						{/* { searchString.length < minCharacters && !isLoading && !searchResults.length && (
+					<ul className={ 'bu-components-post-chooser-results' }>
+						{ /* { searchString.length < minCharacters && !isLoading && !searchResults.length && (
 							<li className={ 'bu-components-post-chooser-results-item' }>
 								<Button disabled>{ __( `Enter a minimum of ${minCharacters} characters to search.` ) }</Button>
 							</li>
-						) } */}
-						{ isLoading && (
-							<LoadingSpinner text="Loading" />
-						)}
+						) } */ }
+						{ isLoading && <LoadingSpinner text="Loading" /> }
 
-						{ !searchResults.length && (
+						{ ! searchResults.length && (
 							<>
-								<li className={ 'bu-components-post-chooser-results-item bu-components-post-chooser-results-item-placeholder' }>
-									<SearchItem
-										placeholder={true}
-									/>
+								<li
+									className={
+										'bu-components-post-chooser-results-item bu-components-post-chooser-results-item-placeholder'
+									}
+								>
+									<SearchItem placeholder={ true } />
 								</li>
-								<li className={ 'bu-components-post-chooser-results-item bu-components-post-chooser-results-item-placeholder' }>
-									<SearchItem
-										placeholder={true}
-									/>
+								<li
+									className={
+										'bu-components-post-chooser-results-item bu-components-post-chooser-results-item-placeholder'
+									}
+								>
+									<SearchItem placeholder={ true } />
 								</li>
-								<li className={ 'bu-components-post-chooser-results-item bu-components-post-chooser-results-item-placeholder' }>
-									<SearchItem
-										placeholder={true}
-									/>
+								<li
+									className={
+										'bu-components-post-chooser-results-item bu-components-post-chooser-results-item-placeholder'
+									}
+								>
+									<SearchItem placeholder={ true } />
 								</li>
 							</>
-						)}
-
-
-						{ searchString.length >= minCharacters && !isLoading && !searchResults.length && (
-							<li className={ 'bu-components-post-chooser-results-item' }>
-								<p>{ __( 'No Items found' ) }</p>
-							</li>
 						) }
-						{searchResults.map((post, index) => {
-							if (!post.title.rendered.length) {
+
+						{ searchString.length >= minCharacters &&
+							! isLoading &&
+							! searchResults.length && (
+								<li
+									className={
+										'bu-components-post-chooser-results-item'
+									}
+								>
+									<p>{ __( 'No Items found' ) }</p>
+								</li>
+							) }
+						{ searchResults.map( ( post, index ) => {
+							if ( ! post.title.rendered.length ) {
 								return null;
 							}
 
 							return (
-								<li key={post.id} className={ 'bu-components-post-chooser-results-item' }>
+								<li
+									key={ post.id }
+									className={
+										'bu-components-post-chooser-results-item'
+									}
+								>
 									<SearchItem
 										postID={ post.id }
 										title={ post.title }
@@ -352,11 +335,10 @@ export const PostChooser = ( props ) => {
 									/>
 								</li>
 							);
-						})}
+						} ) }
 					</ul>
-
 				</Modal>
 			) }
 		</>
-	)
+	);
 };

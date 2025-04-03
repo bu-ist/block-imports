@@ -38,7 +38,11 @@ import { has } from 'lodash';
  */
 export default function Edit() {
 	//const [hasPost, setHasPost] = useState(false);
-	const [data, isLoading, invalidateRequest] = useRequestData('postType', 'post', 67);
+	const [ data, isLoading, invalidateRequest ] = useRequestData(
+		'postType',
+		'post',
+		67
+	);
 	//const [imgData, imgIsLoading, imgInvalidateRequest] = useRequestData('root', 'media', 68);
 	//if (data !== undefined) {
 	//	setHasPost(data);
@@ -46,7 +50,6 @@ export default function Edit() {
 	//	//if ( umImage  !== undefined)  {
 	//	//}
 	//}
-
 
 	//if (hasPost) {
 	//	console.log('hp featured', hasPost.featured_media);
@@ -62,14 +65,14 @@ export default function Edit() {
 	//console.log('isLoading', isLoading);
 	//console.log('****** ');
 
-	if (isLoading) {
+	if ( isLoading ) {
 		return <h3>Loading...</h3>;
 	}
 
 	return (
-		<div {...useBlockProps()}>
+		<div { ...useBlockProps() }>
 			This is some text from the editor.
-			{data && (<p>{data.title.rendered}</p>)}
+			{ data && <p>{ data.title.rendered }</p> }
 		</div>
 	);
 }

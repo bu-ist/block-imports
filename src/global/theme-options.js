@@ -4,30 +4,29 @@
  */
 
 // WordPress dependencies.
-const {
-	select,
-	dispatch,
-} = wp.data;
+const { select, dispatch } = wp.data;
 
-const {
-	getEditorSettings,
-} = select( 'core/editor' );
+const { getEditorSettings } = select( 'core/editor' );
 
-const {
-	updateEditorSettings,
-} = dispatch( 'core/editor' );
+const { updateEditorSettings } = dispatch( 'core/editor' );
 
 // Populate selectors that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
 const {
 	getSettings, // Note that getSettings is _not_ available until WordPress 5.2 and will be undefined otherwise.
-} = ( 'undefined' === typeof select( 'core/block-editor' ) ) ? select( 'core/editor' ) : select( 'core/block-editor' );
+} =
+	'undefined' === typeof select( 'core/block-editor' )
+		? select( 'core/editor' )
+		: select( 'core/block-editor' );
 
 // Populate actions that were in core/editor until WordPress 5.2 and are
 // now located in core/block-editor.
 const {
 	updateSettings, // Note that updateSettings is _not_ available until WordPress 5.2 and will be undefined otherwise.
-} = ( 'undefined' === typeof dispatch( 'core/block-editor' ) ) ? dispatch( 'core/editor' ) : dispatch( 'core/block-editor' );
+} =
+	'undefined' === typeof dispatch( 'core/block-editor' )
+		? dispatch( 'core/editor' )
+		: dispatch( 'core/block-editor' );
 
 import publicationSlug from './publication-slug';
 
@@ -58,7 +57,10 @@ const themeOptions = () => {
 
 	// Populate the final `themeOptions` from the current publication, if the exist.
 	// If not, use the default options.
-	const themeOptions = ( publicationThemes && publicationThemes[ publication ] ) ? publicationThemes[ publication ] : defaultThemes;
+	const themeOptions =
+		publicationThemes && publicationThemes[ publication ]
+			? publicationThemes[ publication ]
+			: defaultThemes;
 
 	/**
 	 * Add custom color objects to the defaults if they haven't already been added.
@@ -68,7 +70,10 @@ const themeOptions = () => {
 	 *
 	 * @see https://github.com/WordPress/gutenberg/blob/master/packages/editor/src/components/colors/utils.js#L7.
 	 */
-	if ( themeOptions && ! themeOptions.some( v => defaultColors.includes( v ) ) ) {
+	if (
+		themeOptions &&
+		! themeOptions.some( ( v ) => defaultColors.includes( v ) )
+	) {
 		const newColors = defaultColors.concat( themeOptions );
 
 		// Update both the editor settings and general settings so that when a color
@@ -84,6 +89,6 @@ const themeOptions = () => {
 
 	// Return the array of custom color objects for passing to the `colors` prop.
 	return themeOptions;
-}
+};
 
 export default themeOptions;

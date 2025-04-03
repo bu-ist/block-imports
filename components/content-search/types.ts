@@ -17,12 +17,12 @@ export interface SearchResult {
 export interface QueryArgs {
 	perPage: number;
 	page: number;
-	contentTypes: Array<string>;
+	contentTypes: Array< string >;
 	mode: ContentSearchMode;
 	keyword: string;
 }
 
-export type QueryFilter = (query: string, args: QueryArgs) => string;
+export type QueryFilter = ( query: string, args: QueryArgs ) => string;
 
 export interface RenderItemComponentProps {
 	item: NormalizedSuggestion;
@@ -30,10 +30,10 @@ export interface RenderItemComponentProps {
 	searchTerm?: string;
 	isSelected?: boolean;
 	id?: string;
-	contentTypes: Array<string>;
-	renderType?: (suggestion: NormalizedSuggestion) => string;
+	contentTypes: Array< string >;
+	renderType?: ( suggestion: NormalizedSuggestion ) => string;
 }
 
 export type ContentSearchMode = 'post' | 'user' | 'term';
 
-export type Modify<T, R> = Omit<T, keyof R> & R;
+export type Modify< T, R > = Omit< T, keyof R > & R;

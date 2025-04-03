@@ -7,15 +7,11 @@ import { __ } from '@wordpress/i18n';
 /**
  * A toolbar that allows to add a link.
  *
- * @param {object} props - Component props.
- * @returns {ReactNode} Component.
+ * @param {Object} props - Component props.
+ * @return {ReactNode} Component.
  */
 export default function LinkToolbar( props ) {
-	const {
-		onChange,
-		opensInNewTab,
-		url,
-	} = props;
+	const { onChange, opensInNewTab, url } = props;
 
 	const [ showLinkControl, setShowLinkControl ] = useState( false );
 

@@ -15,38 +15,37 @@ interface StyledComponentContextProps {
 	cacheKey: string;
 }
 
-export const StyledComponentContext: React.FC<StyledComponentContextProps> = ({
-	children,
-	cacheKey,
-}) => {
-	const fallbackKey = `${useInstanceId(StyledComponentContext)}`;
+export const StyledComponentContext: React.FC<
+	StyledComponentContextProps
+> = ( { children, cacheKey } ) => {
+	const fallbackKey = `${ useInstanceId( StyledComponentContext ) }`;
 
-	const defaultCache = createCache({
+	const defaultCache = createCache( {
 		key: cacheKey || fallbackKey,
-	});
+	} );
 
-	const [cache, setCache] = useState(defaultCache);
+	const [ cache, setCache ] = useState( defaultCache );
 	const nodeRef = useRefEffect(
-		(node) => {
-			if (node) {
+		( node ) => {
+			if ( node ) {
 				setCache(
-					createCache({
+					createCache( {
 						key: cacheKey || fallbackKey,
 						container: node,
-					}),
+					} )
 				);
 			}
 			return () => {
-				setCache(defaultCache);
+				setCache( defaultCache );
 			};
 		},
-		[cacheKey, fallbackKey],
+		[ cacheKey, fallbackKey ]
 	);
 
 	return (
 		<>
-			<span ref={nodeRef} style={{ display: 'none' }} />
-			<CacheProvider value={cache}>{children}</CacheProvider>
+			<span ref={ nodeRef } style={ { display: 'none' } } />
+			<CacheProvider value={ cache }>{ children }</CacheProvider>
 		</>
 	);
 };

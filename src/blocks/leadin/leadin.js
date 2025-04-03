@@ -19,33 +19,19 @@ import Background, { BackgroundAttributes } from '../../components/background';
 import blockIcons from '../../components/block-icons/';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	registerBlockType,
-} = wp.blocks;
-const {
-	Fragment
-} = wp.element;
-const {
-	PanelBody,
-	Path,
-	RangeControl,
-	SelectControl,
-	SVG,
-	ToggleControl,
-} = wp.components;
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
+const { PanelBody, Path, RangeControl, SelectControl, SVG, ToggleControl } =
+	wp.components;
 const {
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
 	URLInput,
 	withColors,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
-const {
-	applyFilters,
-} = wp.hooks;
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
+const { applyFilters } = wp.hooks;
 
 // Block attributes.
 const blockAttributes = {
@@ -119,12 +105,12 @@ const blockStyles = [
 	{
 		name: 'default',
 		label: __( 'Default (uncropped unscaled)' ),
-		isDefault: true
+		isDefault: true,
 	},
 	{
 		name: 'default-alt',
 		label: __( 'Default Alternate Order' ),
-		isDefault: true
+		isDefault: true,
 	},
 	{
 		name: 'text-to-image',
@@ -157,13 +143,13 @@ const blockSupports = {
 registerBlockType( 'bu/leadin', {
 	title: __( 'Leadin' ),
 	description: __( 'The opening headline and image of an article.' ),
-	icon: blockIcons('leadin'),
+	icon: blockIcons( 'leadin' ),
 	category: 'bu',
 	attributes: blockAttributes,
 	styles: blockStyles,
 	supports: blockSupports,
 
-	edit: withColors( 'themeColor' )( props => {
+	edit: withColors( 'themeColor' )( ( props ) => {
 		// Get the block properties and attributes.
 		const {
 			attributes: {
@@ -192,39 +178,54 @@ registerBlockType( 'bu/leadin', {
 			isSelected,
 		} = props;
 
-		const isStyleEmphasisOnText = className.includes( 'is-style-emphasis-on-text' );
-		const isStyleTextOverImage = className.includes( 'is-style-text-over-image' );
+		const isStyleEmphasisOnText = className.includes(
+			'is-style-emphasis-on-text'
+		);
+		const isStyleTextOverImage = className.includes(
+			'is-style-text-over-image'
+		);
 		const isStyleSideBySide = className.includes( 'is-style-side-by-side' );
-		const isStyleTextToImage = className.includes( 'is-style-text-to-image' );
-		const isStyleImageToText = className.includes( 'is-style-image-to-text' );
+		const isStyleTextToImage = className.includes(
+			'is-style-text-to-image'
+		);
+		const isStyleImageToText = className.includes(
+			'is-style-image-to-text'
+		);
 		const publication = publicationSlug();
 
 		const classes = classnames(
 			'wp-block-editorial-leadin',
 			{
-				[ `${publication}-block-editorial-leadin` ]: publication !== '',
+				[ `${ publication }-block-editorial-leadin` ]:
+					publication !== '',
 			},
 			className,
 			{
-				'has-box': box && ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ),
+				'has-box':
+					box &&
+					( isStyleEmphasisOnText ||
+						isStyleTextOverImage ||
+						isStyleSideBySide ),
 				'has-wider': wide && isStyleSideBySide,
 				'has-flip': flip && isStyleSideBySide,
 				'has-media': backgroundUrl,
 				'has-video-as-loop': backgroundAutoplay,
 				'has-video-uncropped': videoUncropped,
-				[ `has-media-focus-${imageFocus}` ]: imageFocus,
-				[ `has-text-position-${textPositionX}` ]: textPositionX && isStyleTextOverImage,
-				[ `has-text-position-${textPositionY}` ]: textPositionY && isStyleTextOverImage,
-				[ `has-${themeColor.slug}-theme` ]: themeColor.slug,
+				[ `has-media-focus-${ imageFocus }` ]: imageFocus,
+				[ `has-text-position-${ textPositionX }` ]:
+					textPositionX && isStyleTextOverImage,
+				[ `has-text-position-${ textPositionY }` ]:
+					textPositionY && isStyleTextOverImage,
+				[ `has-${ themeColor.slug }-theme` ]: themeColor.slug,
 			}
 		);
 
-		const boxClasses = classnames(
-			'container-words-inner',
-			{
-				[ `has-opacity-${boxOpacity}` ]: boxOpacity !== 100 && box && ( isStyleEmphasisOnText || isStyleTextOverImage ),
-			}
-		);
+		const boxClasses = classnames( 'container-words-inner', {
+			[ `has-opacity-${ boxOpacity }` ]:
+				boxOpacity !== 100 &&
+				box &&
+				( isStyleEmphasisOnText || isStyleTextOverImage ),
+		} );
 
 		// Return the background media positioning controls if a background is set.
 		const mediaPositioningControls = () => {
@@ -233,21 +234,41 @@ registerBlockType( 'bu/leadin', {
 			}
 
 			return (
-				<PanelBody title={ __( 'Media Positioning' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'Media Positioning' ) }
+					initialOpen={ false }
+				>
 					<SelectControl
 						label={ __( 'Crop Media to:' ) }
 						value={ imageFocus }
-						onChange={ value => setAttributes( { imageFocus: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { imageFocus: value } )
+						}
 						options={ [
 							{ value: 'left-top', label: __( 'Left Top' ) },
-							{ value: 'left-middle', label: __( 'Left Center' ) },
-							{ value: 'left-bottom', label: __( 'Left Bottom' ) },
+							{
+								value: 'left-middle',
+								label: __( 'Left Center' ),
+							},
+							{
+								value: 'left-bottom',
+								label: __( 'Left Bottom' ),
+							},
 							{ value: 'center-top', label: __( 'Center Top' ) },
 							{ value: 'center-middle', label: __( 'Center' ) },
-							{ value: 'center-bottom', label: __( 'Center Bottom' ) },
+							{
+								value: 'center-bottom',
+								label: __( 'Center Bottom' ),
+							},
 							{ value: 'right-top', label: __( 'Right Top' ) },
-							{ value: 'right-middle', label: __( 'Right Center' ) },
-							{ value: 'right-bottom', label: __( 'Right Bottom' ) },
+							{
+								value: 'right-middle',
+								label: __( 'Right Center' ),
+							},
+							{
+								value: 'right-bottom',
+								label: __( 'Right Bottom' ),
+							},
 						] }
 					/>
 				</PanelBody>
@@ -265,21 +286,25 @@ registerBlockType( 'bu/leadin', {
 					<SelectControl
 						label={ __( 'Horizontal Text Positioning' ) }
 						value={ textPositionX }
-						onChange={ value => setAttributes( { textPositionX: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { textPositionX: value } )
+						}
 						options={ [
 							{ value: 'x-left', label: __( 'Left' ) },
 							{ value: 'x-center', label: __( 'Center' ) },
-							{ value: 'x-right', label: __( 'Right' ) }
+							{ value: 'x-right', label: __( 'Right' ) },
 						] }
 					/>
 					<SelectControl
 						label={ __( 'Vertical Text Positioning' ) }
 						value={ textPositionY }
-						onChange={ value => setAttributes( { textPositionY: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { textPositionY: value } )
+						}
 						options={ [
 							{ value: 'y-top', label: __( 'Top' ) },
 							{ value: '', label: __( 'Center' ) },
-							{ value: 'y-bottom', label: __( 'Bottom' ) }
+							{ value: 'y-bottom', label: __( 'Bottom' ) },
 						] }
 					/>
 				</Fragment>
@@ -297,12 +322,12 @@ registerBlockType( 'bu/leadin', {
 					<ToggleControl
 						label={ __( 'Flip Order' ) }
 						checked={ flip }
-						onChange={ () => setAttributes( { flip: !flip } ) }
+						onChange={ () => setAttributes( { flip: ! flip } ) }
 					/>
 					<ToggleControl
 						label={ __( 'Wide Layout' ) }
 						checked={ wide }
-						onChange={ () => setAttributes( { wide: !wide } ) }
+						onChange={ () => setAttributes( { wide: ! wide } ) }
 					/>
 				</Fragment>
 			);
@@ -310,7 +335,13 @@ registerBlockType( 'bu/leadin', {
 
 		// Return layout options if specific styles are set.
 		const layoutControls = () => {
-			if ( ! ( isStyleEmphasisOnText || isStyleTextOverImage || isStyleSideBySide ) ) {
+			if (
+				! (
+					isStyleEmphasisOnText ||
+					isStyleTextOverImage ||
+					isStyleSideBySide
+				)
+			) {
 				return null;
 			}
 
@@ -321,18 +352,21 @@ registerBlockType( 'bu/leadin', {
 					<ToggleControl
 						label={ __( 'Boxed Text' ) }
 						checked={ box }
-						onChange={ () => setAttributes( { box: !box } ) }
+						onChange={ () => setAttributes( { box: ! box } ) }
 					/>
-					{ box && ( isStyleEmphasisOnText || isStyleTextOverImage ) &&
-						<RangeControl
-							label={ __( 'Box Opacity' ) }
-							value={ boxOpacity }
-							onChange={ value => setAttributes( { boxOpacity: value } ) }
-							min={ 10 }
-							max={ 100 }
-							step={ 10 }
-						/>
-					}
+					{ box &&
+						( isStyleEmphasisOnText || isStyleTextOverImage ) && (
+							<RangeControl
+								label={ __( 'Box Opacity' ) }
+								value={ boxOpacity }
+								onChange={ ( value ) =>
+									setAttributes( { boxOpacity: value } )
+								}
+								min={ 10 }
+								max={ 100 }
+								step={ 10 }
+							/>
+						) }
 				</PanelBody>
 			);
 		};
@@ -348,7 +382,11 @@ registerBlockType( 'bu/leadin', {
 					<ToggleControl
 						label={ __( 'Leave Video Uncropped' ) }
 						checked={ videoUncropped }
-						onChange={ () => setAttributes( { videoUncropped: !videoUncropped } ) }
+						onChange={ () =>
+							setAttributes( {
+								videoUncropped: ! videoUncropped,
+							} )
+						}
 					/>
 				</PanelBody>
 			);
@@ -360,32 +398,53 @@ registerBlockType( 'bu/leadin', {
 				<div className={ classes }>
 					<div className="container-lockup">
 						<div className="wp-block-leadin-media">
-							<Background
-								blockProps={ props }
-							/>
+							<Background blockProps={ props } />
 						</div>
 						<div className="container-words-outer">
 							<div className={ boxClasses }>
-								{ applyFilters( 'buPrepress.PrimaryTerm', '', props ) }
+								{ applyFilters(
+									'buPrepress.PrimaryTerm',
+									'',
+									props
+								) }
 								<RichText
 									tagName="h1"
 									className="head"
 									placeholder={ __( 'Add headline' ) }
 									value={ head }
-									onChange={ value => setAttributes( { head: value } ) }
-									formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
-									allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
+									onChange={ ( value ) =>
+										setAttributes( { head: value } )
+									}
+									formattingControls={ getAllowedFormats(
+										'formattingControls',
+										[ 'bold', 'italic' ]
+									) }
+									allowedFormats={ getAllowedFormats(
+										'allowedFormats',
+										[ 'core/bold', 'core/italic' ]
+									) }
 									keepPlaceholderOnFocus
 								/>
-								{ ( ! RichText.isEmpty( deck ) || isSelected ) && (
+								{ ( ! RichText.isEmpty( deck ) ||
+									isSelected ) && (
 									<RichText
 										tagName="h4"
 										className="deck"
-										placeholder={ __( 'Add subheader (optional)' ) }
+										placeholder={ __(
+											'Add subheader (optional)'
+										) }
 										value={ deck }
-										onChange={ value => setAttributes( { deck: value } ) }
-										formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic' ] ) }
-										allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic' ] ) }
+										onChange={ ( value ) =>
+											setAttributes( { deck: value } )
+										}
+										formattingControls={ getAllowedFormats(
+											'formattingControls',
+											[ 'bold', 'italic' ]
+										) }
+										allowedFormats={ getAllowedFormats(
+											'allowedFormats',
+											[ 'core/bold', 'core/italic' ]
+										) }
 									/>
 								) }
 							</div>
@@ -395,17 +454,32 @@ registerBlockType( 'bu/leadin', {
 						<RichText
 							tagName="p"
 							className="wp-block-editorial-leadin-caption wp-prepress-component-caption"
-							placeholder={ __( 'Add a caption and/or media credit...' ) }
+							placeholder={ __(
+								'Add a caption and/or media credit…'
+							) }
 							value={ caption }
-							onChange={ value => setAttributes( { caption: value } ) }
-							formattingControls={ getAllowedFormats( 'formattingControls', [ 'bold', 'italic', 'link' ] ) }
-							allowedFormats={ getAllowedFormats( 'allowedFormats', [ 'core/bold', 'core/italic', 'core/link' ] ) }
+							onChange={ ( value ) =>
+								setAttributes( { caption: value } )
+							}
+							formattingControls={ getAllowedFormats(
+								'formattingControls',
+								[ 'bold', 'italic', 'link' ]
+							) }
+							allowedFormats={ getAllowedFormats(
+								'allowedFormats',
+								[ 'core/bold', 'core/italic', 'core/link' ]
+							) }
 							keepPlaceholderOnFocus
 						/>
 					) }
 				</div>
 
-				{ applyFilters( 'buBlocks.leadin.metaBar', '', metabar, metabardate ) }
+				{ applyFilters(
+					'buBlocks.leadin.metaBar',
+					'',
+					metabar,
+					metabardate
+				) }
 
 				<InspectorControls>
 					{ mediaPositioningControls() }
@@ -428,10 +502,14 @@ registerBlockType( 'bu/leadin', {
 						className="components-panel__body-bu-leadin-block-url"
 						title={ __( 'URL' ) }
 					>
-						<p className="description">Link the leadin block to a story. (Optional)</p>
+						<p className="description">
+							Link the leadin block to a story. (Optional)
+						</p>
 						<URLInput
 							value={ url }
-							onChange={ ( value ) => setAttributes( { url: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { url: value } )
+							}
 						/>
 					</PanelBody>
 				</InspectorControls>

@@ -13,12 +13,8 @@ import allowedBlocks from '../../components/allowed-blocks';
 const { __ } = wp.i18n;
 const { Component, Fragment } = wp.element;
 const { compose } = wp.compose;
-const {
-	InnerBlocks,
-	InspectorControls,
-	PanelColorSettings,
-	withColors,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+const { InnerBlocks, InspectorControls, PanelColorSettings, withColors } =
+	'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
 
 class BUAsideEdit extends Component {
 	constructor() {
@@ -26,17 +22,12 @@ class BUAsideEdit extends Component {
 	}
 
 	render() {
-		const {
-			className,
-			themeColor,
-			setThemeColor,
-			presetTemplate,
-		} = this.props;
+		const { className, themeColor, setThemeColor, presetTemplate } =
+			this.props;
 
-		const classes = classnames(
-			className,
-			{ [ `has-${themeColor.slug}-background` ]: themeColor.slug }
-		);
+		const classes = classnames( className, {
+			[ `has-${ themeColor.slug }-background` ]: themeColor.slug,
+		} );
 
 		return (
 			<Fragment>
@@ -65,6 +56,4 @@ class BUAsideEdit extends Component {
 	}
 }
 
-export default compose( [
-	withColors( 'themeColor' )
-] )( BUAsideEdit );
+export default compose( [ withColors( 'themeColor' ) ] )( BUAsideEdit );

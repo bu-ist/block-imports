@@ -15,16 +15,16 @@ const STORE_NAME = 'tenup/icons';
 /**
  * Store definition for the icons namespace.
  *
- * @type {object}
+ * @type {Object}
  */
-export const store = createReduxStore(STORE_NAME, {
+export const store = createReduxStore( STORE_NAME, {
 	reducer,
 	selectors,
 	actions,
-});
+} );
 
-const hasStore = !!select(STORE_NAME);
+const hasStore = !! select( STORE_NAME );
 
-if (!hasStore) {
-	register(store);
+if ( ! hasStore ) {
+	register( store );
 }

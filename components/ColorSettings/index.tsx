@@ -44,12 +44,12 @@ interface ColorSettingProps {
 	/**
 	 * Array with the colors to be shown.
 	 */
-	colors: Array<Color>;
+	colors: Array< Color >;
 
 	/**
 	 * Callback called when a color is selected.
 	 */
-	onChange: (color: string) => void;
+	onChange: ( color: string ) => void;
 }
 
 interface Color {
@@ -65,7 +65,7 @@ interface Color {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export const ColorSetting: React.FC<ColorSettingProps> = ({
+export const ColorSetting: React.FC< ColorSettingProps > = ( {
 	label = '',
 	help = '',
 	className = '',
@@ -75,24 +75,24 @@ export const ColorSetting: React.FC<ColorSettingProps> = ({
 	onChange,
 	disableCustomColors = false,
 	clearable = true,
-}) => {
-	const instanceId = useInstanceId(ColorSetting);
-	const id = `color-settings-${instanceId}`;
+} ) => {
+	const instanceId = useInstanceId( ColorSetting );
+	const id = `color-settings-${ instanceId }`;
 
 	return (
 		<BaseControl
-			id={id}
-			label={label}
-			help={help}
-			className={className}
-			hideLabelFromVision={hideLabelFromVision}
+			id={ id }
+			label={ label }
+			help={ help }
+			className={ className }
+			hideLabelFromVision={ hideLabelFromVision }
 		>
 			<ColorPalette
-				colors={colors}
-				value={value}
-				onChange={onChange}
-				disableCustomColors={disableCustomColors}
-				clearable={clearable}
+				colors={ colors }
+				value={ value }
+				onChange={ onChange }
+				disableCustomColors={ disableCustomColors }
+				clearable={ clearable }
 			/>
 		</BaseControl>
 	);

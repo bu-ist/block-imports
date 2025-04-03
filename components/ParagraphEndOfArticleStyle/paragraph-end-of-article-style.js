@@ -7,7 +7,6 @@ import './style.scss';
 import './editor.scss';
 
 wp.domReady( () => {
-
 	wp.blocks.registerBlockStyle( 'core/paragraph', [
 		{
 			name: 'default',
@@ -16,7 +15,7 @@ wp.domReady( () => {
 		},
 		{
 			name: 'end-of-article',
-			label: 'End of Article'
-		}
-	]);
+			label: 'End of Article',
+		},
+	] );
 } );

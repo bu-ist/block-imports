@@ -1,44 +1,36 @@
 // External dependencies.
 import classnames from 'classnames';
 
-
-
 import { useState } from 'react';
-import {
-	Popover,
-	Icon
-} from '@wordpress/components';
-
+import { Popover, Icon } from '@wordpress/components';
 
 // Import CSS.
 import './editor.scss';
 
-
 /**
  * Returns the class list for the component based on the current settings.
  *
- * @param {string} className  Additional classes assigned to the component.
+ * @param {string} className Additional classes assigned to the component.
+ * @param          offset
  */
-const getClasses = ( className, offset  ) => classnames(
-	'bu-components-help-wrapper',
-	{
+const getClasses = ( className, offset ) =>
+	classnames( 'bu-components-help-wrapper', {
 		[ className ]: className,
 		[ `has-offset-label` ]: offset,
-	}
-);
+	} );
 
 export const HelpWrapper = ( props ) => {
 	const {
 		text = undefined,
 		className = undefined,
 		offset = undefined,
-		children
+		children,
 	} = props;
 
 	const [ popoverVisible, setPopoverVisible ] = useState( false );
 
 	const toggleVisible = () => {
-		setPopoverVisible( (state ) => ! state );
+		setPopoverVisible( ( state ) => ! state );
 	};
 
 	return (
@@ -54,17 +46,17 @@ export const HelpWrapper = ( props ) => {
 							{ popoverVisible && (
 								<Popover
 									className="bu-components-help-wrapper-popover"
-									noArrow={false}
+									noArrow={ false }
 									onFocusOutside={ toggleVisible }
 								>
-									{text}
+									{ text }
 								</Popover>
-							)}
+							) }
 						</Icon>
 					</>
 				</div>
 				{ children }
 			</div>
 		</>
-	)
+	);
 };

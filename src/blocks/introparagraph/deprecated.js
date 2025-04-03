@@ -1,21 +1,10 @@
 import getAllowedFormats from '../../global/allowed-formats';
 
 // WordPress dependencies.
-const {
-	__,
-} = wp.i18n;
-const {
-	createBlock,
-	registerBlockType,
-} = wp.blocks;
-const {
-	Fragment,
-} = wp.element;
-const {
-	IconButton,
-	PanelBody,
-	Toolbar,
-} = wp.components;
+const { __ } = wp.i18n;
+const { createBlock, registerBlockType } = wp.blocks;
+const { Fragment } = wp.element;
+const { IconButton, PanelBody, Toolbar } = wp.components;
 const {
 	RichText,
 	PlainText,
@@ -25,14 +14,13 @@ const {
 	MediaUploadCheck,
 	PanelColorSettings,
 	withColors,
-} = ( 'undefined' === typeof wp.blockEditor ) ? wp.editor : wp.blockEditor;
+} = 'undefined' === typeof wp.blockEditor ? wp.editor : wp.blockEditor;
 
 // Import a library used to manage multiple class names.
 import classnames from 'classnames';
 
 // Import common handling of available color options.
 import themeOptions from '../../global/theme-options';
-
 
 /**
  * Render the SVG used for a drop cap when the drop cap has an
@@ -51,33 +39,38 @@ const renderDropCapSVG = ( character, imageURL ) => {
 				id="dropcap-texture"
 				viewBox="0 0 1024 1024"
 				patternUnits="userSpaceOnUse"
-				width="100%" height="100%"
-				x="0%" y="0%">
-				<image href={ imageURL } width="1024" height="1024"/>
+				width="100%"
+				height="100%"
+				x="0%"
+				y="0%"
+			>
+				<image href={ imageURL } width="1024" height="1024" />
 			</pattern>
-			<text textAnchor="start"
+			<text
+				textAnchor="start"
 				x="0"
 				y="50%"
 				dy=".404em"
-				className="dropcap-filltext">{ character }</text>
+				className="dropcap-filltext"
+			>
+				{ character }
+			</text>
 		</svg>
 	);
 };
 
-
 const deprecated = [
-    {
-
-    	attributes: {
+	{
+		attributes: {
 			heading: {
 				type: 'string',
 				source: 'html',
-				selector: '.wp-block-editorial-introparagraph h4'
+				selector: '.wp-block-editorial-introparagraph h4',
 			},
 			list: {
 				type: 'string',
 				source: 'html',
-				selector: '.wp-block-editorial-introparagraph-toc'
+				selector: '.wp-block-editorial-introparagraph-toc',
 			},
 			content: {
 				type: 'string',
@@ -105,7 +98,7 @@ const deprecated = [
 			},
 		},
 
-        save( { attributes } ) {
+		save( { attributes } ) {
 			const {
 				heading,
 				list,
@@ -126,25 +119,29 @@ const deprecated = [
 			let dropCapCharacter = '';
 			if ( 'undefined' !== typeof content ) {
 				dropCapCharacter = content.charAt( 0 );
-			};
+			}
 
 			// Determine if the list is empty and should be excluded from the saved block.
 			let saveList = true;
-			if ( 'undefined' === typeof list || '<li></li>' === list || RichText.isEmpty( list ) ) {
+			if (
+				'undefined' === typeof list ||
+				'<li></li>' === list ||
+				RichText.isEmpty( list )
+			) {
 				saveList = false;
 			}
 
 			// Determine if a sepecific dropcap style has been selected.
-			let hasDropCapStyle = className && className.includes( 'is-style-dropcap' );
+			const hasDropCapStyle =
+				className && className.includes( 'is-style-dropcap' );
 
-			const classes = classnames(
-				className,
-				{
-					'has-dropcap': hasDropCapStyle,
-					[`has-dropcap-color-${dropCapColor}`]: hasDropCapStyle && dropCapColor,
-					[`has-paragraph-color-${paragraphColor}`]: ! hasDropCapStyle && paragraphColor,
-				},
-			);
+			const classes = classnames( className, {
+				'has-dropcap': hasDropCapStyle,
+				[ `has-dropcap-color-${ dropCapColor }` ]:
+					hasDropCapStyle && dropCapColor,
+				[ `has-paragraph-color-${ paragraphColor }` ]:
+					! hasDropCapStyle && paragraphColor,
+			} );
 
 			return (
 				<div className={ classes }>
@@ -161,17 +158,18 @@ const deprecated = [
 					) }
 					{ ! RichText.isEmpty( content ) && (
 						<div className="wp-block-editorial-introparagraph-content">
-							{ isImageDropCap && renderDropCapSVG( dropCapCharacter, dropCapImageURL ) }
-							<RichText.Content
-								tagName="p"
-								value= { content }
-							/>
+							{ isImageDropCap &&
+								renderDropCapSVG(
+									dropCapCharacter,
+									dropCapImageURL
+								) }
+							<RichText.Content tagName="p" value={ content } />
 						</div>
 					) }
 				</div>
 			);
 		},
-    }
+	},
 ];
 
 export default deprecated;

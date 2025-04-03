@@ -18,20 +18,17 @@ const moveCursorToEnd = ( element ) => {
  *
  * Setting the limit to 0 disables the character length restriction.
  *
- * @param {object} props - Component props.
- * @returns {ReactNode} Component.
+ * @param {Object} props - Component props.
+ * @return {ReactNode} Component.
  */
 export default function RichTextWithLimit( props ) {
-	const {
-		className,
-		limit = 0,
-		onChange,
-		...inputProps
-	} = props;
+	const { className, limit = 0, onChange, ...inputProps } = props;
 
 	const inputRef = useRef();
 
-	const [ isInvalid, setIsInvalid ] = useState( limit && props.value?.length > limit );
+	const [ isInvalid, setIsInvalid ] = useState(
+		limit && props.value?.length > limit
+	);
 	const [ isUserInput, setIsUserInput ] = useState( false );
 
 	const checkValidity = ( value ) => {
@@ -56,7 +53,9 @@ export default function RichTextWithLimit( props ) {
 	return (
 		<RichText
 			ref={ inputRef }
-			className={ `${ className } limit-text ${ isInvalid ? 'invalid' : '' }`.trim() }
+			className={ `${ className } limit-text ${
+				isInvalid ? 'invalid' : ''
+			}`.trim() }
 			onChange={ checkValidity }
 			{ ...inputProps }
 		/>
