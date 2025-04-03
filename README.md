@@ -13,7 +13,7 @@ __In Development:__ This is just starting (March 2025) and it should be assumed 
 
 [Components](https://www.w3schools.com/react/react_components.asp) are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
 
-**These should be named in PascalCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
+__These should be named in PascalCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.__
 
 - ![alt text](readme-icons/IssueClosedOld.svg) [AllowedBlocks](components/AllowedBlocks)
 - ![alt text](readme-icons/IssueClosedOld.svg) [Background](components/Background)
@@ -42,7 +42,7 @@ __In Development:__ This is just starting (March 2025) and it should be assumed 
 
 These are [React Hooks](https://www.w3schools.com/react/react_hooks.asp), not WordPress Hooks. Hooks allow function components to have access to state, lifecycle methods, and other React features.
 
-**These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
+__These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.__
 
 - ![alt text](readme-icons/IssueClosedOld.svg) [use-filtered-list](hooks/use-filtered-list)
 - ![alt text](readme-icons/IssueClosedOld.svg) [use-icons](hooks/use-icons)
@@ -55,7 +55,7 @@ These are [React Hooks](https://www.w3schools.com/react/react_hooks.asp), not Wo
 
 These are just your standard garden variety javascript functions. They don't need all the features that hooks have.
 
-**These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.**
+__These should be named in camelCase without a BU namespace. They should use the [`.mjs`](https://v8.dev/features/modules#mjs) extension.__
 
 - ![alt text](readme-icons/IssueDrafted.svg) [umlautEverything](utils/umlautEverything)
 
@@ -79,7 +79,7 @@ To learn more about how NPM is managed for BU projects, please read <https://dev
 
 NOTE: you should verify that the package JSON file includes the following to make publishing easier:
 
-```
+```javascript
 "publishConfig": {
     "access": "public"
   }

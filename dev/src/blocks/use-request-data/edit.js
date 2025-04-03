@@ -13,7 +13,11 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps } from '@wordpress/block-editor';
 
+import { useState } from '@wordpress/element';
+
 import { useRequestData } from '@bostonuniversity/block-imports';
+import { useMedia } from '@bostonuniversity/block-imports';
+//import { useRequestData } from '@10up/block-components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -22,6 +26,7 @@ import { useRequestData } from '@bostonuniversity/block-imports';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
+import { has } from 'lodash';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -32,9 +37,39 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit() {
+	//const [hasPost, setHasPost] = useState(false);
+	const [data, isLoading, invalidateRequest] = useRequestData('postType', 'post', 67);
+	//const [imgData, imgIsLoading, imgInvalidateRequest] = useRequestData('root', 'media', 68);
+	//if (data !== undefined) {
+	//	setHasPost(data);
+	//	console.log(hasPost);
+	//	//if ( umImage  !== undefined)  {
+	//	//}
+	//}
+
+
+	//if (hasPost) {
+	//	console.log('hp featured', hasPost.featured_media);
+	//	const { media: umImage, isResolvingMedia, hasResolvedMedia } = useMedia(hasPost.featured_media);
+
+	//}
+
+	//console.log('Image Data', imgData);
+	//console.log('Image Loading', imgIsLoading);
+
+	//console.log('****** ');
+	//console.log('Post Data', data);
+	//console.log('isLoading', isLoading);
+	//console.log('****** ');
+
+	if (isLoading) {
+		return <h3>Loading...</h3>;
+	}
+
 	return (
-		<p { ...useBlockProps() }>
-			{ useRequestData() }
-		</p>
+		<div {...useBlockProps()}>
+			This is some text from the editor.
+			{data && (<p>{data.title.rendered}</p>)}
+		</div>
 	);
 }
