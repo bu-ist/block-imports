@@ -1,6 +1,77 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "../components/LoadingSpinner/editor.scss":
+/*!************************************************!*\
+  !*** ../components/LoadingSpinner/editor.scss ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "../components/LoadingSpinner/index.mjs":
+/*!**********************************************!*\
+  !*** ../components/LoadingSpinner/index.mjs ***!
+  \**********************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LoadingSpinner: () => (/* binding */ LoadingSpinner)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../node_modules/classnames/index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "../components/LoadingSpinner/editor.scss");
+
+/**
+ * A loading spinner to be used to indicate some activity is occuring.
+ *
+ * @return {Element} Element to render, in this case an DIV.
+ */
+
+// External dependencies.
+
+
+// Import the WP Spinner component.
+
+
+// Import CSS.
+
+
+/**
+ * Returns the class list for the component based on the current settings.
+ *
+ * @param {string} className	Additional classes assigned to the component.
+ * @param {string} text			If the component has loading text set.
+ * @param {string} shadow		If the component has a shadow set.
+ */
+const getClasses = (className, text, shadow) => classnames__WEBPACK_IMPORTED_MODULE_1__('bu-components-loading-spinner', {
+  [`bu-components-loading-spinner--has-shadow`]: shadow,
+  [`bu-components-loading-spinner--has-text`]: text,
+  [className]: className
+});
+const LoadingSpinner = props => {
+  const {
+    text = undefined,
+    shadow = true,
+    className = undefined
+  } = props;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: getClasses(className, text, shadow)
+  }, text && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", {
+    className: "bu-components-loading-spinner--label"
+  }, text), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, null));
+};
+
+/***/ }),
+
 /***/ "../hooks/useMedia/index.mjs":
 /*!***********************************!*\
   !*** ../hooks/useMedia/index.mjs ***!
@@ -101,52 +172,139 @@ const useRequestData = (entity = 'postType', kind = 'post', query = {}) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useMedia: () => (/* reexport safe */ _hooks_useMedia_index_mjs__WEBPACK_IMPORTED_MODULE_0__.useMedia),
-/* harmony export */   useRequestData: () => (/* reexport safe */ _hooks_useRequestData_index_mjs__WEBPACK_IMPORTED_MODULE_1__.useRequestData)
+/* harmony export */   LoadingSpinner: () => (/* reexport safe */ _components_LoadingSpinner_index_mjs__WEBPACK_IMPORTED_MODULE_0__.LoadingSpinner),
+/* harmony export */   useMedia: () => (/* reexport safe */ _hooks_useMedia_index_mjs__WEBPACK_IMPORTED_MODULE_1__.useMedia),
+/* harmony export */   useRequestData: () => (/* reexport safe */ _hooks_useRequestData_index_mjs__WEBPACK_IMPORTED_MODULE_2__.useRequestData)
 /* harmony export */ });
-/* harmony import */ var _hooks_useMedia_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hooks/useMedia/index.mjs */ "../hooks/useMedia/index.mjs");
-/* harmony import */ var _hooks_useRequestData_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useRequestData/index.mjs */ "../hooks/useRequestData/index.mjs");
+/* harmony import */ var _components_LoadingSpinner_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/LoadingSpinner/index.mjs */ "../components/LoadingSpinner/index.mjs");
+/* harmony import */ var _hooks_useMedia_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useMedia/index.mjs */ "../hooks/useMedia/index.mjs");
+/* harmony import */ var _hooks_useRequestData_index_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useRequestData/index.mjs */ "../hooks/useRequestData/index.mjs");
 // Components
-//export { AllowedBlocks } from './components/AllowedBlocks';
-//export { Background } from './components/Background';
-//export { BlockIcons } from './components/BlockIcons';
-//export { ColorSettings } from './components/ColorSettings';
-//export { ContentSearch } from './components/content-search';
-//export { ContentPicker } from './components/ContentPicker';
-//export { CustomBlockAppender } from './components/CustomBlockAppender';
-//export { DragHandle } from './components/drag-handle';
-//export { FetchAllTermSelectControl } from './components/FetchAllTermSelectControl';
-//export { HelpWrapper } from './components/HelpWrapper';
-//export { IconPicker } from './components/IconPicker';
-//export { Image } from './components/Image';
-//export { LinkToolbar } from './components/LinkToolbar';
-//export { LoadingSpinner } from './components/LoadingSpinner';
-// @todo make index
+// export { AllowedBlocks } from './components/AllowedBlocks';
+// export { Background } from './components/Background';
+// export { BlockIcons } from './components/BlockIcons';
+// export { ColorSettings } from './components/ColorSettings';
+// export { ContentSearch } from './components/content-search';
+// export { ContentPicker } from './components/ContentPicker';
+// export { CustomBlockAppender } from './components/CustomBlockAppender';
+// export { DragHandle } from './components/drag-handle';
+// export { FetchAllTermSelectControl } from './components/FetchAllTermSelectControl';
+// export { HelpWrapper } from './components/HelpWrapper';
+// export { IconPicker } from './components/IconPicker';
+// export { Image } from './components/Image/index.mjs';
+// export { LinkToolbar } from './components/LinkToolbar';
+
 // export { MediaCredit } from './components/MediaCredit/media-credit.js';
-//export { Optional } from './components/Optional';
-// @todo make index
+// export { Optional } from './components/Optional';
 // export { ParagraphCaptionStyle } from './components/ParagraphCaptionStyle/paragraph-caption-style.js';
-// @todo make index
 // export { ParagraphEndOfArticleStyle } from './components/ParagraphEndOfArticleStyle/paragraph-end-of-article-style.js';
-//export { PlainTextWithLimit } from './components/PlainTextWithLimit';
-//export { PostChooser } from './components/PostChooser';
-//export { PostPicker } from './components/PostPicker';
-//export { Repeater } from './components/Repeater';
-//export { RichTextWithLimit } from './components/RichTextWithLimit';
-//export { ShareTools } from './components/ShareTools';
-//export { StyledComponentContext } from './components/styled-components-context';
-//export { TermSelector } from './components/TermSelector';
+// export { PlainTextWithLimit } from './components/PlainTextWithLimit';
+// export { PostChooser } from './components/PostChooser';
+// export { PostPicker } from './components/PostPicker';
+// export { Repeater } from './components/Repeater';
+// export { RichTextWithLimit } from './components/RichTextWithLimit';
+// export { ShareTools } from './components/ShareTools';
+// export { StyledComponentContext } from './components/styled-components-context';
+// export { TermSelector } from './components/TermSelector';
 
 // Hooks
-//export { useFilteredList } from './hooks/use-filtered-list';
-//export { useIcons } from './hooks/use-icons';
-//export { useAllTerms } from './hooks/useAllTerms';
+// A React Hook is a special function that lets you "hook into" React state and lifecycle features from within functional components. Hooks enable stateful logic and side effects within functional components, offering a way to reuse logic across components. Crucially, hooks can only be called inside React functional components or custom hooks, and they must follow the "rules of hooks," such as being called at the top level of a component and not within loops or conditional statements.
+// export { useFilteredList } from './hooks/use-filtered-list';
+// export { useIcons } from './hooks/use-icons';
+// export { useAllTerms } from './hooks/useAllTerms';
 
-//export { useRenderAppenderWithBlockLimit } from './hooks/useRenderAppenderWithBlockLimit';
+// export { useRenderAppenderWithBlockLimit } from './hooks/useRenderAppenderWithBlockLimit';
 
 
 // Utils
-//export { parseMedia } from './utils/parseMedia/index.mjs';
+// A utility function is a standard JavaScript function that performs a specific task and is not tied to any particular framework or library. Utility functions are often used for tasks like data formatting, calculations, or other operations that don't require access to React's state or lifecycle. They can be called from anywhere in your code, including within React components or hooks.
+// export { parseMedia } from './utils/parseMedia/index.mjs';
+
+/***/ }),
+
+/***/ "../node_modules/classnames/index.js":
+/*!*******************************************!*\
+  !*** ../node_modules/classnames/index.js ***!
+  \*******************************************/
+/***/ ((module, exports) => {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	Copyright (c) 2018 Jed Watson.
+	Licensed under the MIT License (MIT), see
+	http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = '';
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (arg) {
+				classes = appendClass(classes, parseValue(arg));
+			}
+		}
+
+		return classes;
+	}
+
+	function parseValue (arg) {
+		if (typeof arg === 'string' || typeof arg === 'number') {
+			return arg;
+		}
+
+		if (typeof arg !== 'object') {
+			return '';
+		}
+
+		if (Array.isArray(arg)) {
+			return classNames.apply(null, arg);
+		}
+
+		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
+			return arg.toString();
+		}
+
+		var classes = '';
+
+		for (var key in arg) {
+			if (hasOwn.call(arg, key) && arg[key]) {
+				classes = appendClass(classes, key);
+			}
+		}
+
+		return classes;
+	}
+
+	function appendClass (value, newClass) {
+		if (!newClass) {
+			return value;
+		}
+	
+		if (value) {
+			return value + ' ' + newClass;
+		}
+	
+		return value + newClass;
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
 
 /***/ }),
 
@@ -198,7 +356,7 @@ module.exports = isObject;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"imports-dev/use-request-data","version":"0.1.0","title":"Testing block for useRequestData","category":"widgets","icon":"database","description":"Use that Request Data","example":{},"supports":{"html":false},"textdomain":"imports-dev-use-request-data","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"imports-dev/use-request-data","version":"0.1.0","title":"Testing block for useRequestData","category":"widgets","icon":"database","description":"Use that Request Data","example":{},"attributes":{"postID":{"type":"string","default":""}},"supports":{"html":false},"textdomain":"imports-dev-use-request-data","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -219,12 +377,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @bostonuniversity/block-imports */ "../index.js");
+/* harmony import */ var _bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @bostonuniversity/block-imports */ "../index.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/use-request-data/editor.scss");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
 
 /**
  * Retrieves the translation of text.
@@ -243,8 +399,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//import { useRequestData } from '@10up/block-components';
-
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -253,46 +407,68 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
+ * @param  props
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
  * @return {Element} Element to render.
  */
-function Edit() {
-  //const [hasPost, setHasPost] = useState(false);
-  const [data, isLoading, invalidateRequest] = (0,_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_4__.useRequestData)('postType', 'post', 67);
-  //const [imgData, imgIsLoading, imgInvalidateRequest] = useRequestData('root', 'media', 68);
-  //if (data !== undefined) {
-  //	setHasPost(data);
-  //	console.log(hasPost);
-  //	//if ( umImage  !== undefined)  {
-  //	//}
-  //}
-
-  //if (hasPost) {
-  //	console.log('hp featured', hasPost.featured_media);
-  //	const { media: umImage, isResolvingMedia, hasResolvedMedia } = useMedia(hasPost.featured_media);
-
-  //}
-
-  //console.log('Image Data', imgData);
-  //console.log('Image Loading', imgIsLoading);
-
-  //console.log('****** ');
-  //console.log('Post Data', data);
-  //console.log('isLoading', isLoading);
-  //console.log('****** ');
-
-  if (isLoading) {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", null, "Loading...");
+function Edit(props) {
+  const {
+    attributes,
+    setAttributes
+  } = props;
+  const {
+    postID
+  } = attributes;
+  let imageID = '';
+  const [data, isLoading, invalidateRequest] = (0,_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__.useRequestData)('postType', 'post', postID);
+  if (data) {
+    console.log(data);
+    console.log('Featured Image', data.featured_media);
+    imageID = data.featured_media;
   }
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  const {
+    media,
+    isResolvingMedia,
+    hasResolvedMedia
+  } = (0,_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__.useMedia)(imageID);
+  console.log(isResolvingMedia);
+  console.log(hasResolvedMedia);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+    title: "Post Settings"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+    label: "Post ID",
+    value: postID,
+    onChange: value => setAttributes({
+      postID: value
+    })
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, "This is some text from the editor.", data && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, data.title.rendered));
+  }, isLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__.LoadingSpinner, {
+    text: "Loading" // Default is undefined.
+    ,
+    shadow: false // Default is true.
+    ,
+    className: "a-custom-classname-to-add"
+  })), data && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Title 3:"), " ", data.title.rendered), data?.excerpt?.raw && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "excerpt-something"
+  }, data.excerpt.raw), imageID && isResolvingMedia && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__.LoadingSpinner, {
+    text: "Loading" // Default is undefined.
+    ,
+    shadow: false // Default is true.
+    ,
+    className: "a-custom-classname-to-add"
+  }), imageID && hasResolvedMedia && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Got image returned 3"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: media.source_url,
+    width: "150"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "button",
+    onClick: invalidateRequest
+  }, "Refresh list")), !postID && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Enter a post id in the inspector controls")));
 }
 
 /***/ }),
@@ -402,7 +578,7 @@ __webpack_require__.r(__webpack_exports__);
 function save() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save()
-  }, "Hi from the save.");
+  });
 }
 
 /***/ }),
@@ -442,6 +618,17 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
 /***/ "@wordpress/core-data":
 /*!**********************************!*\
   !*** external ["wp","coreData"] ***!
@@ -464,17 +651,6 @@ module.exports = window["wp"]["data"];
 
 /***/ }),
 
-/***/ "@wordpress/element":
-/*!*********************************!*\
-  !*** external ["wp","element"] ***!
-  \*********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["element"];
-
-/***/ }),
-
 /***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -483,17 +659,6 @@ module.exports = window["wp"]["element"];
 
 "use strict";
 module.exports = window["wp"]["i18n"];
-
-/***/ }),
-
-/***/ "lodash":
-/*!*************************!*\
-  !*** external "lodash" ***!
-  \*************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["lodash"];
 
 /***/ }),
 

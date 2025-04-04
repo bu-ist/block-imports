@@ -8,6 +8,12 @@
 	"icon": "database",
 	"description": "Use that Request Data",
 	"example": {},
+	"attributes": {
+		"postID": {
+			"type": "string",
+			"default": ""
+		}
+	},
 	"supports": {
 		"html": false
 	},

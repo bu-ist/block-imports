@@ -11,13 +11,15 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 
-import { useState } from '@wordpress/element';
+import {
+	useRequestData,
+	useMedia,
+	LoadingSpinner,
+} from '@bostonuniversity/block-imports';
 
-import { useRequestData } from '@bostonuniversity/block-imports';
-import { useMedia } from '@bostonuniversity/block-imports';
-//import { useRequestData } from '@10up/block-components';
+import { TextControl, PanelBody, PanelRow } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -26,53 +28,98 @@ import { useMedia } from '@bostonuniversity/block-imports';
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
 import './editor.scss';
-import { has } from 'lodash';
 
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
+ * @param  props
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
-	//const [hasPost, setHasPost] = useState(false);
+export default function Edit( props ) {
+	const { attributes, setAttributes } = props;
+	const { postID } = attributes;
+
+	let imageID = '';
+
 	const [ data, isLoading, invalidateRequest ] = useRequestData(
 		'postType',
 		'post',
-		67
+		postID
 	);
-	//const [imgData, imgIsLoading, imgInvalidateRequest] = useRequestData('root', 'media', 68);
-	//if (data !== undefined) {
-	//	setHasPost(data);
-	//	console.log(hasPost);
-	//	//if ( umImage  !== undefined)  {
-	//	//}
-	//}
 
-	//if (hasPost) {
-	//	console.log('hp featured', hasPost.featured_media);
-	//	const { media: umImage, isResolvingMedia, hasResolvedMedia } = useMedia(hasPost.featured_media);
-
-	//}
-
-	//console.log('Image Data', imgData);
-	//console.log('Image Loading', imgIsLoading);
-
-	//console.log('****** ');
-	//console.log('Post Data', data);
-	//console.log('isLoading', isLoading);
-	//console.log('****** ');
-
-	if ( isLoading ) {
-		return <h3>Loading...</h3>;
+	if ( data ) {
+		console.log( data );
+		console.log( 'Featured Image', data.featured_media );
+		imageID = data.featured_media;
 	}
 
+	const { media, isResolvingMedia, hasResolvedMedia } = useMedia( imageID );
+
+	console.log( isResolvingMedia );
+	console.log( hasResolvedMedia );
+
 	return (
-		<div { ...useBlockProps() }>
-			This is some text from the editor.
-			{ data && <p>{ data.title.rendered }</p> }
-		</div>
+		<>
+			<InspectorControls>
+				<PanelBody title="Post Settings">
+					<PanelRow>
+						<TextControl
+							label="Post ID"
+							value={ postID }
+							onChange={ ( value ) =>
+								setAttributes( { postID: value } )
+							}
+						/>
+					</PanelRow>
+				</PanelBody>
+			</InspectorControls>
+			<p { ...useBlockProps() }>
+				{ isLoading && (
+					<>
+						<LoadingSpinner
+							text="Loading" // Default is undefined.
+							shadow={ false } // Default is true.
+							className="a-custom-classname-to-add"
+						/>
+					</>
+				) }
+
+				{ data && (
+					<>
+						<h2>
+							<strong>Title 3:</strong> { data.title.rendered }
+						</h2>
+						{ data?.excerpt?.raw && (
+							<p className="excerpt-something">
+								{ data.excerpt.raw }
+							</p>
+						) }
+						{ imageID && isResolvingMedia && (
+							<LoadingSpinner
+								text="Loading" // Default is undefined.
+								shadow={ false } // Default is true.
+								className="a-custom-classname-to-add"
+							/>
+						) }
+						{ imageID && hasResolvedMedia && (
+							<>
+								<p>Got image returned 3</p>
+								<img src={ media.source_url } width="150" />
+							</>
+						) }
+						<button type="button" onClick={ invalidateRequest }>
+							Refresh list
+						</button>
+					</>
+				) }
+
+				{ ! postID && (
+					<strong>Enter a post id in the inspector controls</strong>
+				) }
+			</p>
+		</>
 	);
 }

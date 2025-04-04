@@ -33,7 +33,7 @@ export { LoadingSpinner } from './components/LoadingSpinner/index.mjs';
 // export { useAllTerms } from './hooks/useAllTerms';
 export { useMedia } from './hooks/useMedia/index.mjs';
 // export { useRenderAppenderWithBlockLimit } from './hooks/useRenderAppenderWithBlockLimit';
-export { useRequestData } from './hooks/useRequestData';
+export { useRequestData } from './hooks/useRequestData/index.mjs';
 
 // Utils
 // A utility function is a standard JavaScript function that performs a specific task and is not tied to any particular framework or library. Utility functions are often used for tasks like data formatting, calculations, or other operations that don't require access to React's state or lifecycle. They can be called from anywhere in your code, including within React components or hooks.
