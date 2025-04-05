@@ -1,5 +1,5 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"$schema": "https://schemas.wp.org/wp/5.8/block.json",
 	"apiVersion": 3,
 	"name": "imports-dev/use-request-data",
 	"version": "0.1.0",

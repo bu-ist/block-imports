@@ -356,7 +356,7 @@ module.exports = isObject;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"imports-dev/use-request-data","version":"0.1.0","title":"Testing block for useRequestData","category":"widgets","icon":"database","description":"Use that Request Data","example":{},"attributes":{"postID":{"type":"string","default":""}},"supports":{"html":false},"textdomain":"imports-dev-use-request-data","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":3,"name":"imports-dev/use-request-data","version":"0.1.0","title":"Testing block for useRequestData","category":"widgets","icon":"database","description":"Use that Request Data","example":{},"attributes":{"postID":{"type":"string","default":""}},"supports":{"html":false},"textdomain":"imports-dev-use-request-data","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ }),
 
