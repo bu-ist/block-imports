@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/wp/5.8/block.json",
+  "apiVersion": 3,
+  "name": "imports-dev/urd-post-list",
+  "version": "0.1.0",
+  "title": "Using useRequestData to get a list of posts",
+  "category": "widgets",
+  "icon": "database-add",
+  "description": "Use that Request Data to get posts",
+  "example": {},
+  "attributes": {
+    "postID": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "textdomain": "imports-dev-urd-post-list",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
