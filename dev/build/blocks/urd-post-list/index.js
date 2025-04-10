@@ -1,354 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../components/LoadingSpinner/editor.scss":
-/*!************************************************!*\
-  !*** ../components/LoadingSpinner/editor.scss ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ }),
-
-/***/ "../components/LoadingSpinner/index.mjs":
-/*!**********************************************!*\
-  !*** ../components/LoadingSpinner/index.mjs ***!
-  \**********************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   LoadingSpinner: () => (/* binding */ LoadingSpinner)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "../node_modules/classnames/index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "../components/LoadingSpinner/editor.scss");
-
-/**
- * A loading spinner to be used to indicate some activity is occuring.
- *
- * @return {Element} Element to render, in this case an DIV.
- */
-
-// External dependencies.
-
-
-// Import the WP Spinner component.
-
-
-// Import CSS.
-
-
-/**
- * Returns the class list for the component based on the current settings.
- *
- * @param {string} className	Additional classes assigned to the component.
- * @param {string} text			If the component has loading text set.
- * @param {string} shadow		If the component has a shadow set.
- */
-const getClasses = (className, text, shadow) => classnames__WEBPACK_IMPORTED_MODULE_1__('bu-components-loading-spinner', {
-  [`bu-components-loading-spinner--has-shadow`]: shadow,
-  [`bu-components-loading-spinner--has-text`]: text,
-  [className]: className
-});
-const LoadingSpinner = props => {
-  const {
-    text = undefined,
-    shadow = true,
-    className = undefined
-  } = props;
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: getClasses(className, text, shadow)
-  }, text && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", {
-    className: "bu-components-loading-spinner--label"
-  }, text), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, null));
-};
-
-/***/ }),
-
-/***/ "../hooks/useMedia/index.mjs":
-/*!***********************************!*\
-  !*** ../hooks/useMedia/index.mjs ***!
-  \***********************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useMedia: () => (/* binding */ useMedia)
-/* harmony export */ });
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
-
-
-function useMedia(id) {
-  return (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_0__.useSelect)(select => {
-    const {
-      getMedia,
-      isResolving,
-      hasFinishedResolution
-    } = select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_1__.store);
-    const mediaParameters = [id, {
-      context: "view"
-    }];
-    return {
-      media: getMedia(...mediaParameters),
-      isResolvingMedia: isResolving("getMedia", mediaParameters),
-      hasResolvedMedia: hasFinishedResolution("getMedia", mediaParameters)
-    };
-  }, [id]);
-}
-
-/***/ }),
-
-/***/ "../hooks/useRequestData/index.mjs":
-/*!*****************************************!*\
-  !*** ../hooks/useRequestData/index.mjs ***!
-  \*****************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useRequestData: () => (/* binding */ useRequestData)
-/* harmony export */ });
-/* harmony import */ var lodash_isObject_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash/isObject.js */ "../node_modules/lodash/isObject.js");
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
-/**
- * External dependencies
- */
-// eslint-disable-next-line import/no-extraneous-dependencies
-
-
-/**
- * WordPress dependencies
- */
-
-
-
-/**
- * Hook for retrieving data from the WordPress REST API.
- *
- * @param {string} entity           The entity to retrieve. Defaults to postType.
- * @param {string} kind             The entity kind to retrieve. Defaults to posts.
- * @param {object | number} [query] Optional. Query to pass to the geEntityRecords request. Defaults to an empty object. If a number is passed, it is used as the ID of the entity to retrieve via getEntityRecord.
- * @returns {Array} The data returned from the request.
- */
-const useRequestData = (entity = 'postType', kind = 'post', query = {}) => {
-  const functionToCall = lodash_isObject_js__WEBPACK_IMPORTED_MODULE_0__(query) ? 'getEntityRecords' : 'getEntityRecord';
-  const {
-    invalidateResolution
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)('core/data');
-  const {
-    data,
-    isLoading
-  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useSelect)(select => {
-    return {
-      data: select(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_1__.store)[functionToCall](entity, kind, query),
-      isLoading: select('core/data').isResolving(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_1__.store, functionToCall, [entity, kind, query])
-    };
-  }, [entity, kind, query]);
-  const invalidateResolver = () => {
-    invalidateResolution(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_1__.store, functionToCall, [entity, kind, query]);
-  };
-  return [data, isLoading, invalidateResolver];
-};
-
-/***/ }),
-
-/***/ "../index.js":
-/*!*******************!*\
-  !*** ../index.js ***!
-  \*******************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   LoadingSpinner: () => (/* reexport safe */ _components_LoadingSpinner_index_mjs__WEBPACK_IMPORTED_MODULE_0__.LoadingSpinner),
-/* harmony export */   useMedia: () => (/* reexport safe */ _hooks_useMedia_index_mjs__WEBPACK_IMPORTED_MODULE_1__.useMedia),
-/* harmony export */   useRequestData: () => (/* reexport safe */ _hooks_useRequestData_index_mjs__WEBPACK_IMPORTED_MODULE_2__.useRequestData)
-/* harmony export */ });
-/* harmony import */ var _components_LoadingSpinner_index_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/LoadingSpinner/index.mjs */ "../components/LoadingSpinner/index.mjs");
-/* harmony import */ var _hooks_useMedia_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./hooks/useMedia/index.mjs */ "../hooks/useMedia/index.mjs");
-/* harmony import */ var _hooks_useRequestData_index_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hooks/useRequestData/index.mjs */ "../hooks/useRequestData/index.mjs");
-// Components
-// export { AllowedBlocks } from './components/AllowedBlocks';
-// export { Background } from './components/Background';
-// export { BlockIcons } from './components/BlockIcons';
-// export { ColorSettings } from './components/ColorSettings';
-// export { ContentSearch } from './components/content-search';
-// export { ContentPicker } from './components/ContentPicker';
-// export { CustomBlockAppender } from './components/CustomBlockAppender';
-// export { DragHandle } from './components/drag-handle';
-// export { FetchAllTermSelectControl } from './components/FetchAllTermSelectControl';
-// export { HelpWrapper } from './components/HelpWrapper';
-// export { IconPicker } from './components/IconPicker';
-// export { Image } from './components/Image/index.mjs';
-// export { LinkToolbar } from './components/LinkToolbar';
-
-// export { MediaCredit } from './components/MediaCredit/media-credit.js';
-// export { Optional } from './components/Optional';
-// export { ParagraphCaptionStyle } from './components/ParagraphCaptionStyle/paragraph-caption-style.js';
-// export { ParagraphEndOfArticleStyle } from './components/ParagraphEndOfArticleStyle/paragraph-end-of-article-style.js';
-// export { PlainTextWithLimit } from './components/PlainTextWithLimit';
-// export { PostChooser } from './components/PostChooser';
-// export { PostPicker } from './components/PostPicker';
-// export { Repeater } from './components/Repeater';
-// export { RichTextWithLimit } from './components/RichTextWithLimit';
-// export { ShareTools } from './components/ShareTools';
-// export { StyledComponentContext } from './components/styled-components-context';
-// export { TermSelector } from './components/TermSelector';
-
-// Hooks
-// A React Hook is a special function that lets you "hook into" React state and lifecycle features from within functional components. Hooks enable stateful logic and side effects within functional components, offering a way to reuse logic across components. Crucially, hooks can only be called inside React functional components or custom hooks, and they must follow the "rules of hooks," such as being called at the top level of a component and not within loops or conditional statements.
-// export { useFilteredList } from './hooks/use-filtered-list';
-// export { useIcons } from './hooks/use-icons';
-// export { useAllTerms } from './hooks/useAllTerms';
-
-// export { useRenderAppenderWithBlockLimit } from './hooks/useRenderAppenderWithBlockLimit';
-
-
-// Utils
-// A utility function is a standard JavaScript function that performs a specific task and is not tied to any particular framework or library. Utility functions are often used for tasks like data formatting, calculations, or other operations that don't require access to React's state or lifecycle. They can be called from anywhere in your code, including within React components or hooks.
-// export { parseMedia } from './utils/parseMedia/index.mjs';
-
-/***/ }),
-
-/***/ "../node_modules/classnames/index.js":
-/*!*******************************************!*\
-  !*** ../node_modules/classnames/index.js ***!
-  \*******************************************/
-/***/ ((module, exports) => {
-
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	Copyright (c) 2018 Jed Watson.
-	Licensed under the MIT License (MIT), see
-	http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames () {
-		var classes = '';
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (arg) {
-				classes = appendClass(classes, parseValue(arg));
-			}
-		}
-
-		return classes;
-	}
-
-	function parseValue (arg) {
-		if (typeof arg === 'string' || typeof arg === 'number') {
-			return arg;
-		}
-
-		if (typeof arg !== 'object') {
-			return '';
-		}
-
-		if (Array.isArray(arg)) {
-			return classNames.apply(null, arg);
-		}
-
-		if (arg.toString !== Object.prototype.toString && !arg.toString.toString().includes('[native code]')) {
-			return arg.toString();
-		}
-
-		var classes = '';
-
-		for (var key in arg) {
-			if (hasOwn.call(arg, key) && arg[key]) {
-				classes = appendClass(classes, key);
-			}
-		}
-
-		return classes;
-	}
-
-	function appendClass (value, newClass) {
-		if (!newClass) {
-			return value;
-		}
-	
-		if (value) {
-			return value + ' ' + newClass;
-		}
-	
-		return value + newClass;
-	}
-
-	if ( true && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (true) {
-		// register as 'classnames', consistent with npm package name
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
-			return classNames;
-		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}());
-
-
-/***/ }),
-
-/***/ "../node_modules/lodash/isObject.js":
-/*!******************************************!*\
-  !*** ../node_modules/lodash/isObject.js ***!
-  \******************************************/
-/***/ ((module) => {
-
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return value != null && (type == 'object' || type == 'function');
-}
-
-module.exports = isObject;
-
-
-/***/ }),
-
 /***/ "./src/blocks/urd-post-list/block.json":
 /*!*********************************************!*\
   !*** ./src/blocks/urd-post-list/block.json ***!
@@ -356,7 +8,7 @@ module.exports = isObject;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":3,"name":"imports-dev/urd-post-list","version":"0.1.0","title":"Using useRequestData to get a list of posts","category":"widgets","icon":"database-add","description":"Use that Request Data to get posts","example":{},"attributes":{"postID":{"type":"string","default":""}},"supports":{"html":false},"textdomain":"imports-dev-urd-post-list","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/5.8/block.json","apiVersion":2,"name":"imports-dev/urd-post-list","version":"0.1.0","title":"Using useRequestData to get a list of posts","category":"widgets","icon":"database-add","description":"Use that Request Data to get posts","example":{},"attributes":{},"supports":{"html":false},"textdomain":"imports-dev-urd-post-list","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ }),
 
@@ -364,104 +16,9 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/wp/
 /*!******************************************!*\
   !*** ./src/blocks/urd-post-list/edit.js ***!
   \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ (() => {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Edit)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @bostonuniversity/block-imports */ "../index.js");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/urd-post-list/editor.scss");
-
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-
-
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-
-
-
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-
-
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @param  props
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
-function Edit(props) {
-  const {
-    attributes,
-    setAttributes
-  } = props;
-  const page = 1;
-  const query = {
-    per_page: 15,
-    page
-  };
-  let imageID = '';
-  const [data, isLoading, invalidateRequest] = (0,_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__.useRequestData)('postType', 'post', query);
-  if (data) {
-    console.log(data);
-    console.log('Featured Image', data.featured_media);
-    imageID = data.featured_media;
-  }
-
-  //const { media, isResolvingMedia, hasResolvedMedia } = useMedia( imageID );
-
-  //console.log( isResolvingMedia );
-  //console.log( hasResolvedMedia );
-
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, isLoading && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_bostonuniversity_block_imports__WEBPACK_IMPORTED_MODULE_3__.LoadingSpinner, {
-    text: "Loading" // Default is undefined.
-    ,
-    shadow: false // Default is true.
-    ,
-    className: "a-custom-classname-to-add"
-  }))));
-}
-
-/***/ }),
-
-/***/ "./src/blocks/urd-post-list/editor.scss":
-/*!**********************************************!*\
-  !*** ./src/blocks/urd-post-list/editor.scss ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/jreevior/Developer/budev/block-imports/dev/src/blocks/urd-post-list/edit.js: Unexpected token, expected \",\" (102:10)\n\n\u001b[0m \u001b[90m 100 |\u001b[39m\n \u001b[90m 101 |\u001b[39m \t\t\t\t{data \u001b[33m&&\u001b[39m data\u001b[33m.\u001b[39mlength \u001b[33m>\u001b[39m \u001b[35m0\u001b[39m \u001b[33m&&\u001b[39m (\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 102 |\u001b[39m \t\t\t\t\t{data\u001b[33m.\u001b[39mmap(post \u001b[33m=>\u001b[39m thePost(post))}\n \u001b[90m     |\u001b[39m \t\t\t\t\t     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 103 |\u001b[39m \t\t\t\t)}\n \u001b[90m 104 |\u001b[39m \t\t\t\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mdiv\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 105 |\u001b[39m \t\t\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n    at constructor (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:360:19)\n    at JSXParserMixin.raise (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:3338:19)\n    at JSXParserMixin.unexpected (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:3358:16)\n    at JSXParserMixin.expect (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:3668:12)\n    at JSXParserMixin.parseObjectLike (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:11533:14)\n    at JSXParserMixin.parseExprAtom (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:11051:23)\n    at JSXParserMixin.parseExprAtom (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6950:20)\n    at JSXParserMixin.parseExprSubscripts (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10785:23)\n    at JSXParserMixin.parseUpdate (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10770:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10750:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10603:61)\n    at JSXParserMixin.parseExprOps (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10608:23)\n    at JSXParserMixin.parseMaybeConditional (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10585:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10538:21)\n    at /Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10507:39\n    at JSXParserMixin.allowInAnd (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:12126:12)\n    at JSXParserMixin.parseMaybeAssignAllowIn (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10507:17)\n    at JSXParserMixin.parseParenAndDistinguishExpression (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:11386:28)\n    at JSXParserMixin.parseExprAtom (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:11033:23)\n    at JSXParserMixin.parseExprAtom (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6950:20)\n    at JSXParserMixin.parseExprSubscripts (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10785:23)\n    at JSXParserMixin.parseUpdate (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10770:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10750:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10603:61)\n    at JSXParserMixin.parseExprOpBaseRightExpr (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10690:34)\n    at JSXParserMixin.parseExprOpRightExpr (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10685:21)\n    at JSXParserMixin.parseExprOp (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10651:27)\n    at JSXParserMixin.parseExprOp (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10657:21)\n    at JSXParserMixin.parseExprOps (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10612:17)\n    at JSXParserMixin.parseMaybeConditional (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10585:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10538:21)\n    at JSXParserMixin.parseExpressionBase (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10491:23)\n    at /Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10487:39\n    at JSXParserMixin.allowInAnd (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:12126:12)\n    at JSXParserMixin.parseExpression (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10487:17)\n    at JSXParserMixin.jsxParseExpressionContainer (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6818:31)\n    at JSXParserMixin.jsxParseElementAt (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6897:36)\n    at JSXParserMixin.jsxParseElementAt (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6884:32)\n    at JSXParserMixin.jsxParseElement (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6935:17)\n    at JSXParserMixin.parseExprAtom (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:6945:19)\n    at JSXParserMixin.parseExprSubscripts (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10785:23)\n    at JSXParserMixin.parseUpdate (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10770:21)\n    at JSXParserMixin.parseMaybeUnary (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10750:23)\n    at JSXParserMixin.parseMaybeUnaryOrPrivate (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10603:61)\n    at JSXParserMixin.parseExprOps (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10608:23)\n    at JSXParserMixin.parseMaybeConditional (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10585:23)\n    at JSXParserMixin.parseMaybeAssign (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10538:21)\n    at /Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10507:39\n    at JSXParserMixin.allowInAnd (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:12126:12)\n    at JSXParserMixin.parseMaybeAssignAllowIn (/Users/jreevior/Developer/budev/block-imports/dev/node_modules/@babel/parser/lib/index.js:10507:17)");
 
 /***/ }),
 
@@ -477,6 +34,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/blocks/urd-post-list/style.scss");
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/urd-post-list/edit.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_edit__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/urd-post-list/save.js");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/urd-post-list/block.json");
 /**
@@ -511,7 +69,7 @@ __webpack_require__.r(__webpack_exports__);
   /**
    * @see ./edit.js
    */
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  edit: (_edit__WEBPACK_IMPORTED_MODULE_2___default()),
   /**
    * @see ./save.js
    */
@@ -552,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
- * @return {Element} Element to render.
+ * @return {JSX.Element} Element to render.
  */
 function save() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
@@ -594,50 +152,6 @@ module.exports = window["wp"]["blockEditor"];
 
 "use strict";
 module.exports = window["wp"]["blocks"];
-
-/***/ }),
-
-/***/ "@wordpress/components":
-/*!************************************!*\
-  !*** external ["wp","components"] ***!
-  \************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["components"];
-
-/***/ }),
-
-/***/ "@wordpress/core-data":
-/*!**********************************!*\
-  !*** external ["wp","coreData"] ***!
-  \**********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["coreData"];
-
-/***/ }),
-
-/***/ "@wordpress/data":
-/*!******************************!*\
-  !*** external ["wp","data"] ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["data"];
-
-/***/ }),
-
-/***/ "@wordpress/i18n":
-/*!******************************!*\
-  !*** external ["wp","i18n"] ***!
-  \******************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["i18n"];
 
 /***/ }),
 

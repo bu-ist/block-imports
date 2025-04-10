@@ -3,7 +3,6 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
-import { __ } from '@wordpress/i18n';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -11,15 +10,13 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {useBlockProps} from '@wordpress/block-editor';
 
 import {
 	useRequestData,
 	useMedia,
 	LoadingSpinner,
 } from '@bostonuniversity/block-imports';
-
-import { TextControl, PanelBody, PanelRow } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -36,10 +33,10 @@ import './editor.scss';
  * @param  props
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
- * @return {Element} Element to render.
+ * @return {JSX.Element} Element to render.
  */
-export default function Edit( props ) {
-	const { attributes, setAttributes } = props;
+export default function Edit(props) {
+	const {attributes, setAttributes} = props;
 	const page = 1;
 	const query = {
 		per_page: 15,
@@ -48,69 +45,63 @@ export default function Edit( props ) {
 
 	let imageID = '';
 
-	const [ data, isLoading, invalidateRequest ] = useRequestData(
+	const [data, isLoading, invalidateRequest] = useRequestData(
 		'postType',
 		'post',
 		query
 	);
 
-	if ( data ) {
-		console.log( data );
-		console.log( 'Featured Image', data.featured_media );
-		imageID = data.featured_media;
+	if (data) {
+		console.log(data);
 	}
 
-	//const { media, isResolvingMedia, hasResolvedMedia } = useMedia( imageID );
-
-	//console.log( isResolvingMedia );
-	//console.log( hasResolvedMedia );
+	const thePost = (post, invalidateRequest) => {
+		const {media, isResolvingMedia, hasResolvedMedia} = useMedia(post.featured_media);
+		console.log(media);
+		return (
+			<>
+				{imageID && isResolvingMedia && (
+					<LoadingSpinner
+						text="Loading" // Default is undefined.
+						shadow={false} // Default is true.
+						className="a-custom-classname-to-add"
+					/>
+				)}
+				{imageID && hasResolvedMedia && (
+					<>
+						<img src={media.source_url} width="150" alt={}/>
+					</>
+				)}
+				<h2>{post.title.rendered}</h2>
+				{post?.excerpt?.raw && (
+					<p className="excerpt-something">
+						{post.excerpt.raw}
+					</p>
+				)}
+				<button type="button" onClick={invalidateRequest}>
+					Refresh list
+				</button>
+			</>
+		);
+	};
 
 	return (
 		<>
-			<p { ...useBlockProps() }>
-				{ isLoading && (
+			<div {...useBlockProps()}>
+				{isLoading && (
 					<>
 						<LoadingSpinner
 							text="Loading" // Default is undefined.
-							shadow={ false } // Default is true.
+							shadow={false} // Default is true.
 							className="a-custom-classname-to-add"
 						/>
 					</>
-				) }
+				)}
 
-				{ /*{ data && (
-					<>
-						<h2>
-							<strong>Title 3:</strong> { data.title.rendered }
-						</h2>
-						{ data?.excerpt?.raw && (
-							<p className="excerpt-something">
-								{ data.excerpt.raw }
-							</p>
-						) }
-						{ imageID && isResolvingMedia && (
-							<LoadingSpinner
-								text="Loading" // Default is undefined.
-								shadow={ false } // Default is true.
-								className="a-custom-classname-to-add"
-							/>
-						) }
-						{ imageID && hasResolvedMedia && (
-							<>
-								<p>Got image returned 3</p>
-								<img src={ media.source_url } width="150" />
-							</>
-						) }
-						<button type="button" onClick={ invalidateRequest }>
-							Refresh list
-						</button>
-					</>
-				) }*/ }
-
-				{ /*{ ! postID && (
-					<strong>Enter a post id in the inspector controls</strong>
-				) }*/ }
-			</p>
+				{data && data.length > 0 && (
+					{data.map(post => thePost(post, invalidateRequest))}
+				)}
+			</div>
 		</>
 	);
 }

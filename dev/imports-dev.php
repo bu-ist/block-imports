@@ -27,6 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 function create_block_imports_dev_block_init() {
 	register_block_type( __DIR__ . '/build/blocks/static-starter' );
 	register_block_type( __DIR__ . '/build/blocks/use-request-data' );
-	register_block_type( __DIR__ . '/build/blocks/urp-post-list' );
+	register_block_type( __DIR__ . '/build/blocks/urd-post-list' );
 }
 add_action( 'init', 'create_block_imports_dev_block_init' );
