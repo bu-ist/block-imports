@@ -4,6 +4,8 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-super-fun-static-super-fun-static-block {
-	border: 1px dotted #f00;
+.wp-block-imports-dev-urd-post-list {
+	.post-container {
+		border: 1px dotted #f00;
+	}
 }

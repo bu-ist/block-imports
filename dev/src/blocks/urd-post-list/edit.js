@@ -14,9 +14,10 @@ import {useBlockProps} from '@wordpress/block-editor';
 
 import {
 	useRequestData,
-	useMedia,
 	LoadingSpinner,
 } from '@bostonuniversity/block-imports';
+
+import {ThePost} from './thepost';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -51,40 +52,6 @@ export default function Edit(props) {
 		query
 	);
 
-	if (data) {
-		console.log(data);
-	}
-
-	const thePost = (post, invalidateRequest) => {
-		const {media, isResolvingMedia, hasResolvedMedia} = useMedia(post.featured_media);
-		console.log(media);
-		return (
-			<>
-				{imageID && isResolvingMedia && (
-					<LoadingSpinner
-						text="Loading" // Default is undefined.
-						shadow={false} // Default is true.
-						className="a-custom-classname-to-add"
-					/>
-				)}
-				{imageID && hasResolvedMedia && (
-					<>
-						<img src={media.source_url} width="150" alt={}/>
-					</>
-				)}
-				<h2>{post.title.rendered}</h2>
-				{post?.excerpt?.raw && (
-					<p className="excerpt-something">
-						{post.excerpt.raw}
-					</p>
-				)}
-				<button type="button" onClick={invalidateRequest}>
-					Refresh list
-				</button>
-			</>
-		);
-	};
-
 	return (
 		<>
 			<div {...useBlockProps()}>
@@ -97,11 +64,20 @@ export default function Edit(props) {
 						/>
 					</>
 				)}
-
 				{data && data.length > 0 && (
-					{data.map(post => thePost(post, invalidateRequest))}
+					data.map((post) => {
+						return (
+							<ThePost
+								post={post}
+							/>
+						)
+					})
 				)}
+				<button type="button" onClick={invalidateRequest}>
+					Refresh list
+				</button>
 			</div>
 		</>
 	);
 }
+
