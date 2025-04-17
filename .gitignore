@@ -37,3 +37,4 @@ vendor/
 /dev/phpcs/.DS_Store
 /dev/.DS_Store
 /.vscode
+/build

@@ -1,43 +1,71 @@
 {
-	"name": "@bostonuniversity/block-components",
-	"version": "0.1.1",
-	"description": "Reusable Block Components for BU Plugins and Themes",
-	"main": "index.js",
-	"scripts": {
-		"postinstall": "composer install",
-		"yalc": "yalc publish",
-		"yalc:push": "yalc publish --push",
-		"yalc:changed": "yalc push --changed",
-		"watch": "npm-watch"
-	},
-	"watch": {
-		"yalc:changed": {
-			"patterns": [
-				"components",
-				"index.js",
-				"package.json"
-			],
-			"extensions": "js,scss,php,json",
-			"quiet": false
-		}
-	},
-	"contributors": [
-		"Sean Tierney <tierneys@bu.edu>",
-		"Dakota Chichester <acketon@bu.edu>",
-		"Tim King <timking@bu.edu>"
-	],
-	"dependencies": {
-		"@wordpress/api-fetch": "^6.0.0",
-		"@wordpress/date": "^5.1.0",
-		"classnames": "^2.5.1"
-	},
-	"devDependencies": {
-		"@wordpress/env": "^10.18.0",
-		"@wordpress/icons": "^10.1.0",
-		"npm-watch": "^0.13.0",
-		"yalc": "^1.0.0-pre.53"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "@bostonuniversity/block-imports",
+  "version": "0.3.0",
+  "description": "Block Imports for BU Plugins and Themes",
+  "author": "Boston University (https://www.bu.edu/marcom/)",
+  "contributors": [
+    "Sean Tierney <tierneys@bu.edu>",
+    "Dakota Chichester <acketon@bu.edu>",
+    "Tim King <timking@bu.edu>"
+  ],
+  "license": "GPL-2.0-or-later",
+  "keywords": [],
+  "homepage": "https://github.com/bu-ist/block-imports",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bu-ist/block-imports.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bu-ist/block-imports/issues"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@wordpress/api-fetch": "^6.0.0",
+    "@wordpress/date": "^5.1.0",
+    "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/modifiers": "^9.0.0",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@emotion/styled": "^11.14.0",
+    "@leeoniya/ufuzzy": "^1.0.18",
+    "@linthtml/linthtml": "^0.9.5",
+    "@tanstack/react-query": "^5.67.1",
+    "@wordpress/icons": "^10.1.0",
+    "@wordpress/scripts": "^27.1.0",
+    "npm-run-all": "^4.1.5",
+    "react-window": "^1.8.11",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+		"__DEVELOPMENT__": "===================================================================",
+		"start": "wp-scripts start",
+		"dev-start": "npm run start -w dev",
+		"dev-build": "npm run build -w dev",
+    "__CLEANUP__": "=======================================================================",
+    "format": "wp-scripts format",
+    "lint": "npm-run-all lint:css lint:html lint:js lint:md lint:pkg",
+    "lint:css": "wp-scripts lint-style",
+    "lint:html": "linthtml '**!(node_modules|build|vendor)/*.php'",
+    "lint:js": "wp-scripts lint-js",
+    "lint:js:fix": "wp-scripts lint-js --fix",
+    "lint:md": "wp-scripts lint-md-docs",
+    "lint:pkg": "wp-scripts lint-pkg-json",
+		"__WP-ENV__":  "=======================================================================",
+		"wp-env": "npm run wp-env -w dev",
+		"env-start": "npm run env-start -w dev",
+		"env-stop": "npm run env-stop -w dev",
+		"env-destroy": "npm run env-destroy -w dev",
+		"env-wp": "npm run env-wp -w dev",
+		"env-shell": "npm run env-shell -w dev"
+  },
+	"workspaces": [
+		"./",
+		"dev/"
+	]
 }

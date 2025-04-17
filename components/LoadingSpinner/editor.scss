@@ -1,0 +1,30 @@
+.bu-components-loading-spinner {
+	align-items: center;
+	background-color: #fff;
+	border-radius: 12px;
+	display: flex;
+	justify-content: center;
+	padding: 1em;
+	width: max-content;
+
+
+	.bu-components-loading-spinner--label {
+		font-weight: bold;
+		margin-right: 1ch;
+	}
+
+	&.bu-components-loading-spinner--has-shadow {
+		box-shadow:
+		3.4px 4.7px 2.7px rgba(0, 0, 0, 0.043),
+		8.7px 11.8px 6.9px rgba(0, 0, 0, 0.062),
+		17.7px 24.1px 14.2px rgba(0, 0, 0, 0.078),
+		36.5px 49.6px 29.2px rgba(0, 0, 0, 0.097),
+		100px 136px 80px rgba(0, 0, 0, 0.14);
+	}
+
+	.components-spinner {
+		margin: 0;
+		background-color: var(--wp-admin-theme-color);
+		font-weight: normal;
+	}
+}
