@@ -1,3 +1,0 @@
-BU Blocks is a plugin that contains blocks developed at Boston University that are sharable and usable by any Responsive Framework 2.0+ based site.
-This styleguide serves to display examples of each block and component as well as the markup, modifieres such as alternative interactive states <em>(hover, open, closed, etc)</em>, and
-also the status of the component <em>(Planned, In-Progress, Deprecated, etc)</em>.
