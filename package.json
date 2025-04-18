@@ -1,6 +1,6 @@
 {
   "name": "@bostonuniversity/block-imports",
-  "version": "0.3.0",
+  "version": "0.1.3",
   "description": "Block Imports for BU Plugins and Themes",
   "author": "Boston University (https://www.bu.edu/marcom/)",
   "contributors": [
@@ -43,10 +43,10 @@
     "access": "public"
   },
   "scripts": {
-		"__DEVELOPMENT__": "===================================================================",
-		"start": "wp-scripts start",
-		"dev-start": "npm run start -w dev",
-		"dev-build": "npm run build -w dev",
+    "__DEVELOPMENT__": "===================================================================",
+    "start": "wp-scripts start",
+    "dev-start": "npm run start -w dev",
+    "dev-build": "npm run build -w dev",
     "__CLEANUP__": "=======================================================================",
     "format": "wp-scripts format",
     "lint": "npm-run-all lint:css lint:html lint:js lint:md lint:pkg",
@@ -56,16 +56,16 @@
     "lint:js:fix": "wp-scripts lint-js --fix",
     "lint:md": "wp-scripts lint-md-docs",
     "lint:pkg": "wp-scripts lint-pkg-json",
-		"__WP-ENV__":  "=======================================================================",
-		"wp-env": "npm run wp-env -w dev",
-		"env-start": "npm run env-start -w dev",
-		"env-stop": "npm run env-stop -w dev",
-		"env-destroy": "npm run env-destroy -w dev",
-		"env-wp": "npm run env-wp -w dev",
-		"env-shell": "npm run env-shell -w dev"
+    "__WP-ENV__": "=======================================================================",
+    "wp-env": "npm run wp-env -w dev",
+    "env-start": "npm run env-start -w dev",
+    "env-stop": "npm run env-stop -w dev",
+    "env-destroy": "npm run env-destroy -w dev",
+    "env-wp": "npm run env-wp -w dev",
+    "env-shell": "npm run env-shell -w dev"
   },
-	"workspaces": [
-		"./",
-		"dev/"
-	]
+  "workspaces": [
+    "./",
+    "dev/"
+  ]
 }
